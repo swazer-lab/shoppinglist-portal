@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Admin" xml:space="preserve">
+    <value>الأدمين</value>
+  </data>
+  <data name="CenterSupervisor" xml:space="preserve">
+    <value>مشرف مركز</value>
+  </data>
+  <data name="ClinicEmployee" xml:space="preserve">
+    <value>موظف عيادة</value>
+  </data>
+  <data name="CommunicationCenter" xml:space="preserve">
+    <value>مركز الإتصال</value>
+  </data>
+  <data name="ComplainStatus_Done" xml:space="preserve">
+    <value>تمت الأفادة</value>
+  </data>
+  <data name="ComplainStatus_New" xml:space="preserve">
+    <value>شكوى جديدة</value>
+  </data>
+  <data name="ComplainStatus_Processing" xml:space="preserve">
+    <value>Processing Arabic</value>
+  </data>
+  <data name="ContactTypeEnum_Email" xml:space="preserve">
+    <value>الايميل</value>
+  </data>
+  <data name="ContactTypeEnum_FaxAddress" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="ContactTypeEnum_Phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+  <data name="ContactTypeEnum_WebAddress" xml:space="preserve">
+    <value>عنوان البريد الالكتروني</value>
+  </data>
+  <data name="ContentListType_AboutUs" xml:space="preserve">
+    <value>حول</value>
+  </data>
+  <data name="ContentListType_AssuranceCompany" xml:space="preserve">
+    <value>شركات التأمين</value>
+  </data>
+  <data name="ContentListType_ContactUs" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="ContentListType_FAQ" xml:space="preserve">
+    <value>الأسئلة المتكرة</value>
+  </data>
+  <data name="ContentListType_MediaCenter" xml:space="preserve">
+    <value>المكز الإعلامي</value>
+  </data>
+  <data name="ContentListType_PatientService" xml:space="preserve">
+    <value>خدمة المرضى</value>
+  </data>
+  <data name="ContentListType_PersonalService" xml:space="preserve">
+    <value>الخدمات الشخصية</value>
+  </data>
+  <data name="ContentListType_PrivacyPolicy" xml:space="preserve">
+    <value>ساسية الخصوصية</value>
+  </data>
+  <data name="DayType_Vacation" xml:space="preserve">
+    <value>عطلة</value>
+  </data>
+  <data name="DayType_Work" xml:space="preserve">
+    <value>عمل</value>
+  </data>
+  <data name="FamilyRelation_Son" xml:space="preserve">
+    <value>ابن - ابنة</value>
+  </data>
+  <data name="FamilyRelation_Wife" xml:space="preserve">
+    <value>زوجة</value>
+  </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>أنثى</value>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="NoPermission" xml:space="preserve">
+    <value>لاتملك الصلاحيات الكافية</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>العنصر المطلوب غير موجود</value>
+  </data>
+  <data name="PublishingStatus_NotPublish" xml:space="preserve">
+    <value>ليس للنشر</value>
+  </data>
+  <data name="PublishingStatus_Publish" xml:space="preserve">
+    <value>نشر</value>
+  </data>
+  <data name="ReservationStatus_Canceled" xml:space="preserve">
+    <value>ملغى</value>
+  </data>
+  <data name="ReservationStatus_Empty" xml:space="preserve">
+    <value>شاغر</value>
+  </data>
+  <data name="ReservationStatus_Moved" xml:space="preserve">
+    <value>Moved</value>
+  </data>
+  <data name="ReservationStatus_Sure" xml:space="preserve">
+    <value>مؤكد</value>
+  </data>
+  <data name="ReservationStatus_UnCompleted" xml:space="preserve">
+    <value>غير مكتمل</value>
+  </data>
+  <data name="ReservationStatus_Used" xml:space="preserve">
+    <value>مستخدم</value>
+  </data>
+  <data name="ResetPasswordEmail" xml:space="preserve">
+    <value>الرجاء الضغط &lt;a href='{0}'&gt;هنا&lt;/a&gt; لإعادة ضبط كلمة المرور الخاصة بك</value>
+  </data>
+  <data name="ResetPasswordFrom" xml:space="preserve">
+    <value>صفقة صحة</value>
+  </data>
+  <data name="ResetPasswordTitle" xml:space="preserve">
+    <value>إعادة ضبط كلمة المرور</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>مستخدم</value>
+  </data>
+  <data name="WorkPeriodKind_Evening" xml:space="preserve">
+    <value>الفترة المسائية</value>
+  </data>
+  <data name="WorkPeriodKind_Morning" xml:space="preserve">
+    <value>الفترة الصباحية</value>
+  </data>
+  <data name="WorkPeriodKind_Night" xml:space="preserve">
+    <value>الفترة المسائية</value>
+  </data>
+  <data name="WorkPeriodType_RestTime" xml:space="preserve">
+    <value>فترة استراحة</value>
+  </data>
+  <data name="WorkPeriodType_WorkTime" xml:space="preserve">
+    <value>فترة عمل</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+</root>

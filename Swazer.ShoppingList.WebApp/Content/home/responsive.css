@@ -1,0 +1,315 @@
+/* Medium Layout: 1280px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1290px) {
+    
+}
+
+/* Tablet Layout: 768px. */
+
+@media screen and (max-width: 1024px) {
+    .nav-social {
+        justify-content: flex-start;
+    }
+
+    .nav-social li {
+        margin: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .carousel-inner {
+        height: auto;
+    }
+    /* General Style */
+    .pn,
+    .prn,
+    .pln {
+        padding: 15px !important;
+    }
+    /* Navigation Section */
+    .navbar-default .navbar-nav li a {
+        padding: 20px 15px;
+    }
+    .navbar-default .navbar-nav > .active > a:after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 30px;
+        background: #111;
+        bottom: 13px;
+        left: 0px;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-header {
+        width: 100%;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block!important;
+        border-top: 1px solid #fff;
+        margin-top: 60px;
+    }
+    .nav-social {
+        text-align: center;
+    }
+    .navbar-default .navbar-brand {
+        width: 100px;
+    }
+    .navbar-default .navbar-nav {
+        text-align: left;
+    }
+    .navbar-nav > li {
+        width: 100%;
+    }
+    .navbar-brand {
+        padding: 10px;
+    }
+   
+    /* App Download Section */
+    .section-title-white p {
+        font-size: 20px;
+    }
+    .btn-download {
+        margin-bottom: 30px;
+    }
+    .btn-download-green {
+        margin: 5px;
+        padding: 10px 22px 10px 55px;
+    }
+    .btn-download-green .icon-box {
+        left: 15px;
+    }
+    /* Video Section */
+    .video-area {
+        padding: 100px 0px;
+        min-height: auto;
+    }
+  
+    /* Blog Page */
+    .sidebar {
+        margin-top: 30px;
+        padding-bottom: 30px;
+    }
+    .leave-area-row {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    .offer-thumbnail {
+        margin-bottom: 60px;
+    }
+
+    .mcenter-result-item {
+        margin-bottom: 15px;
+    }
+    .navbar-right {
+        float: left!important;
+    }
+}
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (min-width: 768px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+
+    .post-thumbnail, .news-thumbnail {
+        margin-bottom: 45px;
+    }
+    .carousel-inner {
+        height: auto;
+    }
+    /* General Style */
+    .pn,
+    .prn,
+    .pln {
+        padding: 15px !important;
+    }
+    .inner-padding {
+        padding: 50px 0px;
+    }
+    .inner-padding160 {
+        padding: 60px 0px;
+    }
+    .section-title {
+        margin-bottom: 10px;
+    }
+    .section-title-white {
+        margin-bottom: 20px;
+    }
+    .section-title-2-white h2:before {
+        left: -40px;
+    }
+    .section-title-2-white h2:after {
+        right: -40px;
+    }
+    /* Navigation Section */
+    .topbar-area {
+        top: 0px;
+        bottom: inherit;
+        position: fixed;
+        border: 0px;
+    }
+    .navbar-default .navbar-brand {
+        width: 50%;
+    }
+    .navbar-toggle {
+        margin-top: 20px;
+    }
+    .navbar-default .navbar-nav > .active > a:after {
+        display: none;
+    }
+    .navbar-default .navbar-nav li a {
+        padding: 15px;
+    }
+    
+    /* App Download Section */
+    .section-title-white p {
+        font-size: 14px;
+    }
+    .download-box .btn-download:last-child {
+        margin-bottom: 0;
+    }
+    .btn-download {
+        margin-right: 0px;
+        margin-bottom: 30px;
+    }
+    .btn-download-green {
+        margin-bottom: 30px;
+        margin-right: 0px;
+    }
+    .btn-download-green:last-child {
+        margin-bottom: 0px;
+    }
+
+    /* Team Carousel Section */
+    .team-nav {
+        display: none;
+    }
+    .team-carousel .item .item-inner .item-content {
+        padding-top: 30px;
+    }
+    .testimonial-carousel {
+        padding: 130px 30px 20px 30px;
+    }
+    .testimonial-nav {
+        padding: 0px 20px;
+    }
+    /* Testimonial Section */
+    .slick-prev:before {
+        left: -30px;
+        top: 120px;
+    }
+    .slick-next:before {
+        right: 5px;
+        top: 120px;
+    }
+    .testimonial-area-inner {
+        padding: 20px 30px 20px 30px;
+    }
+    /* Video Section */
+    .play-button img {
+        height: 70px;
+    }
+    .video-area {
+        padding: 70px 0px;
+        min-height: auto;
+    }
+    .section-title-2-white {
+        margin-bottom: 0;
+    }
+    /* Blog Page */
+    .blog-area {
+        padding: 30px 0px 0px!important;
+    }
+    .header-caption {
+        padding-right: 0px;
+    }
+    .sidebar {
+        margin-top: 30px;
+        padding-bottom: 30px;
+    }
+    .post-item .post-feature {
+        width: 80px;
+        height: 80px;
+    }
+    .post-footer {
+        margin-bottom: 30px;
+    }
+    .user-comment {
+        padding: 115px 0px 0px 0px;
+    }
+    .leave-area-row {
+        width: 100%;
+    }
+    .social-share-title {
+        margin: 0px;
+    }
+    .cmnt-divider {
+        display: none;
+    }
+   
+    /* 404 Page */
+    .btn-lg {
+        font-size: 20px;
+        line-height: 35px;
+        padding: 15px;
+    }
+    .pt60 {
+        padding-top: 0px;
+    }
+    .xspt60 {
+        padding-top: 30px;
+    }
+}
+
+/* Wide Mobile Layout: 480px. */
+@media screen and (max-width: 565px) {
+    .contact-nav {
+        display: none;
+    }
+    .xs-full {
+        width: 100%;
+    }
+
+    .doctor-item .make-appointment-btn {
+        position: static;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 414px) {
+    /* Team Section */
+    .team-carousel .item .item-inner .item-content {
+        padding-top: 60px;
+    }
+    #socialLoginList .btn {
+        padding: 6px;
+    }
+}
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+    /* Team Carousel Section */
+    .team-carousel .item .item-inner .item-content {
+        padding: 0px;
+    }
+}
+
+/* Wide Mobile Layout: 320px. */
+
+@media only screen and (min-width: 320px) and (max-width: 325px) {
+    
+}

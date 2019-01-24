@@ -1,0 +1,104 @@
+﻿
+body {
+    font-family: 'TheSans', sans-serif;
+}
+
+body * {
+    letter-spacing: 0;
+}
+
+.lang-dropdown ul {
+    left: 0;
+    right: auto;
+}
+
+.offer-thumbnail .offer-button {
+    left: 15px;
+    right: auto;
+}
+
+.btn-download  {
+    padding: 15px 40px 15px 30px;
+}
+
+.btn-download .icon-box {
+    right: 25px;
+    left: auto
+}
+
+.button-text {
+    padding-right: 35px;
+}
+
+.carousel-control.right:first-child {
+    right: auto;
+    left: 0;
+}
+
+.carousel-control.left:first-child {
+    right: 0;
+    left: auto;
+}
+
+.carousel-control .glyphicon-chevron-left {
+    left: auto;
+    right: 10px
+}
+
+.carousel-control .glyphicon-chevron-right {
+    left: 10px;
+    right: auto;
+}
+
+.borderd-title h4 {
+    padding-left: 15px;
+}
+
+select.form-control {
+    padding: 0 12px;
+}
+
+.forget-password {
+    padding-left: 5px;
+}
+
+.stay-ltr {
+    display: inline-block;
+    direction: ltr;
+}
+
+.mcenter-result-item .mcenter-title {
+    padding-right: 10px;
+}
+
+.mcenter-result-item .label-primary {
+    left: 0;
+    right: auto;
+}
+
+.doctor-item .make-appointment-btn {
+    left: 30px;
+    right: auto;
+}
+
+.offer-thumbnail .offer-medical-center {
+    right: auto;
+    left: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .navbar-default .navbar-nav > .active > a:after{
+        right: 0;
+    }
+    .navbar-default .navbar-nav {
+        text-align: right;
+    }
+} 
+
+@media screen and (max-width: 994px) {
+    .navbar-right {
+        float: right !important;
+    }
+}

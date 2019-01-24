@@ -1,0 +1,20 @@
+﻿@model string
+
+<div class="modal inmodal" id="delete-Modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInDown">
+            <div class="modal-header">
+                <i class="fa fa-trash-o modal-icon"></i>
+                <h4 class="modal-title text-center">@SharedStrings.Delete</h4>
+            </div>
+            <div class="modal-body">
+                <small class="font-bold">@string.Format(SharedStrings.Confirmation, Model)</small>
+                @Html.Hidden("FamilyMemberId")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">@SharedStrings.Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="validationDelete">@SharedStrings.Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

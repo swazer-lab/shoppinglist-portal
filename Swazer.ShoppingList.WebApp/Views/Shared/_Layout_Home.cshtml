@@ -1,0 +1,267 @@
+﻿@using Swazer.ShoppingList.Core
+
+<!DOCTYPE html>
+<html class="js touch csstransforms csstransforms3d csstransitions">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @SharedStrings.Appointment</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    @Styles.Render("~/Content/homebootstrap")
+    <link rel="shortcut icon" type="image/png" href="~/Content/home/images/favicon.png">
+    @if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        @Styles.Render("~/Content/homertl")
+    }
+    @Styles.Render("~/Content/home")
+
+
+    @Styles.Render("~/Content/home-repsonsive")
+    @if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        @Styles.Render("~/Content/home-style-rtl")
+    }
+    @Styles.Render("~/plugins/toastrStyles")
+    @if (IsSectionDefined("Styles"))
+    {
+        @RenderSection("Styles", required: false)
+    }
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target="#scroll-menu" data-offset="100">
+    <div id="top-bar">
+        <div class="container clearfix">
+            <div class="pull-left contact-nav">
+                <ul class="top-bar-nav">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a class="account-icon user-name-label">@User.Identity.Name</a></li>
+                    }
+                    <li><a href="mailto:info@tashafi.com"><i class="fa fa-envelope"></i>info@tashafi.com</a></li>
+                    <li><a href="tel:+96388320317"><i class="fa fa-phone"></i><span class="stay-ltr">+ 963 88 320 317</span></a></li>
+
+                </ul>
+            </div>
+            @{
+                RouteValueDictionary routeValues = ViewContext.RouteData.Values;
+
+                string controller = routeValues["controller"] as string;
+                string action = routeValues["action"] as string;
+                string lang = routeValues["lang"] as string;
+
+                var queryString = ViewContext.RequestContext.HttpContext.Request.QueryString;
+                RouteValueDictionary arabicRouteValues = routeValues.Copy("ar", queryString);
+                RouteValueDictionary englishRouteValues = routeValues.Copy("en", queryString);
+            }
+
+            <div class="pull-right">
+                <ul class="top-bar-nav">
+                    <li class="lang-dropdown">
+                        <a href="#">@((lang == "ar") ? "ar" : "en")<i class="fa fa-chevron-down"></i></a>
+                        <ul>
+                            <li>@Html.ActionLink("en", @action, @controller, englishRouteValues, null)</li>
+                            <li>@Html.ActionLink("ar", @action, @controller, arabicRouteValues, null)</li>
+                        </ul>
+                    </li>
+                    <li class="make-appointment-btn"><a href="@Url.Action("Create", "UserReservation")">@HomeStrings.MakeAppointment</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/Content/home/images/logo.png" alt="CSVAPP" /></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="@Url.Action("Index","Home")">@HomeStrings.Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@HomeStrings.About<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(HomeStrings.About, "About", "Home")</li>
+                            <li>@Html.ActionLink(HomeStrings.PrivacyPolicy, "PrivacyPolicy", "Home")</li>
+                            <li>@Html.ActionLink(HomeStrings.FAQ, "FAQ", "Home")</li>
+                            <li>@Html.ActionLink(HomeStrings.PatientService, "PatientService", "Home")</li>
+                            <li>@Html.ActionLink(HomeStrings.PersonalService, "PersonalService", "Home")</li>
+                            <li>@Html.ActionLink(HomeStrings.AssuranceCompany, "AssuranceCompany", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@HomeStrings.Services<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Offers","Home")">@HomeStrings.Offers</a></li>
+                            <li><a href="@Url.Action("Index","UserReservation")">@HomeStrings.MakeAppointment</a></li>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink(HomeStrings.MyComplains, "Index", "UserComplain")</li>
+                                <li>@Html.ActionLink(HomeStrings.FamilyMembers, "Index", "UserFamilyMember")</li>
+                                <li>@Html.ActionLink(HomeStrings.Reservations, "Index", "UserReservation")</li>
+                                <li>@Html.ActionLink(HomeStrings.UserProfile, "UserProfile", "UserInformation")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink(HomeStrings.UserComplain, "CreateComplain", "UserComplain")</li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@HomeStrings.MediaCenter<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("MedicalArticles","Home")">@HomeStrings.MedicalArticles</a></li>
+                            <li><a href="@Url.Action("Videos","Home")">@HomeStrings.Videos</a></li>
+                            <li><a href="@Url.Action("Photos", "Home")">@PhotosStrings.Photos</a></li>
+                            <li><a href="@Url.Action("NewsItems","Home")">@HomeStrings.NewsItems</a></li>
+                            <li><a href="@Url.Action("MedicalCenters", "Home")">@MedicalCentersStrings.MedicalCenters</a></li>
+                            <li><a href="@Url.Action("Doctors", "Home")">@DoctorStrings.Doctors</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Contact","Home")">@HomeStrings.Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                        if (User.IsInRole(RoleNames.UserRole))
+                        {
+                            <li><a class="account-icon" href="@Url.Action("UserDashboard", "Home")"><i class="fa fa-tachometer"></i>@HomeStrings.Dashboard</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="account-icon" href="@Url.Action("Index", "Dashboard",new { Area = "Admin" })"><i class="fa fa-tachometer"></i>@HomeStrings.Dashboard</a></li>
+                        }
+                        <li><a class="account-icon" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-lg"></i> @SharedStrings.LogOff</a></li>
+                    }
+                    else
+                    {
+                        <li><a class="account-icon" href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i>@AccountStrings.Login</a></li>
+                        <li><a class="account-icon" href="@Url.Action("Register", "Account")"><i class="fa fa-user-plus"></i>@AccountStrings.Register</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    @RenderBody()
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-responsive" src="~/Content/home/images/Logo-white.png" alt="website-logo" />
+                    <p class="slogan">
+                        @HomeStrings.Slogan
+                    </p>
+
+                    <p>
+                        795 Folsom Ave, Suite 600 <br /> San Francisco, CA 94107
+                    </p>
+
+                    <ul class="list-unstyled">
+                        <li><b>@HomeStrings.Phone:</b> <span class="stay-ltr">+963 940 550 618</span></li>
+                        <li><b>@HomeStrings.Email:</b> tashafi@info.com</li>
+                        <li><b>@HomeStrings.Fax:</b> <span class="stay-ltr">(91) 11 4752 1433</span></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="list-title">@HomeStrings.Services:</h5>
+                    <ul class="list-unstyled footer-links-list">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Action("Create","UserReservation")">@HomeStrings.MakeAppointment</a></li>
+                            <li><a href="@Url.Action("Create", "UserComplain")">@HomeStrings.Complain</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("CreateComplain", "UserComplain")">@HomeStrings.Complain</a></li>
+                        }
+                        <li><a href="@Url.Action("Offers", "Home")">@HomeStrings.Offers</a></li>
+                        <li><a href="@Url.Action("Doctors", "Home")">@HomeStrings.Doctors</a></li>
+                        <li><a href="@Url.Action("MedicalCenters", "Home")">@HomeStrings.MedicalCenters</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="list-title">@HomeStrings.MediaCenter:</h5>
+                    <ul class="list-unstyled footer-links-list">
+                        <li><a href="@Url.Action("MedicalArticles")">@HomeStrings.MedicalArticles</a></li>
+                        <li><a href="@Url.Action("NewsItems")">@HomeStrings.NewsItems</a></li>
+                        <li><a href="@Url.Action("Videos")">@HomeStrings.Videos</a></li>
+                        <li><a href="@Url.Action("Photos")">@HomeStrings.Photos</a></li>
+                        <li><a href="@Url.Action("FAQ", "Home")">@HomeStrings.FAQ</a></li>
+                        <li><a href="@Url.Action("Contact")">@HomeStrings.Contact</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="list-title">
+                        @HomeStrings.Contact:
+                    </h5>
+                    <ul class="nav-social">
+                        <li class="facebook"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li class="instagram"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li class="gplus"><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <small>
+                        @SharedStrings.AllRightsReserved <a href="http://www.swazerlab.com/">Tashafi</a> <a href="@Url.Action("Index", "Home", new { lang ="ar" })">عربي</a>
+                        &copy; @DateTime.Now.Year <a href="@Url.Action("Index", "Home", new { lang ="en" })">English</a>
+                    </small>
+                </div>
+
+                <div class="col-md-6 text-right">
+                    <small>
+                        <a href="@Url.Action("","Home")">@HomeStrings.Terms</a>
+                        /
+                        <a href="@Url.Action("PrivacyPolicy")">@HomeStrings.PrivacyPolicy</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/bundles/home")
+
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/ajaxredirect.js"></script>
+    <script type="text/javascript">
+        try {
+            globalLoginRedirect = '@Url.Action("Login", "Account", new { area = "" })';
+        } catch (ex) {}
+    </script>
+</body>
+</html>

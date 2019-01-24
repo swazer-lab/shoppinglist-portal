@@ -1,0 +1,226 @@
+﻿@model Swazer.ShoppingList.WebApp.Models.RegisterViewModel
+@{
+    ViewBag.Title = AccountStrings.Register;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 ">
+            <div id="register-form" class=" register-form-container background-img-heart-beat">
+                <div class="text-center">
+                    <img class="logo-img" src="~/Content/home/images/logo.png" alt="logo" />
+                </div>
+                <div data-bind="visible: IsSecondStep()===false">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id = "myform" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ArabicName)
+                                    @Html.TextBoxFor(m => m.ArabicName, new { @class = "form-control", data_bind = "textInput:ArabicName" })
+                                    @Html.ValidationMessageFor(m => m.ArabicName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.EnglishName)
+                                    @Html.TextBoxFor(m => m.EnglishName, new { @class = "form-control", data_bind = "textInput:EnglishName" })
+                                    @Html.ValidationMessageFor(m => m.EnglishName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_bind = "textInput:Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Mobile)
+                                    @Html.TextBoxFor(m => m.Mobile, "", new Dictionary<string, object> { { "class", "form-control" }, { "maxlength", "10" }, { "autocomplete", "off" }, { "data-bind", "textInput:Mobile" } })
+                                    @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", data_bind = "textInput:Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ConfirmPassword)
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", data_bind = "textInput:ConfirmPassword" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Gender)
+                                    @Html.EnumDropDownListFor(m => m.Gender, SharedStrings.SelectPlaceholder, new { @class = "form-control", data_bind = "value:Gender" })
+                                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <input type="button" data-bind="click: SendCode" class="btn btn-md btn-default bg-secondary-color register-btn" value="@AccountStrings.Register" />
+                        </div>
+                        <p>@AccountStrings.AcceptCondition <a href="@Url.Action("PrivacyPolicy", "Home")"></a></p>
+                    }
+                </div>
+                @Html.Partial("_MobileCode")
+                <div data-bind="visible: IsSecondStep()===true">
+                    <form method="post" id="id_form">
+                        <div data-bind="template: {name: 'mobile-code-template', data: $root.CodeModel, if : $root.CodeModel !== undefined }">
+                        </div>
+                    </form>
+                </div>
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/knockout/CodeSendModel.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function RegisterVM() {
+                var self = this;
+
+                function resend() {
+                    $.ajax({
+                        async: true,
+                        method: 'POST',
+                        url: '@Url.Action("ResendCode")',
+                        data: {
+                            smsRefId: self.SmsRefId(),
+                            mobile: self.Mobile()
+                        },
+                        success: function (e) {
+                            self.CodeModel().StartTimeDown(e.resendTimeout);
+                            ShowSuccessMessage(e.message);
+                        },
+                        error: function (e) {
+                            toastr.error(e.responseJSON);
+                            handle401Error(e);
+                        }
+                    });
+                }
+
+                self.CodeModel = ko.observable(new CodeSendModel({
+                    PhoneNumber: '',
+                    ExpirationPeriod: 1,
+                }));
+
+                self.CodeModel().ResendFunction = resend;
+                self.ArabicName = ko.observable();
+                self.EnglishName = ko.observable();
+                self.Email = ko.observable();
+                self.Password = ko.observable();
+                self.ConfirmPassword = ko.observable();
+                self.Mobile = ko.observable();
+                self.Gender = ko.observable();
+                self.SmsRefId = ko.observable();
+                self.IsSecondStep = ko.observable(false);
+
+                self.getModel = function () {
+                    return {
+                        ArabicName: self.ArabicName(),
+                        EnglishName: self.EnglishName(),
+                        Email: self.Email(),
+                        Mobile: self.Mobile(),
+                        Password: self.Password(),
+                        ConfirmPassword: self.ConfirmPassword(),
+                        Gender: self.Gender(),
+                    };
+                }
+
+                self.SendCode = function () {
+                    var res = $('#myform').valid();
+                    if (res === false)
+                        return;
+
+                    $.ajax({
+                        async: true,
+                        method: 'POST',
+                        url: '@Url.Action("SendRegisterCode", "Account")',
+                        data: self.getModel(),
+                        success: function (e) {
+                            var mobile = self.Mobile();
+                            self.CodeModel().LastPartOfPhoneNumber(mobile.substr(0, 4));
+                            self.CodeModel().StartTimeDown();
+                            self.SmsRefId(e);
+                            self.IsSecondStep(true);
+                        },
+                        error: function (e) {
+                            toastr.error(e.responseJSON);
+                            handle401Error(e);
+                        }
+                    });
+                }
+
+                self.Register = function () {
+                    var form = $('#__AjaxAntiForgeryForm');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                    $.ajax({
+                        async: true,
+                        method: 'POST',
+                        data: {
+                            model : self.getModel(),
+                            smsRefId: self.SmsRefId(),
+                            code: self.CodeModel().Code(),
+                            __RequestVerificationToken: token,
+                        },
+                        url: '@Url.Action("Register", "Account")',
+                        success: function (e) {
+                            redirect('@Url.Action("Login", "Account")')
+                        },
+                        error: function (e) {
+                            toastr.error(e.responseJSON);
+                            handle401Error(e);
+                        }
+                    });
+                }
+
+                self.MobileSubscription = self.Mobile.subscribe(function (newVal) {
+                    forceJustMobile(self.Mobile);
+                });
+            };
+
+            var vm = new RegisterVM();
+            $("#id_form").on("submit", function (e) {
+                e.preventDefault();
+                vm.Register();
+                return false;
+            });
+            ko.applyBindings(vm);
+
+        });
+
+
+    </script>
+}

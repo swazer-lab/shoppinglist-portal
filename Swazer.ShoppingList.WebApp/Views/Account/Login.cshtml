@@ -1,0 +1,68 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = AccountStrings.Login;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <div id="loginForm" class="login-form-container background-img-heart-beat">
+                <div class="text-center">
+                    <img class="logo-img" src="~/Content/home/images/logo.png" alt="logo" />
+                </div>
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.DisplayNameFor(m => m.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <p class="text-right forget-password">@Html.ActionLink(AccountStrings.ForgotYourPassword, "ForgotPassword")</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="@AccountStrings.Login" class="btn btn-md bg-secondary-color" />
+                    </div>
+                }
+
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+
+            <p class="text-center">@AccountStrings.NoAccount  @Html.ActionLink(AccountStrings.Register, "Register", null, new { @class = "no-account-link" })</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+              if ('@TempData["SuccessMessage"]' !== '') {
+                  toastr.success('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["SuccessMessage"]))');
+              }
+        });
+    </script>
+}

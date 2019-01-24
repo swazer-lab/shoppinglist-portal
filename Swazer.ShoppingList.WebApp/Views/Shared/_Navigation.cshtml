@@ -1,0 +1,61 @@
+﻿@using Swazer.ShoppingList.Core;
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span id="userAvatar">
+                        <span>@User.GetFullName()</span>
+                    </span>
+                    @{
+                        string rotateClass = "fa-flip-horizontal";
+                        if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+                        {
+                            rotateClass = "";
+                        }
+                    }
+                </div>
+                <div class="logo-element"></div>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@HomeStrings.Home</span><span class="pull-right flip @rotateClass"></span></a>
+            </li>
+            <li class="@Html.HasControllerSelected("UserInformation", "UserInformation")">
+                <a href="#"><i class="fa fa-user fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@SharedStrings.Profile</span><span class="fa arrow pull-right flip @rotateClass"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller: "UserInformation", action: "UserProfile")"><a href="@Url.Action("UserProfile", "UserInformation", null, null)">@HomeStrings.UserProfile</a></li>
+                    <li class="@Html.IsSelected(controller: "UserInformation", action: "ChangePassword")"><a href="@Url.Action("ChangePassword", "UserInformation", null, null)">@UserInformationStrings.PasswordChange</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.HasControllerSelected("UserReservation", "UserReservation")">
+                <a href="#"><i class="fa fa-clock-o fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@HomeStrings.Reservations</span><span class="fa arrow pull-right flip @rotateClass"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller: "UserReservation", action: "Index")"><a href="@Url.Action("Index", "UserReservation", null, null)">@HomeStrings.Reservations</a></li>
+                    <li class="@Html.IsSelected(controller: "UserReservation", action: "Create")"><a href="@Url.Action("Create", "UserReservation", null, null)">@UserReservationStrings.MakeAnAppointment</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.HasControllerSelected("UserComplain", "UserComplain")">
+                <a href="#"><i class="fa fa-legal fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@HomeStrings.MyComplains</span><span class="fa arrow pull-right flip @rotateClass"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller: "UserComplain", action: "Index")"><a href="@Url.Action("Index", "UserComplain", null, null)">@HomeStrings.MyComplains</a></li>
+                    <li class="@Html.IsSelected(controller: "UserComplain", action: "Create")"><a href="@Url.Action("Create", "UserComplain", null, null)">@ComplainsStrings.CreateNewComplain</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.HasControllerSelected("UserFamilyMember", "UserFamilyMember")">
+                <a href="#"><i class="fa fa-users fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@HomeStrings.FamilyMembers</span><span class="fa arrow pull-right flip @rotateClass"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller: "UserFamilyMember", action: "Index")"><a href="@Url.Action("Index", "UserFamilyMember", null, null)">@HomeStrings.FamilyMembers</a></li>
+                    <li class="@Html.IsSelected(controller: "UserFamilyMember", action: "Create")"><a href="@Url.Action("Create", "UserFamilyMember", null, null)">@FamilyMembersStrings.CreateFamilyMember</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+

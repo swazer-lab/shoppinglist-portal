@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD26F41C-9C04-4DF3-B936-B36E22F5B213}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Swazer.ShoppingList.SqlServerRepository</RootNamespace>
+    <AssemblyName>Swazer.ShoppingList.SqlServerRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppointmentContext.cs" />
+    <Compile Include="Caching\Cache.cs" />
+    <Compile Include="Caching\Hash\Evaluator.cs" />
+    <Compile Include="Caching\Hash\LocalCollectionExpander.cs" />
+    <Compile Include="Caching\Hash\Utility.cs" />
+    <Compile Include="Identity\IdentityRoleRepository.cs" />
+    <Compile Include="Identity\IdentityUserRepository.cs" />
+    <Compile Include="Migrations\201901240742152_x1.cs" />
+    <Compile Include="Migrations\201901240742152_x1.Designer.cs">
+      <DependentUpon>201901240742152_x1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901240811199_x2.cs" />
+    <Compile Include="Migrations\201901240811199_x2.Designer.cs">
+      <DependentUpon>201901240811199_x2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901240852096_x3.cs" />
+    <Compile Include="Migrations\201901240852096_x3.Designer.cs">
+      <DependentUpon>201901240852096_x3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\QueryConstraintsExtensions.cs" />
+    <Compile Include="RepositoryResource.Designer.cs" />
+    <Compile Include="SqlServerImplementation\SqlServerQueryRepository.cs" />
+    <Compile Include="SqlServerImplementation\SqlServerRepository.cs" />
+    <Compile Include="SqlServerImplementation\UnitOfWork.cs" />
+    <Compile Include="ThrowHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901240742152_x1.resx">
+      <DependentUpon>201901240742152_x1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901240811199_x2.resx">
+      <DependentUpon>201901240811199_x2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901240852096_x3.resx">
+      <DependentUpon>201901240852096_x3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepositoryResource.en.resx" />
+    <EmbeddedResource Include="RepositoryResource.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Swazer.ShoppingList.Core\Swazer.ShoppingList.Core.csproj">
+      <Project>{74c7476f-8fff-4f46-97ac-2fd9fa5fca35}</Project>
+      <Name>Swazer.ShoppingList.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Swazer.ShoppingList.GraphDiff\Swazer.ShoppingList.GraphDiff.csproj">
+      <Project>{9ae5b38a-8b0c-43f8-830a-e05e11dcdb8d}</Project>
+      <Name>Swazer.ShoppingList.GraphDiff</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Swazer.ShoppingList.RepositoryInterface\Swazer.ShoppingList.RepositoryInterface.csproj">
+      <Project>{10d5700a-1c2c-4443-9f38-b86dab1f3add}</Project>
+      <Name>Swazer.ShoppingList.RepositoryInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

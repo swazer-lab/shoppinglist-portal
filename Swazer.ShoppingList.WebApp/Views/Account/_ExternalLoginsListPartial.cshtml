@@ -1,0 +1,32 @@
+﻿@model Swazer.ShoppingList.WebApp.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<hr />
+<h5 class="text-center login-social-title">@AccountStrings.UseAnotherServiceToLogin</h5>
+
+@{
+    IEnumerable<AuthenticationDescription> loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (!loginProviders.Any())
+    {
+        <div>
+            <p>
+                @AccountStrings.InformationAboutExternalAuthentication
+            </p>
+        </div>
+    }
+    else
+    {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList" class="text-center">
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="btn btn-@p.AuthenticationType.ToLower()" 
+                            id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"
+                            title="Log in using your @p.Caption account"><i class="fa fa-@p.AuthenticationType.ToLower()"></i>@Html.TranslateExternalProvider(p.AuthenticationType)</button>
+                }
+            </div>
+        }
+    }
+}

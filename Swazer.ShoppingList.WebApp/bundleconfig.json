@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "Scripts/plugins/tinyMCE/wysiwyg.min.js",
+    "inputFiles": [
+      "Scripts/plugins/tinyMCE/wysiwyg.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/pagingVM.min.js",
+    "inputFiles": [
+      "Scripts/pagingVM.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/knockout.infrastructure.min.js",
+    "inputFiles": [
+      "Scripts/knockout.infrastructure.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/knockout.bindingHandlers.min.js",
+    "inputFiles": [
+      "Scripts/knockout.bindingHandlers.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/ar-SA.min.js",
+    "inputFiles": [
+      "Scripts/ar-SA.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/ajaxredirect.min.js",
+    "inputFiles": [
+      "Scripts/ajaxredirect.js"
+    ]
+  }
+]

@@ -1,0 +1,97 @@
+﻿
+body {
+    font-family: 'TheSans', sans-serif;
+}
+
+.nav-second-level li a {
+    padding: 7px 10px 7px 10px;
+    padding-right: 52px;
+}
+
+.nav-third-level li a {
+    padding-right: 62px;
+}
+
+.minimalize-styl-2 {
+    margin-right: 20px !important;
+}
+
+#sidebar-collapse >.nav > li.active {
+    border-left: 0px;
+    border-right: 4px solid #1791f2;
+}
+
+.nav > li > a i {
+    margin-right: 0px;
+    margin-left: 6px;
+}
+
+.c3-legend-item > text {
+    direction: ltr !important;
+}
+
+@media (min-width: 768px) {
+    #page-wrapper {
+        margin: 0 220px 0 0 !important;
+    }
+
+    body.mini-navbar #page-wrapper {
+        margin: 0 70px 0 0 !important;
+    }
+}
+
+body.mini-navbar #page-wrapper {
+    margin: 0 70px 0 0 !important;
+}
+
+.mini-navbar .nav .nav-second-level {
+    right: 70px !important;
+}
+
+.mini-navbar li.active .nav-second-level {
+    right: 65px !important;
+}
+
+/* fixes for the touch spin plugin*/
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up {
+    border-radius: 0 !important;
+    border-top-left-radius: 4px !important;
+}
+
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
+    margin-top: -2px !important;
+    border-radius: 0 !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+
+/* after a very long searching for solution to the overriding problem
+   we reached to this point, to make the buttons rounded in the RTL 
+*/
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.offer-button {
+    left: 15px;
+    right: auto;
+}
+
+.toast-close-button {
+   top: 0;
+   left: -3.3rem;
+   right: auto;
+   float: left;
+}
+
+.toast-message {
+    margin-right: 60px;
+    text-align: right;
+}

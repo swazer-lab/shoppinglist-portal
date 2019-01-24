@@ -1,0 +1,41 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = SharedStrings.Error;
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <div id="loginForm" class="login-form-container background-img-heart-beat">
+                <div class="text-center">
+                    <img class="logo-img" src="~/Content/home/images/logo.png" alt="logo" />
+                </div>
+                <div class="wrapper wrapper-content">
+                    <div class="ibox-content">
+                        <hgroup class="title">
+                            <h3 class="error">@SharedStrings.Error_MessageTitle</h3>
+                            @*Html.IsDebug() &&*@
+                            @if (Model != null)
+                            {
+                                if (Model.Exception != null)
+                                {
+                                    <h5 class="error">Message : @Model.Exception?.Message</h5>
+                                    <h5 class="error">Stack Trace : @Model.Exception.StackTrace</h5>
+                                }
+
+                                <h5 class="error">Action Name : @Model.ActionName</h5>
+                                <h5 class="error">Controller Name : @Model.ControllerName</h5>
+                            }
+                        </hgroup>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center">@AccountStrings.NoAccount  @Html.ActionLink(AccountStrings.Register, "Register", null, new { @class = "no-account-link" })</p>
+
+        </div>
+    </div>
+</div>
+
+

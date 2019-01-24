@@ -1,0 +1,18 @@
+﻿
+<div class="modal inmodal" id="cancel-Modal" data-bind="modal:IsModalOpen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInDown">
+            <div class="modal-header">
+                <i class="fa fa-trash-o modal-icon"></i>
+                <h4 class="modal-title text-center">@SharedStrings.Cancel</h4>
+            </div>
+            <div class="modal-body">
+                <small class="font-bold">@SharedStrings.CancelReservationString</small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">@SharedStrings.Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click: CancelReservation">@SharedStrings.Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

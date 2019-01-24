@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="dbo_AgendaConfigurationItems" xml:space="preserve">
+    <value>dbo_AgendaConfigurationItems</value>
+  </data>
+  <data name="dbo_AgendaConfigurations" xml:space="preserve">
+    <value>dbo_AgendaConfigurations</value>
+  </data>
+  <data name="dbo_AppointmentPeriods" xml:space="preserve">
+    <value>dbo_AppointmentPeriods</value>
+  </data>
+  <data name="dbo_AppointmentsCounts" xml:space="preserve">
+    <value>dbo_AppointmentsCounts</value>
+  </data>
+  <data name="dbo_AttachmentFiles" xml:space="preserve">
+    <value>dbo_AttachmentFiles</value>
+  </data>
+  <data name="dbo_Attachments" xml:space="preserve">
+    <value>dbo_Attachments</value>
+  </data>
+  <data name="dbo_Complain" xml:space="preserve">
+    <value>dbo_Complain</value>
+  </data>
+  <data name="dbo_ComplainStatuses" xml:space="preserve">
+    <value>dbo_ComplainStatuses</value>
+  </data>
+  <data name="dbo_ComplainType" xml:space="preserve">
+    <value>dbo_ComplainType</value>
+  </data>
+  <data name="dbo_ContactInformations" xml:space="preserve">
+    <value>dbo_ContactInformations</value>
+  </data>
+  <data name="dbo_ContactRegions" xml:space="preserve">
+    <value>dbo_ContactRegions</value>
+  </data>
+  <data name="dbo_ContactTypes" xml:space="preserve">
+    <value>dbo_ContactTypes</value>
+  </data>
+  <data name="dbo_ContentList" xml:space="preserve">
+    <value>dbo_ContentList</value>
+  </data>
+  <data name="dbo_CoversationDetails" xml:space="preserve">
+    <value>dbo_CoversationDetails</value>
+  </data>
+  <data name="dbo_Coversations" xml:space="preserve">
+    <value>dbo_Coversations</value>
+  </data>
+  <data name="dbo_DoctorContractTypes" xml:space="preserve">
+    <value>dbo_DoctorContractTypes</value>
+  </data>
+  <data name="dbo_Doctors" xml:space="preserve">
+    <value>dbo_Doctors</value>
+  </data>
+  <data name="dbo_FamilyMembers" xml:space="preserve">
+    <value>dbo_FamilyMembers</value>
+  </data>
+  <data name="dbo_Leaves" xml:space="preserve">
+    <value>dbo_Leaves</value>
+  </data>
+  <data name="dbo_LeaveTypes" xml:space="preserve">
+    <value>dbo_LeaveTypes</value>
+  </data>
+  <data name="dbo_MedicalArticles" xml:space="preserve">
+    <value>dbo_MedicalArticles</value>
+  </data>
+  <data name="dbo_MedicalCenterCategories" xml:space="preserve">
+    <value>dbo_MedicalCenterCategories</value>
+  </data>
+  <data name="dbo_MedicalCenters" xml:space="preserve">
+    <value>dbo_MedicalCenters</value>
+  </data>
+  <data name="dbo_MedicalClinics" xml:space="preserve">
+    <value>dbo_MedicalClinics</value>
+  </data>
+  <data name="dbo_MedicalVisitReasons" xml:space="preserve">
+    <value>dbo_MedicalVisitReasons</value>
+  </data>
+  <data name="dbo_Nationalities" xml:space="preserve">
+    <value>dbo_Nationalities</value>
+  </data>
+  <data name="dbo_NewsItems" xml:space="preserve">
+    <value>dbo_NewsItems</value>
+  </data>
+  <data name="dbo_Offers" xml:space="preserve">
+    <value>dbo_Offers</value>
+  </data>
+  <data name="dbo_Photos" xml:space="preserve">
+    <value>dbo_Photos</value>
+  </data>
+  <data name="dbo_Regions" xml:space="preserve">
+    <value>dbo_Regions</value>
+  </data>
+  <data name="dbo_ReservationNumbers" xml:space="preserve">
+    <value>dbo_ReservationNumbers</value>
+  </data>
+  <data name="dbo_Reservations" xml:space="preserve">
+    <value>dbo_Reservations</value>
+  </data>
+  <data name="dbo_UserFiles" xml:space="preserve">
+    <value>dbo_UserFiles</value>
+  </data>
+  <data name="dbo_Videos" xml:space="preserve">
+    <value>dbo_Videos</value>
+  </data>
+  <data name="dbo_WorkHours" xml:space="preserve">
+    <value>dbo_WorkHours</value>
+  </data>
+  <data name="dbo_WorkPeriods" xml:space="preserve">
+    <value>dbo_WorkPeriods</value>
+  </data>
+  <data name="ErrorException_ModelValidation" xml:space="preserve">
+    <value>The validation Rules must be satisfied.</value>
+  </data>
+  <data name="ErrorMessage_ConnectionFailed" xml:space="preserve">
+    <value>Database Server Name is not correct or is not accessible.</value>
+  </data>
+  <data name="ErrorMessage_DbUpdateConcurrency" xml:space="preserve">
+    <value>The Entity has been updated by another user, please refresh the browser and try again.</value>
+  </data>
+  <data name="ErrorMessage_DuplicatedValue" xml:space="preserve">
+    <value>Field {0} must not be duplicated.</value>
+  </data>
+  <data name="ErrorMessage_GeneralDependency" xml:space="preserve">
+    <value>لايمكن حذف هذا العنصر لأن هناك عناصر أخرى تعتمد عليه</value>
+  </data>
+  <data name="ErrorMessage_LogingFailed" xml:space="preserve">
+    <value>Error while Authentication with the Database Server.</value>
+  </data>
+  <data name="ErrorMessage_TwoEntityDependency" xml:space="preserve">
+    <value>Can not delete because {0} is depending on {1} , which you are deleting.</value>
+  </data>
+  <data name="ErrorMessage_GeneralError" xml:space="preserve">
+    <value>فشل في الاتصال مع قاعدة البيانات الرجاء المحاولة لاحقا</value>
+  </data>
+</root>

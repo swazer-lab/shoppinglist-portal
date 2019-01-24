@@ -1,0 +1,67 @@
+﻿@model Swazer.ShoppingList.WebApp.Models.VerifyMobileViewModel
+@{
+    ViewBag.Title = AccountStrings.Verify;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <div id="loginForm" class="login-form-container background-img-heart-beat">
+                <div class="text-center">
+                    <img class="logo-img" src="~/Content/home/images/logo.png" alt="logo" />
+                </div>
+
+                @using (Html.BeginForm("VerifyMobile", "Account", null, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.UserName)
+                    <h4>@AccountStrings.EnterVerificationCode</h4>
+                    <hr />
+
+                    <div data-bind="template: {name: 'mobile-code-template', data: $root, if : $root !== undefined }">
+                    </div>
+
+                    @Html.Partial("_MobileCode")
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/knockout/CodeSendModel.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var vm = new CodeSendModel({
+                PhoneNumber: '@Model.LastPartOfPhoneNumber',
+                ExpirationPeriod: @Model.ExpirationPeriod,
+            });
+
+            function resend() {
+                $.ajax({
+                    async: true,
+                    method: 'POST',
+                    url: '@Url.Action("ResendCode")',
+                    data: {},
+                    success: function (e) {
+                        vm.StartTimeDown(e.ResendTimeout);
+                        ShowSuccessMessage(e.Message);
+                    },
+                    error: function (e) {
+                        toastr.error(message.responseJSON);
+                        handle401Error(message);
+                    }
+                });
+            }
+
+            vm.ResendFunction = resend;
+            vm.StartTimeDown();
+            ko.applyBindings(vm);
+        });
+    </script>
+}

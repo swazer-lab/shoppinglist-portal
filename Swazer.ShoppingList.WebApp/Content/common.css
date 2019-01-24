@@ -1,0 +1,259 @@
+﻿.img-square {
+    width: 50px;
+    height: 50px;
+}
+
+.img-square-large {
+    width: 65px;
+    height: 65px;
+}
+
+.selected-row {
+    background-color: lightgray !important;
+}
+
+.thumbImage {
+    height: 100px;
+    width: 100px;
+}
+
+.container-layer {
+    position: relative;
+}
+
+.spinner-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    opacity: 0.5;
+}
+
+.spinner-element {
+    align-self: center;
+}
+
+.color-new-darker {
+    background-color: #FFB300 !important;
+}
+
+.color-in-progress-darker {
+    background-color: #1E88E5 !important;
+}
+
+.color-postponed-darker {
+    background-color: #E53935 !important;
+}
+
+.color-canceled-darker {
+    background-color: #E53935 !important;
+}
+
+.color-done-darker {
+    background-color: #43A047 !important;
+}
+
+.color-comment-darker {
+    background-color: #505050 !important;
+}
+
+/* this is the same css style for the error */
+/* see the line 2839 of the Insipina-style and compare that with this*/
+/* here we just take the same css attribute and apply it on different elements (span instead of lable) and (other .input-validation-error class instead of error class) */
+span.error {
+    color: #cc5965;
+    display: inline-block;
+    margin-left: 5px;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control.input-validation-error {
+    border: 1px dotted #cc5965 !important;
+}
+
+.validation-summary-errors.error > ul > li {
+    color: #cc5965;
+    display: inline-block;
+    max-width: 100%;
+    font-weight: bold;
+}
+
+/* table row which display the mouse cursor as hand */
+.clickable-row {
+    cursor: pointer;
+}
+
+.navbar-top-links .dropdown-alerts.dropdown-languages {
+    width: 100px !important;
+    min-width: 0;
+}
+
+.img-center {
+    display: block;
+    margin: auto;
+    width: 300px;
+}
+
+.vertical-center {
+    vertical-align: middle !important;
+}
+
+.fa.disabled,
+.fa[disabled],
+.disabled > .fa,
+[disabled] > .fa {
+    color: lightgrey;
+    /*or*/ opacity: 0.5;
+}
+
+/* this class for the row of the editable language table
+    this will fixed the height of the row when the row is in the Edit or Details
+*/
+.fixed-he {
+    height: 34px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*this solution is for making the side-by-side div with the same height
+see this SO http://stackoverflow.com/a/19695851/4390133 */
+.row-equal {
+    display: flex;
+}
+
+    .row-equal > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+
+.height-stretch {
+    height: 100%;
+}
+
+/*this is solution to make inner div vertically centered in the outer div*/
+.cn {
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    align-self: center;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.failed {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.addedClass {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+}
+
+.updatedClass {
+    background-color: rgba(0, 0, 255, 0.1) !important;
+}
+
+.stick-bottom {
+    bottom: 0;
+}
+
+.clear1, .clear2 { display:none !important;}
+
+.span-margin {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.toast-message {
+    text-align: left
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+.doctor-item {
+    position: relative;
+    padding: 40px 20px;
+}
+
+.doctor-item .make-appointment-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.doctor-item .doctor-name {
+    margin-bottom: 0;
+}
+
+.doctor-item .doctor-detail {
+    margin-top: 35px;
+}
+
+.doctor-item .doctor-img {
+    width: 175px;
+    height: 175px;
+    object-fit: scale-down;
+    margin: 0 auto 10px;
+    border: 4px solid #bbb;
+    box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.05);
+}
+
+.doctor-item .drop-down-list {
+    font-size: 15px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.doctor-item .fa-check {
+    color: forestgreen
+}
+
+.doctor-item .fa-times {
+    color: red
+}
+
+img {
+    max-width: 100%!important;
+}
+
+.headline-p {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.mrt-15 {
+    margin-top: 15px;
+}
+
+.mrb-15 {
+    margin-bottom: 15px;
+}
+
+.mrt-30 {
+    margin-top: 30px;
+}
+
+.loader-container {
+    position: relative;
+}
+
+.appointment-btn-section .btn {
+    padding: 6px 7px;
+    margin-bottom: 4px;
+}
