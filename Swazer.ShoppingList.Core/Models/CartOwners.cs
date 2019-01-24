@@ -23,4 +23,12 @@ namespace Swazer.ShoppingList.Core
 
         public AccessLevel AccessLevel { get; set; }
     }
+
+
+    public enum AccessLevel
+    {
+        Owner,
+        ReadWrite,
+        Read
+    }
 }

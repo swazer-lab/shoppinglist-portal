@@ -20,5 +20,16 @@ namespace Swazer.ShoppingList.Core
 
         [ForeignKey(nameof(ItemId))]
         public Item Item { get; set; }
+
+        public static CartItem Create(Cart cart, Item item)
+        {
+            return new CartItem
+            {
+                Cart = cart,
+                CartId = cart.CartId,
+                Item = item,
+                ItemId = item.ItemId,
+            };
+        }
     }
 }

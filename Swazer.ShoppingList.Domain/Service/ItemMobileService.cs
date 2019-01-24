@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.RepositoryInterface;
 using Swazer.ShoppingList.RepositoryInterface.Queries;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace Swazer.ShoppingList.Domain
             if (!entity.Validate())
                 throw new ValidationException(entity.ValidationResults);
 
+            if (!entity.IsItemNameUnique())
+                return GetByName(entity.Title);
+
             Item createdEntity = repository.Create(entity);
             if (createdEntity == null)
                 throw new RepositoryException("Entity not created");
@@ -36,6 +40,27 @@ namespace Swazer.ShoppingList.Domain
             Tracer.Log.EntityCreated(nameof(Item), createdEntity.ItemId);
 
             return createdEntity;
+        }
+
+        public void MultipleCreate(List<Item> items, int cartId)
+        {
+            List<Item> itemList = new List<Item>();
+
+            using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
+            {
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        var createdItem = Create(item);
+                        itemList.Add(createdItem);
+                    }
+
+                    ItemCardMobileService.Obj.Create(itemList, cartId);
+                }
+
+                uow.Complete();
+            }
         }
 
         public Item Update(Item entity)
@@ -57,6 +82,20 @@ namespace Swazer.ShoppingList.Domain
         {
             IQueryConstraints<Item> constraint = new QueryConstraints<Item>()
                 .Where(x => x.ItemId == entityId);
+
+            Item founded = queryRepository.SingleOrDefault(constraint);
+            if (founded == null)
+                throw new BusinessRuleException(BusinessRuleExceptionType.NotFound);
+
+            Tracer.Log.EntityRetrieved(nameof(Item), founded.ItemId);
+
+            return founded;
+        }
+
+        public Item GetByName(string name)
+        {
+            IQueryConstraints<Item> constraint = new QueryConstraints<Item>()
+                .Where(x => x.Title == name);
 
             Item founded = queryRepository.SingleOrDefault(constraint);
             if (founded == null)

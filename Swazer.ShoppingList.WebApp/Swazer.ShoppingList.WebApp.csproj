@@ -974,9 +974,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Controllers\AccountController.cs" />
+    <Compile Include="API\Controllers\CartController.cs" />
     <Compile Include="API\Controllers\ItemController.cs" />
     <Compile Include="API\Models\AccountModels.cs" />
     <Compile Include="API\Models\CartBindingModels.cs" />
+    <Compile Include="API\Models\ItemBindingModels.cs" />
     <Compile Include="API\Models\PagingBindingModel.cs" />
     <Compile Include="API\Resources\Register\ApiStrings.Designer.cs" />
     <Compile Include="API\Resources\Register\RegisterApiStrings.Designer.cs" />

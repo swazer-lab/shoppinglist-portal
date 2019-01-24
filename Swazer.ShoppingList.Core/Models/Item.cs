@@ -10,14 +10,24 @@ namespace Swazer.ShoppingList.Core
     {
         public int ItemId { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public static Item Create(string name)
+        public ItemStatus Status { get; set; }
+
+        public static Item Create(string title, ItemStatus itemStatus)
         {
             return new Item
             {
-                Name = name
+                Title = title,
+                Status = itemStatus
             };
         }
+    }
+
+    public enum ItemStatus
+    {
+        Active,
+        Completed, 
+        Canceled
     }
 }

@@ -100,7 +100,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
             modelBuilder.Entity<CartOwner>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<CartOwner>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
-            modelBuilder.Entity<Cart>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
+            modelBuilder.Entity<Cart>().Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<Cart>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
             modelBuilder.Entity<CartItem>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);

@@ -22,5 +22,15 @@ namespace Swazer.ShoppingList.Domain
 
             return userIdentity;
         }
+
+        public static bool IsItemNameUnique(this Item item)
+        {
+            IGenericQueryRepository queryRepository = RepositoryFactory.CreateQueryRepository();
+
+            IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
+                .Where(x => x.Title == item.Title);
+
+            return queryRepository.SingleOrDefault(constraints) == null;
+        }
     }
 }

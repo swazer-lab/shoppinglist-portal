@@ -13,12 +13,18 @@ namespace Swazer.ShoppingList.Core
         public string Title { get; set; }
 
         public string Notes { get; set; }
-    }
 
-    public enum AccessLevel
-    {
-        Owner,
-        ReadWrite,
-        Read
+        public DateTime Date { get; set; }
+
+        public static Cart Create(string title, string notes, DateTime date)
+        {
+            return new Cart
+            {
+                Title = title,
+                Notes = notes,
+                Date = date,
+                CreatedAt = DateTime.Now
+            };
+        }
     }
 }

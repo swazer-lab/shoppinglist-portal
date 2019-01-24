@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201901240852096_x3.Designer.cs">
       <DependentUpon>201901240852096_x3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901241201091_x4.cs" />
+    <Compile Include="Migrations\201901241201091_x4.Designer.cs">
+      <DependentUpon>201901241201091_x4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\QueryConstraintsExtensions.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901240852096_x3.resx">
       <DependentUpon>201901240852096_x3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901241201091_x4.resx">
+      <DependentUpon>201901241201091_x4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RepositoryResource.en.resx" />
     <EmbeddedResource Include="RepositoryResource.resx" />

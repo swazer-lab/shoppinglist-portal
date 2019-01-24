@@ -17,7 +17,6 @@ namespace Swazer.ShoppingList.Domain
 {
     public class UserService : UserManager<User, int>
     {
-        #Item Initialization
         public static UserService Obj { get; private set; }
 
         private static IIdentityUserRepository identityUserRepository;
@@ -85,7 +84,6 @@ namespace Swazer.ShoppingList.Domain
             return Obj;
 
         }
-        #endItem
 
         public async Task<User> GetByUserNameOrPhone(string emailOrPhone, string password)
         {
@@ -106,7 +104,6 @@ namespace Swazer.ShoppingList.Domain
             return null;
         }
 
-        #Item Get Users
         public IQueryResult<User> Find(UserSearchCriterias userSearchCriteria)
         {
             if (userSearchCriteria == null)
@@ -131,9 +128,7 @@ namespace Swazer.ShoppingList.Domain
 
             return queryRepository.Find(constraints).Items.ToList();
         }
-        #endItem
 
-        #Item Create
         public async Task<User> CreateExternalUserAsync(User user, UserLoginInfo login)
         {
             ValidateUser(user);
@@ -205,9 +200,6 @@ namespace Swazer.ShoppingList.Domain
                 throw new ValidationException(nameof(User), user.ValidationResults);
         }
 
-        #endItem
-
-        #Item FindUser
         public User FindByEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -255,9 +247,7 @@ namespace Swazer.ShoppingList.Domain
 
             return Task.FromResult(queryRepository.SingleOrDefault(constraints));
         }
-        #endItem
 
-        #Item Delete
         public User UserDelete(User user)
         {
             if (user == null)
@@ -286,10 +276,7 @@ namespace Swazer.ShoppingList.Domain
             foreach (int i in ids)
                 Tracer.Log.EntityDeleted(nameof(User), i);
         }
-        #endItem
-
-        #Item Update
-
+ 
         public void ChangeStatus(int[] ids, bool isActive)
         {
             if (ids == null)
@@ -424,8 +411,6 @@ namespace Swazer.ShoppingList.Domain
                 throw;
             }
         }
-
-        #endItem
 
         public IList<string> GetRoles(User user)
         {

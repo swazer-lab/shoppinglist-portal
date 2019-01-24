@@ -57,7 +57,6 @@ namespace Swazer.ShoppingList.Domain
         {
         }
 
-        #Item ctor
 
         private IIdentityUserRepository _repository;
 
@@ -72,6 +71,5 @@ namespace Swazer.ShoppingList.Domain
             return new UserLoginStore(store);
         }
 
-        #endItem
     }
 }

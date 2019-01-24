@@ -77,6 +77,8 @@
     <Compile Include="Identity\UserLoginStore.cs" />
     <Compile Include="Identity\UserSevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CartMobileService.cs" />
+    <Compile Include="Service\ItemCardMobileService.cs" />
     <Compile Include="Service\ItemMobileService.cs" />
     <Compile Include="SMSEmailNotificationService.cs" />
     <Compile Include="UserSMSVerificaiton.cs" />
