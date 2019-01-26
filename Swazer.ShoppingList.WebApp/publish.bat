@@ -8,39 +8,44 @@ set loc=%~dp0
 :: https://stackoverflow.com/a/26055466
 for %%a in ("%~dp0..\") do set "par=%%~fa"
 
-
-
 :: definitions of variables
-
 :: the location of the MsBuild15 is very very hard to find, if you have a problem with finding msbuild15 on your machine see the following link
 :: https://stackoverflow.com/a/47942899/4390133
 set msDir="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin"
-set slnDir=%par%Swazer.ShoppingList.sln
-set prfDir=%loc%Properties\PublishProfiles\CustomProfile.pubxml
+set slnDir="%par%Swazer.ShoppingList.sln"
+set prfDir="%loc%Properties\PublishProfiles\CustomProfile.pubxml"
 set dllDir=C:\\inetpub\\wwwroot\\ShoppingList\\bin\\Swazer.ShoppingList.WebApp.dll
 set gitDir="C:\inetpub\wwwroot\ShoppingList"
 
-echo Press any key to pull the new version
-pause >nul
+:: 1- Pull the repository from BitBucket
+:: echo Press any key to pull the all versions from BitBucket
+:: pause >nul
 
 cd %gitDir%
 git pull
 
-:: delete all directories, except .git
+
+:: 2- Delete all existing files and folders from publish directory to avoid any conflicts
+:: echo Press any key to delete all existing files in publish directory
+:: pause >nul
+
+:: delete all directories, except .git folder
 @echo off
 for /f "tokens=*" %%A in ('dir /b /ad %gitDir%') do (
     if NOT "%%A"==".git" (
         RD /S /Q "%gitDir%\%%A"
     )
 )
-:: delete all files
+:: delete all files except the .gitignore file
 for %%i in (%gitDir%\*) do (
 	if NOT "%%~nxi"==".gitignore" (
 		del "%%i"
 	)
 )
 
-echo Press any key to build the new version 
+
+:: 3- Build and publish the solution
+echo Press any key to build and publish the solution 
 pause >nul
 
 :: https://stackoverflow.com/a/13947667
@@ -52,8 +57,10 @@ msbuild %slnDir% /t:Rebuild /p:Configuration=Release /p:DeployOnBuild=true /p:Co
 :: stop the batch file if the publish did not success
 if %errorlevel% neq 0 pause /b %errorlevel%
 
-echo Press any key to push the new version 
-pause >nul
+
+:: 4- Get the version of the build and commit the new build
+:: echo Press any key to commit and push the new version 
+:: pause >nul
 
 :: https://stackoverflow.com/a/19830679
 :: get the version of the dll
@@ -66,7 +73,6 @@ if "%~2" neq "" (
         set %~2=%version%
     )
 )
-
 :: remove the last part of the version
 for /F "tokens=1,2,3 delims=. " %%a in ("%version%") do (
    set version=%%a.%%b.%%c
@@ -81,5 +87,4 @@ git tag "v%version%"
 git push
 git push --tags
 
-echo Press any key to exit
-pause >nul
+pause
