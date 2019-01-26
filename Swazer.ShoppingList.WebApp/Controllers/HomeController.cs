@@ -19,7 +19,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             return View();
         }
 
-
         public ActionResult UserDashboard()
         {
             return View();

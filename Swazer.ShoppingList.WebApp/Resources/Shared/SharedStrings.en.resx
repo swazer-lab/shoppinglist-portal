@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountLockedOut" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
+  <data name="ActivateMultiple" xml:space="preserve">
+    <value>Activate Multiple</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>Added Successfully</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>All Rights Reserved</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
+  <data name="AppointmentCancelValidation" xml:space="preserve">
+    <value>Appointment cancel operation is done</value>
+  </data>
+  <data name="AppointmentEditValidation" xml:space="preserve">
+    <value>Appointment edit operation is done</value>
+  </data>
+  <data name="AppointmentMoveValidation" xml:space="preserve">
+    <value>The Appointments moved  successfully</value>
+  </data>
+  <data name="AppointmentResultValidation" xml:space="preserve">
+    <value>Appointment result operation is done</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Back To Home Page</value>
+  </data>
+  <data name="BothOfGenders" xml:space="preserve">
+    <value>Both of Genders</value>
+  </data>
+  <data name="BySwazer" xml:space="preserve">
+    <value>By Swazer</value>
+  </data>
+  <data name="CallCenters" xml:space="preserve">
+    <value>Call Centers</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelReservationString" xml:space="preserve">
+    <value>Are you sure you want to cancel the reservation?</value>
+  </data>
+  <data name="CentersAndClinics" xml:space="preserve">
+    <value>Centers and Clinics</value>
+  </data>
+  <data name="ChangePasswordSuccessfully" xml:space="preserve">
+    <value>Change Password was successfully changed</value>
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Change Status</value>
+  </data>
+  <data name="ChangeStatusSuccessfully" xml:space="preserve">
+    <value>Change Status Successfully</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ClickCode" xml:space="preserve">
+    <value>If you did not receive the code press</value>
+  </data>
+  <data name="ClinicReservation" xml:space="preserve">
+    <value>Clinic Reservation</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CodeResentSuccessfully" xml:space="preserve">
+    <value>We re-sent the verification code to your phone successfully</value>
+  </data>
+  <data name="Complains" xml:space="preserve">
+    <value>Complains</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Are you sure to Delete this {0} ?</value>
+  </data>
+  <data name="ContactsAndCalls" xml:space="preserve">
+    <value>Contacts and Calls</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>Copy Right</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateAgendaValidation" xml:space="preserve">
+    <value>Agenda was successfully created to related doctor</value>
+  </data>
+  <data name="CreateComplainSuccessMessage" xml:space="preserve">
+    <value>Your Complain was saved</value>
+  </data>
+  <data name="CreateUserFileSuccessMessage" xml:space="preserve">
+    <value>User file was succesfully created to related user</value>
+  </data>
+  <data name="DeactivateMultiple" xml:space="preserve">
+    <value>Deactivate Multiple</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>Deleted Successfully</value>
+  </data>
+  <data name="DeleteMultiple" xml:space="preserve">
+    <value>Delete Multiple</value>
+  </data>
+  <data name="DeleteMultipleConfirmation" xml:space="preserve">
+    <value>Are you sure delete these {0} ?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Doctors" xml:space="preserve">
+    <value>Doctors</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditComplainSuccessMessage" xml:space="preserve">
+    <value>Your Complain was succesfully changed</value>
+  </data>
+  <data name="EditedSuccessfully" xml:space="preserve">
+    <value>Edited Successfully</value>
+  </data>
+  <data name="EditFamilyMemberSuccessMessage" xml:space="preserve">
+    <value>Family Member was successfully changed</value>
+  </data>
+  <data name="Elements" xml:space="preserve">
+    <value>Elements</value>
+  </data>
+  <data name="EmailSendSuccessMessage" xml:space="preserve">
+    <value>Email Sending is successfull</value>
+  </data>
+  <data name="EnterDataToEnable" xml:space="preserve">
+    <value>Enter Data To Enable</value>
+  </data>
+  <data name="Error_HeaderTitle" xml:space="preserve">
+    <value>Error_HeaderTitle</value>
+  </data>
+  <data name="Error_MessageTitle" xml:space="preserve">
+    <value>Error_MessageTitle</value>
+  </data>
+  <data name="FamilyMemberSuccessDelete" xml:space="preserve">
+    <value>Your Family Member was succesfully deleted</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FinishedTimeCode" xml:space="preserve">
+    <value>Time has been finished</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="HealthDeal" xml:space="preserve">
+    <value>Health Deal</value>
+  </data>
+  <data name="Here" xml:space="preserve">
+    <value>Here</value>
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Locked out.</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="MakeActive" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="MakeDeactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="MakeDefault" xml:space="preserve">
+    <value>Make Default</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="NoAction" xml:space="preserve">
+    <value>No Action</value>
+  </data>
+  <data name="NoItemsResult" xml:space="preserve">
+    <value>There is no data according to the search criterias</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>There is no data according to the search criterias</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PagerList_First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="PagerList_Last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="PagerList_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PagerList_Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="RemainingTimeCode" xml:space="preserve">
+    <value>The remaing time for the temporary code is</value>
+  </data>
+  <data name="ResendTheCode" xml:space="preserve">
+    <value>to resend the code to your phone.</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SelectAllComplain" xml:space="preserve">
+    <value>Select All Compain</value>
+  </data>
+  <data name="SelectAllComplainStatuses" xml:space="preserve">
+    <value>Select All Complain Status</value>
+  </data>
+  <data name="SelectAllComplainTypes" xml:space="preserve">
+    <value>Select All Complain Type</value>
+  </data>
+  <data name="SelectAllGender" xml:space="preserve">
+    <value>Select All Gender</value>
+  </data>
+  <data name="SelectAllPublishingStatus" xml:space="preserve">
+    <value>Select All Publishing Status</value>
+  </data>
+  <data name="SelectAllReservationStatuses" xml:space="preserve">
+    <value>Select All Reservation Statuses</value>
+  </data>
+  <data name="SelectAllResponseStatus" xml:space="preserve">
+    <value>Select All Response Status</value>
+  </data>
+  <data name="SelectAllStatus" xml:space="preserve">
+    <value>Select All Status</value>
+  </data>
+  <data name="SelectPlaceholder" xml:space="preserve">
+    <value>Select ...</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to Clinic Appointment</value>
+  </data>
+</root>

@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/html" id="richContent-template">
+    <div class="modal" data-bind="attr:{ id: IdName }" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <span data-bind="text:Title"></span>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <span data-bind="html:Content()"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedStrings.Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

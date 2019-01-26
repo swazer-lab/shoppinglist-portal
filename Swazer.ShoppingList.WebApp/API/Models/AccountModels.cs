@@ -21,6 +21,15 @@ namespace Swazer.ShoppingList.WebApp.API
         public string Mobile { get; set; }
     }
 
+    public class UserProfileBindingModel
+    {
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+        
+        public string Mobile { get; set; }
+    }
+
     public class UserBindingModel
     {
         [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "ArabicNameRequired")]

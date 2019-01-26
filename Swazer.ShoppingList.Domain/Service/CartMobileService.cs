@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.RepositoryInterface;
 using Swazer.ShoppingList.RepositoryInterface.Queries;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Swazer.ShoppingList.Domain
         {
         }
 
-        public Cart Create(Cart entity)
+        public Cart Create(Cart entity, User user)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -29,7 +30,18 @@ namespace Swazer.ShoppingList.Domain
             if (!entity.Validate())
                 throw new ValidationException(entity.ValidationResults);
 
-            Cart createdEntity = repository.Create(entity);
+            Cart createdEntity = null;
+
+            using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
+            {
+                createdEntity = repository.Create(entity);
+
+                CartOwner cartOwner = CartOwner.Create(createdEntity, user);
+                Create(cartOwner);
+
+                uow.Complete();
+            }
+
             if (createdEntity == null)
                 throw new RepositoryException("Entity not created");
 
@@ -76,6 +88,26 @@ namespace Swazer.ShoppingList.Domain
             return result.Items.ToList();
         }
 
+        public IQueryResult<Cart> Find(CartMobileSearchCriteria criterias)
+        {
+            if (criterias == null)
+                throw new ArgumentNullException(nameof(criterias));
+
+            List<CartOwner> carts = GetCartsByUser(criterias.UserId);
+
+            var cartIds = carts.Select(x => x.CartId).ToList();
+
+            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
+                .PageAndSort(criterias, x => x.CartId)
+                .AndAlso(x => cartIds.Contains(x.CartId));
+
+            IQueryResult<Cart> result = queryRepository.Find(constraints);
+
+            Tracer.Log.EntitiesRetrieved(nameof(Cart), result.Items.Count(), result.TotalCount);
+
+            return result;
+        }
+
         public void Delete(int id)
         {
             IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
@@ -84,6 +116,36 @@ namespace Swazer.ShoppingList.Domain
             Cart Cart = queryRepository.Find(constraints).Items.SingleOrDefault();
 
             repository.Delete(Cart);
+        }
+
+        public List<CartOwner> GetCartsByUser(int userId)
+        {
+            if (userId == 0)
+                throw new ArgumentNullException(nameof(userId));
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .Where(x => x.UserId == userId);
+
+            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
+
+            return items;
+        }
+
+        public CartOwner Create(CartOwner entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (!entity.Validate())
+                throw new ValidationException(entity.ValidationResults);
+
+            CartOwner createdEntity = repository.Create(entity);
+            if (createdEntity == null)
+                throw new RepositoryException("Entity not created");
+
+            Tracer.Log.EntityCreated(nameof(CartOwner), createdEntity.CartId);
+
+            return createdEntity;
         }
     }
 }

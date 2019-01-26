@@ -18,14 +18,15 @@ namespace Swazer.ShoppingList.WebApp
                url: "{lang}/{controller}/{action}/{id}",
                //constraints: new { lang = @"(\w{2})" },   // In this case any two char will be accepted even 'ux' for example will work
                constraints: new { lang = "en|ar" },     // here is the list of all the supported languages by the website.
-               defaults: new { lang = "ar", controller = "Home", action = "Index", id = UrlParameter.Optional },
+               defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "Swazer.ShoppingList.WebApp.Areas.Admin.Controllers" }
+
             );
 
             routes.MapRoute(
                 name: "WithoutLang",
                 url: "{controller}/{action}/{id}",
-                defaults: new { lang = "ar", controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { lang = "en", controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "Swazer.ShoppingList.WebApp.Areas.Admin.Controllers" }
             );
         }

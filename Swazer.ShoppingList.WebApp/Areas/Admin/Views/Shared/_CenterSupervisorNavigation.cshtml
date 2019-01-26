@@ -1,0 +1,38 @@
+﻿@using Swazer.ShoppingList.Core;
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span id="userAvatar">
+                        <span>@User.GetFullName()</span>
+                    </span>
+                    @{
+                        string rotateClass = "fa-flip-horizontal";
+                        if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+                        {
+                            rotateClass = "";
+                        }
+                    }
+                </div>
+                <div class="logo-element"></div>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-home fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@HomeStrings.Home</span><span class="pull-right flip @rotateClass"></span></a>
+            </li>
+
+            <li class="@Html.HasControllerSelected("DoctorAppointment","AppointmentManagement")">
+                <a href="#"><i class="fa fa-user-md fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">@SharedStrings.Doctors</span><span class="fa arrow pull-right flip @rotateClass"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller: "DoctorAppointment", action: "Index")"><a href="@Url.Action("Index", "DoctorAppointment", null, null)">@DoctorAppointmentStrings.DoctorAppointmentsManagment </a></li>
+                    <li class="@Html.IsSelected(controller: "AppointmentManagement", action: "Index")"><a href="@Url.Action("Index", "AppointmentManagement", null, null)">@AppointmentManagementsStrings.ReservationManagementContext</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+

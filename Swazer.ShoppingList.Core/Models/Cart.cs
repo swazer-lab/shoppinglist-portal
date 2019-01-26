@@ -16,6 +16,8 @@ namespace Swazer.ShoppingList.Core
 
         public DateTime Date { get; set; }
 
+        public List<CartItem> Items { get; set; }
+
         public static Cart Create(string title, string notes, DateTime date)
         {
             return new Cart
@@ -25,6 +27,17 @@ namespace Swazer.ShoppingList.Core
                 Date = date,
                 CreatedAt = DateTime.Now
             };
+        }
+
+        public Cart Update(string title, string notes, DateTime date)
+        {
+
+            Title = title;
+            Notes = notes;
+            Date = date;
+            CreatedAt = DateTime.Now;
+
+            return this;
         }
     }
 }

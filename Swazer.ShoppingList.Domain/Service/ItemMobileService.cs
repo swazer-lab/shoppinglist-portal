@@ -63,35 +63,6 @@ namespace Swazer.ShoppingList.Domain
             }
         }
 
-        public Item Update(Item entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            Item uptadedEntity = repository.Update(entity);
-
-            Tracer.Log.EntityUpdated(nameof(Item), entity.ItemId);
-
-            return uptadedEntity ?? entity;
-        }
-
-        public Item GetById(int entityId)
-        {
-            IQueryConstraints<Item> constraint = new QueryConstraints<Item>()
-                .Where(x => x.ItemId == entityId);
-
-            Item founded = queryRepository.SingleOrDefault(constraint);
-            if (founded == null)
-                throw new BusinessRuleException(BusinessRuleExceptionType.NotFound);
-
-            Tracer.Log.EntityRetrieved(nameof(Item), founded.ItemId);
-
-            return founded;
-        }
-
         public Item GetByName(string name)
         {
             IQueryConstraints<Item> constraint = new QueryConstraints<Item>()
@@ -106,36 +77,6 @@ namespace Swazer.ShoppingList.Domain
             return founded;
         }
 
-        //public IQueryResult<Item> Find(ItemSearchCriterias criterias)
-        //{
-        //    if (criterias == null)
-        //        throw new ArgumentNullException(nameof(criterias));
-
-        //    if (!HasPermission(RoleNames.AdminRole, RoleNames.ItemPermission))
-        //        throw new PermissionException(RoleNames.AdminRole);
-
-        //    IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
-        //        .PageAndSort(criterias, x => x.EnglishName)
-        //        .AndAlsoIf(x => x.EnglishName.Contains(criterias.EnglishName), !string.IsNullOrEmpty(criterias.EnglishName))
-        //        .AndAlsoIf(x => x.ArabicName.Contains(criterias.ArabicName), !string.IsNullOrEmpty(criterias.ArabicName))
-        //        .AndAlsoIf(x => x.IsActive == criterias.IsActive, criterias.IsActive.HasValue);
-
-        //    IQueryResult<Item> result = queryRepository.Find(constraints);
-
-        //    Tracer.Log.EntitiesRetrieved(nameof(Item), result.Items.Count(), result.TotalCount);
-
-        //    return result;
-        //}
-
-        public List<Item> FindAll()
-        {
-            IQueryConstraints<Item> constraints = new QueryConstraints<Item>();
-
-            IQueryResult<Item> result = queryRepository.Find(constraints);
-
-            return result.Items.ToList();
-        }
-
         public void Delete(int id)
         {
             IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
@@ -144,6 +85,21 @@ namespace Swazer.ShoppingList.Domain
             Item item = queryRepository.Find(constraints).Items.SingleOrDefault();
 
             repository.Delete(item);
+        }
+
+        public List<Item> GetItemsByCard(int cardId)
+        {
+            IQueryConstraints<CartItem> constraints = new QueryConstraints<CartItem>()
+               .Where(x => x.CartId == cardId);
+
+            List<int> itemIds = queryRepository.Find(constraints).Items.ToList().Select(x=>x.ItemId).ToList();
+
+            IQueryConstraints<Item> constraintsItems = new QueryConstraints<Item>()
+               .Where(x => itemIds.Contains(x.ItemId));
+
+            List<Item> items = queryRepository.Find(constraintsItems).Items.ToList();
+
+            return items;
         }
     }
 }

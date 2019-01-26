@@ -22,6 +22,17 @@ namespace Swazer.ShoppingList.Core
         public Cart Cart { get; set; }
 
         public AccessLevel AccessLevel { get; set; }
+
+        public static CartOwner Create(Cart cart, User owner)
+        {
+            return new CartOwner
+            {
+                Cart = cart,
+                CartId = cart.CartId,
+                User = owner,
+                UserId = owner.Id
+            };
+        }
     }
 
 

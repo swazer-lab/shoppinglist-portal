@@ -19,6 +19,7 @@ using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNet.Identity.Owin;
+using Swazer.ShoppingList.WebApp.API.Infrastructure;
 
 namespace Swazer.ShoppingList.WebApp.API
 {
@@ -116,6 +117,17 @@ namespace Swazer.ShoppingList.WebApp.API
             UserSmsVerification userSmsVerification = UserSmsVerificationService.Obj.SendSmsVerificationForApi(UserVerificationReason.Registeration);
 
             return Ok(userSmsVerification.SMSRefId);
+        }
+
+        [HttpGet]
+        [Route("profile")]
+        public IHttpActionResult UserProfile()
+        {
+            User user = GetCurrentUser();
+
+            var userProfile = user.ToUserProfileBindingModel();
+
+            return Ok(userProfile);
         }
 
         [HttpPost]

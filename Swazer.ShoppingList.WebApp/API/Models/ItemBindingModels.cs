@@ -21,9 +21,4 @@ namespace Swazer.ShoppingList.WebApp.API.Models
 
         public int CardId { get; set; }
     }
-
-    public class UpdateItemBindingModel
-    {
-        public List<ItemBindingModel> Items { get; set; }
-    }
 }

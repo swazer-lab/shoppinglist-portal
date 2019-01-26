@@ -2,7 +2,7 @@
 function redirect(url) {
     window.location.href = url;
 }
-var globalLoginRedirect = ''
+var globalLoginRedirect = '';
 function redirectToLoging() {
     redirect(globalLoginRedirect);
 }
