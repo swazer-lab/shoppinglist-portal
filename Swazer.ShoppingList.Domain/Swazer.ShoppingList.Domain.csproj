@@ -66,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="BaseDomainService.cs" />
     <Compile Include="BusinessRuleResource\ErrorMessageString.Designer.cs">
       <AutoGen>True</AutoGen>

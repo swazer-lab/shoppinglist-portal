@@ -17,8 +17,8 @@ for %%a in ("%~dp0..\") do set "par=%%~fa"
 set msDir="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin"
 set slnDir=%par%Swazer.ShoppingList.sln
 set prfDir=%loc%Properties\PublishProfiles\CustomProfile.pubxml
-set dllDir=C:\\inetpub\\wwwroot\\Appointment\\bin\\Swazer.ShoppingList.WebApp.dll
-set gitDir="C:\inetpub\wwwroot\Appointment"
+set dllDir=C:\\inetpub\\wwwroot\\ShoppingList\\bin\\Swazer.ShoppingList.WebApp.dll
+set gitDir="C:\inetpub\wwwroot\ShoppingList"
 
 echo Press any key to pull the new version
 pause >nul

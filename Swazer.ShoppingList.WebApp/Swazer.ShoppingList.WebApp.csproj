@@ -147,6 +147,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\about_EntityFramework.help.txt" />
+    <Content Include="bin\EntityFramework.PowerShell.dll" />
+    <Content Include="bin\EntityFramework.PowerShell.Utility.dll" />
+    <Content Include="bin\migrate.exe" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -356,6 +360,8 @@
     <Content Include="Areas\Admin\Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="bin\Update-database.bat" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -992,6 +998,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="API\Controllers\AccountController.cs" />
     <Compile Include="API\Controllers\CartController.cs" />
     <Compile Include="API\Infrastructure\Mapper.cs" />
