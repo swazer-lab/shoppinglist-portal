@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.WebApp.API.Resources.ErrorMessages;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -40,14 +41,14 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
             if (actionContext.ActionArguments.ContainsKey("model")
                 && actionContext.ActionArguments["model"] == null)
             {
-                string localizedErrorMessage = "";
+                string localizedErrorMessage = ErrorMessageStrings.ThisRequestIsIncorrect;
                 throw new BusinessRuleException(localizedErrorMessage);
             }
 
             if (!actionContext.ModelState.IsValid)
             {
-                if (actionContext.ModelState["userId"].Errors.Count != 0)
-                    throw new BusinessRuleException("");
+                if (actionContext.ModelState["cartId"]?.Errors != null)
+                    throw new BusinessRuleException("Cart Id must be provided");
 
                 throw new BusinessRuleException(actionContext.ModelState.GetFirstError());
             }

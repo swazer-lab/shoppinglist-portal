@@ -46,21 +46,17 @@ namespace Swazer.ShoppingList.Domain
         {
             List<Item> itemList = new List<Item>();
 
-            using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
+            if (items != null)
             {
-                if (items != null)
+                foreach (var item in items)
                 {
-                    foreach (var item in items)
-                    {
-                        var createdItem = Create(item);
-                        itemList.Add(createdItem);
-                    }
-
-                    ItemCardMobileService.Obj.Create(itemList, cartId);
+                    var createdItem = Create(item);
+                    itemList.Add(createdItem);
                 }
-
-                uow.Complete();
             }
+
+            ItemCardMobileService.Obj.Create(itemList, cartId);
+
         }
 
         public Item GetByName(string name)
@@ -77,22 +73,12 @@ namespace Swazer.ShoppingList.Domain
             return founded;
         }
 
-        public void Delete(int id)
-        {
-            IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
-                .Where(x => x.ItemId == id);
-
-            Item item = queryRepository.Find(constraints).Items.SingleOrDefault();
-
-            repository.Delete(item);
-        }
-
         public List<Item> GetItemsByCard(int cardId)
         {
             IQueryConstraints<CartItem> constraints = new QueryConstraints<CartItem>()
                .Where(x => x.CartId == cardId);
 
-            List<int> itemIds = queryRepository.Find(constraints).Items.ToList().Select(x=>x.ItemId).ToList();
+            List<int> itemIds = queryRepository.Find(constraints).Items.ToList().Select(x => x.ItemId).ToList();
 
             IQueryConstraints<Item> constraintsItems = new QueryConstraints<Item>()
                .Where(x => itemIds.Contains(x.ItemId));

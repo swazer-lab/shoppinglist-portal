@@ -67,6 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDomainService.cs" />
+    <Compile Include="BusinessRuleResource\ErrorMessageString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessageString.resx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessRules.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
@@ -93,7 +98,14 @@
       <Name>Swazer.ShoppingList.RepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.tr.resx" />
+    <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.en.resx" />
+    <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessageString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

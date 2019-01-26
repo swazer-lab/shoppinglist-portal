@@ -1000,6 +1000,11 @@
     <Compile Include="API\Models\ItemBindingModels.cs" />
     <Compile Include="API\Models\PagingBindingModel.cs" />
     <Compile Include="API\Models\SearchCriteriaBindingModel.cs" />
+    <Compile Include="API\Resources\ErrorMessages\ErrorMessageStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessageStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="API\Resources\Register\ApiStrings.Designer.cs" />
     <Compile Include="API\Resources\Register\RegisterApiStrings.Designer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1116,6 +1121,12 @@
     <Folder Include="ViewModels\UserViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.en.resx" />
+    <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessageStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.tr.resx" />
     <EmbeddedResource Include="API\Resources\Register\ApiStrings.en.resx" />
     <EmbeddedResource Include="API\Resources\Register\ApiStrings.resx" />
     <EmbeddedResource Include="API\Resources\Register\RegisterApiStrings.en.resx" />

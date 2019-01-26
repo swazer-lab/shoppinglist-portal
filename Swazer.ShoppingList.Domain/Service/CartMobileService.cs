@@ -22,7 +22,7 @@ namespace Swazer.ShoppingList.Domain
         {
         }
 
-        public Cart Create(Cart entity, User user)
+        public Cart Create(Cart entity, User user, List<Item> items)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -39,6 +39,8 @@ namespace Swazer.ShoppingList.Domain
                 CartOwner cartOwner = CartOwner.Create(createdEntity, user);
                 Create(cartOwner);
 
+                ItemMobileService.Obj.MultipleCreate(items, createdEntity.CartId);
+
                 uow.Complete();
             }
 
@@ -50,7 +52,7 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public Cart Update(Cart entity)
+        public Cart Update(Cart entity, List<Item> items)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -58,7 +60,16 @@ namespace Swazer.ShoppingList.Domain
             if (!entity.Validate())
                 throw new ValidationException(entity.ValidationResults);
 
-            Cart uptadedEntity = repository.Update(entity);
+            Cart uptadedEntity = null;
+
+            using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
+            {
+                uptadedEntity = repository.Update(entity);
+
+                ItemMobileService.Obj.MultipleCreate(items, uptadedEntity.CartId);
+
+                uow.Complete();
+            }
 
             Tracer.Log.EntityUpdated(nameof(Cart), entity.CartId);
 
@@ -77,15 +88,6 @@ namespace Swazer.ShoppingList.Domain
             Tracer.Log.EntityRetrieved(nameof(Cart), founded.CartId);
 
             return founded;
-        }
-
-        public List<Cart> FindAll()
-        {
-            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>();
-
-            IQueryResult<Cart> result = queryRepository.Find(constraints);
-
-            return result.Items.ToList();
         }
 
         public IQueryResult<Cart> Find(CartMobileSearchCriteria criterias)

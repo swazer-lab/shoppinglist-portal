@@ -177,6 +177,22 @@ namespace Swazer.ShoppingList.Domain
                 throw new ArgumentNullException(nameof(password), "must not be null.");
 
             ValidateUser(user);
+            ValidateEmail(user.Email);
+            ValidatePassword(password);
+        }
+
+        private void ValidateEmail(string email)
+        {
+            User user = FindByEmail(email);
+
+            if (user != null)
+                throw new BusinessRuleException(nameof(User), BusinessRules.EmailAlreadyExists);
+        }
+
+        private void ValidatePassword(string password)
+        {
+            if (password.Length <= 5)
+                throw new BusinessRuleException(nameof(User), BusinessRules.PasswordInCorrect);
         }
 
         public User Create(User user, string password)
