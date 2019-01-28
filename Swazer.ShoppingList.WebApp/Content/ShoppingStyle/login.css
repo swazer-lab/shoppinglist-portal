@@ -1,0 +1,102 @@
+body {
+    background-color: #f9f9f9;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.panel-default {
+    opacity: 0.9;
+    margin-top: 30px;
+}
+
+.form-group.last {
+    margin-bottom: 0px;
+}
+
+.signInLogo {
+    text-align: center;
+    margin-top: 50px;
+}
+
+    .signInLogo img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.register {
+    color: #2C9CEA;
+}
+
+.panel-footer .register:hover {
+    opacity: 0.5;
+}
+
+.signInPanel .form-horizontal .form-group .control-label,
+.signInPanel .form-horizontal .form-group .checkbox {
+    text-align: left;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.signInPanel .form-horizontal .form-group {
+    margin-bottom: 10px;
+}
+
+    .signInPanel .form-horizontal .form-group .form-control {
+        height: 40px;
+    }
+
+.signInPanel .panel-heading, .signInPanel .panel-heading {
+    background-color: transparent;
+}
+
+.signInTitle {
+    text-align: center;
+}
+
+.forgotPassword {
+    color: #2C9CEA;
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.signInPanelRegistre {
+    text-align: center;
+    margin: 0px;
+    background-color: transparent;
+    font-size: 12px;
+}
+
+    .signInPanelRegistre .panel-body .form-group {
+        margin: 0px;
+    }
+
+.signInFooter {
+    padding-top: 70px;
+    border: none;
+}
+
+.signInPanelFooter {
+    text-align: center;
+    margin: 0px;
+    background-color: transparent;
+    font-size: 12px;
+    border: none;
+}
+
+.footerLink {
+    color: #4f4f4f;
+    padding: 5px;
+}
+
+    .footerLink:hover {
+        opacity: 0.5;
+    }
+
+.signInPanel .field-validation-error,
+.signInPanel .validation-summary-errors {
+    font-size: 12px;
+}

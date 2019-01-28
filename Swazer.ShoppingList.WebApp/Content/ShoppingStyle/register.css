@@ -1,0 +1,79 @@
+.panel-default  {
+opacity: 1.0;
+margin-top:30px;
+}
+
+.registration .panel-heading,.registration .panel-footer{
+    background-color:transparent;	
+    border-color:transparent;
+/*background-color:transparent;*/	
+/*margin-top: 20px;*/
+}
+
+.registration{
+    background-color:rgba(255, 255, 255,0.8);	
+    border-color:rgba(255, 255, 255,0.8);
+    color:black;
+    
+}
+
+.registration .panel-heading{
+    text-transform: initial;
+    font-weight: 300;
+    
+	/*color:#fff*/
+}
+
+.registrationHeader{
+	/*padding-left: 26%;*/
+	margin-bottom:0px;
+    /*background-color:rgba(255, 255, 255,0.8);*/	
+}
+
+.form-group.last { margin-bottom:0px; }
+
+.panel-footer .logIn{
+	color:#2C9CEA;
+}
+
+.panel-footer .logIn:hover{
+	opacity: 0.5;
+}
+
+.registration.panel-footer{
+	/*color:#fff;*/
+}
+.registrationFooter{
+	/*padding-left: 26%;*/
+	padding-top: 0px;
+    margin-top: 0px;
+}
+.home-content.padding.registrationcol{
+	padding-bottom:0px;
+}
+
+.passwordRowNote{
+	margin:0px;
+}
+
+.passwordRow{
+	margin-bottom: 0px;
+}
+
+.passwordRowNote h6 {
+    margin-top:6px;
+    margin-bottom:30px;
+
+}
+
+.registration .panel-body {
+    margin-bottom:0px;
+    padding-bottom:0px;
+    padding-top: 0px;
+}
+
+
+validation-registration{
+    padding-left: 26%;
+    font-weight: 100;
+}

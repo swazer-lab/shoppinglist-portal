@@ -1,0 +1,85 @@
+﻿/*This is style rtl*/
+
+@font-face {
+    font-family: 'notoNaksh';
+    src: url('../fonts/NotoNaskhArabic-Regular.ttf');
+}
+
+body {
+    font-family: notoNaksh, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: notoNaksh, sans-serif;
+}
+.attr-nav {
+    float: left;
+    margin-right: 13px;
+    margin-left: -15px;
+    z-index: 100;
+}
+
+.core-feature-content.arrow-right::after {
+    border-right: 40px solid #e6f0fa;
+    border-left: 0;
+    right: 100%;
+    left: auto;
+}
+
+.core-feature-content.arrow-left::after {
+    border-left: 40px solid #e6f0fa;
+    border-right: 0;
+    left: 100%;
+    right: auto;
+}
+
+.footer-menu {
+    text-align: right;
+}
+
+@media (max-width: 767px) {
+    .attr-nav {
+        left: 30px;
+        top: 15px;
+        right: auto;
+    }
+}
+
+.smares-copyright {
+    direction:ltr;
+    text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+    .products-list li {
+        margin: 10px 15px;
+    }
+
+    #bottom-footer {
+        padding: 10px 0;
+    }
+
+    #bottom-footer, .footer-menu {
+        text-align: center;
+    }
+
+    .footer-menu {
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .smares-copyright {
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .navbar-header .dropdown {
+        margin-right: 25px;
+    }
+
+    .contact-info-border {
+        border-right: 0;
+    }
+
+    .contact-info-border > div {
+        padding-right: 0;
+    }
+}

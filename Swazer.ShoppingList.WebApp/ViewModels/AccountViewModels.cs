@@ -1,4 +1,5 @@
-﻿using Swazer.ShoppingList.WebApp.Infrastructure;
+﻿using Swazer.ShoppingList.WebApp.API.Resources.ErrorMessages;
+using Swazer.ShoppingList.WebApp.Infrastructure;
 using Swazer.ShoppingList.WebApp.Resources;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -93,40 +94,17 @@ namespace Swazer.ShoppingList.WebApp.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "ArabicNameRequired")]
-        [Display(ResourceType = typeof(AccountStrings), Name = "ArabicName")]
-        [StringLength(250, ErrorMessageResourceName = "FullNameLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 1)]
-        public string ArabicName { get; set; }
+        [Required(ErrorMessageResourceName = "RegisterNameRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
+        public string Name { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "EnglishNameRequired")]
-        [Display(ResourceType = typeof(AccountStrings), Name = "EnglishName")]
-        [StringLength(250, ErrorMessageResourceName = "FullNameLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 1)]
-        public string EnglishName { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "EmailRequired")]
-        [EmailAddress(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "EmailNotCorrect")]
-        [Display(ResourceType = typeof(AccountStrings), Name = "Email")]
-        [StringLength(250, ErrorMessageResourceName = "EmailLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 1)]
+        [Required(ErrorMessageResourceName = "RegisterEmailRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "MobileRequired")]
-        [Display(ResourceType = typeof(AccountStrings), Name = "Mobile")]
-        [StringLength(10, ErrorMessageResourceName = "MobileLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 10)]
-        public string Mobile { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "PasswordRequired")]
-        [StringLength(20, ErrorMessageResourceName = "PasswordLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 8)]
-        [DataType(DataType.Password)]
-        [Display(ResourceType = typeof(AccountStrings), Name = "Password")]
-        [PasswordRegex(ErrorMessageResourceName = "GeneralPasswordErrorMessage", ErrorMessageResourceType = typeof(AccountStrings))]
+        [Required(ErrorMessageResourceName = "RegisterPasswordRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(ResourceType = typeof(AccountStrings), Name = "ConfirmPassword")]
-        [StringLength(20, ErrorMessageResourceName = "ConfirmPasswordLengthMessage", ErrorMessageResourceType = typeof(AccountStrings), MinimumLength = 8)]
-        [Compare("Password", ErrorMessageResourceType = typeof(AccountStrings), ErrorMessageResourceName = "ConfirmPasswordValidationMessage")]
-        [PasswordRegex(ErrorMessageResourceName = "GeneralPasswordErrorMessage", ErrorMessageResourceType = typeof(AccountStrings))]
-        public string ConfirmPassword { get; set; }
+        [Required(ErrorMessageResourceName = "RegisterMobileRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
+        public string Mobile { get; set; }
     }
 
     public class ResetPasswordViewModel

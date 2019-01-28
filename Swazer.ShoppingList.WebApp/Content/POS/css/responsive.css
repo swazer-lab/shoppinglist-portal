@@ -1,0 +1,488 @@
+/*---------------------------------------------------------------------
+    Desktop
+-----------------------------------------------------------------------*/
+
+@media screen and (max-width: 1200px) {
+    #section-background h1 {
+        font-size: 4em;
+    }
+
+    #section-background p {
+        width: 80%;
+    }
+}
+
+
+/*---------------------------------------------------------------------
+    Tablet Device
+----------------------------------------------------------------------*/
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-brand img {
+        max-width: 60px;
+    }
+    .attr-nav a {
+        padding: 5px 18px;
+        margin: 12px 0 0 25px;
+    }
+    h1 {
+        font-size: 36px;
+        line-height: 46px;
+    }
+    .wecome-content {
+        padding: 6% 0 0;
+    }
+    .welcome-img img {
+        max-width: 300px;
+    }
+    #about-area {
+        padding: 80px 0 90px;
+    }
+    .slide-content {
+        padding: 30% 0 0;
+    }
+    .slide-img {
+        padding: 25% 0 0;
+    }
+    .slider-carousel .owl-dots {
+        bottom: -60px;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    #section-background h1 {
+        font-size: 3em;
+        line-height: 1;
+        text-align: center;
+    }
+
+    #section-background h1 img {
+        display: block;
+        margin: 10px auto;
+    }
+
+    #section-background p {
+        font-size: 17px;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .smares-copyright {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .navbar-header .dropdown {
+        margin-left: 25px;
+    }
+
+    .contact-info {
+        padding-left: 0
+    }
+
+    .contact-info-border {
+        border-left: 0;
+    }
+
+    .contact-info-border > div {
+        padding-left: 0;
+    }
+}
+
+
+/*---------------------------------------------------------------------
+    Large Screen Mobile
+-----------------------------------------------------------------------*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .navbar-brand img {
+        max-width: 60px;
+    }
+    .attr-nav a {
+        padding: 5px 18px;
+        margin: 12px 0 0 25px;
+    }
+    h1,
+    h2 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    #welcome-area {
+        padding: 60px 0;
+    }
+    .wecome-content {
+        padding: 0;
+    }
+    .welcome-img img,
+    .slide-img img {
+        max-width: 300px;
+        margin: 0 auto
+    }
+    #slider-area {
+        height: auto;
+    }
+    .slide-content {
+        padding: 0 0 100px;
+    }
+    .slider-carousel .owl-dots {
+        bottom: 40px
+    }
+    .slider-carousel .owl-nav > div {
+        top: 35%;
+    }
+    #about-area {
+        padding: 50px 0 0px;
+    }
+    .about-img img,
+    .why-choose-image img {
+        max-width: 300px;
+    }
+    .about-content {
+        margin: 0 0 50px;
+    }
+    #features-area {
+        padding: 50px 0 30px;
+    }
+    #video-area {
+        padding: 60px 0 70px;
+    }
+    .video-content a {
+        font-size: 24px;
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+    }
+    #core-features-area {
+        padding: 50px 0 0;
+    }
+    .core-feature-content.arrow-right::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 30px solid #e6f0fa;
+        border-bottom: 0;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: 100%;
+    }
+    .core-feature-content.arrow-right {
+        margin: 0 0 70px
+    }
+    .core-feature-content.arrow-left {
+        margin: 70px 0 0
+    }
+    .core-feature-content.arrow-left::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 0;
+        border-bottom: 30px solid #e6f0fa;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: -30px;
+    }
+    .core-features-single {
+        margin: 0 0 20px;
+    }
+    #why-choose-area {
+        padding: 50px 0;
+    }
+    #product-area {
+        padding: 50px 0 30px;
+    }
+    #testimonial-area {
+        padding: 50px 0 100px;
+    }
+    #faq-area {
+        padding: 50px 0 0px;
+    }
+    .faq-img img {
+        max-width: 300px;
+    }
+    #newsletter-area {
+        padding: 50px 0 60px;
+    }
+    #contact-area {
+        padding: 50px 0 60px;
+    }
+    .contact-form {
+        margin: 0 0 50px;
+    }
+    #section-background h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    #section-background h1 {
+        font-size: 1.5em;
+    }
+}
+
+/*----------------------------------------------------------------------
+   Medium Screen Mobile
+------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 360px) and (max-width: 479px) {
+    .navbar-brand img {
+        max-width: 60px;
+    }
+    .attr-nav a {
+        padding: 5px 18px;
+        margin: 12px 0 0 25px;
+    }
+    h1,
+    h2 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    #welcome-area {
+        padding: 60px 0;
+    }
+    .wecome-content {
+        padding: 0;
+    }
+    .welcome-img img,
+    .slide-img img {
+        max-width: 100%;
+        margin: 0 auto
+    }
+    #slider-area {
+        height: auto;
+    }
+    .slide-content {
+        padding: 0 0 100px;
+    }
+    .slider-carousel .owl-dots {
+        bottom: 40px
+    }
+    .slider-carousel .owl-nav > div {
+        top: 35%;
+    }
+    #about-area {
+        padding: 50px 0 0px;
+    }
+    .about-img img,
+    .why-choose-image img {
+        max-width: 300px;
+    }
+    .about-content {
+        margin: 0 0 50px;
+    }
+    #features-area {
+        padding: 50px 0 30px;
+    }
+    #video-area {
+        padding: 60px 0 70px;
+    }
+    .video-content a {
+        font-size: 24px;
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+    }
+    #core-features-area {
+        padding: 50px 0 0;
+    }
+    .core-feature-content.arrow-right::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 30px solid #e6f0fa;
+        border-bottom: 0;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: 100%;
+    }
+    .core-feature-content.arrow-right {
+        margin: 0 0 70px
+    }
+    .core-feature-content.arrow-left {
+        margin: 70px 0 0
+    }
+    .core-feature-content.arrow-left::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 0;
+        border-bottom: 30px solid #e6f0fa;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: -30px;
+    }
+    .core-features-single {
+        margin: 0 0 20px;
+    }
+    #why-choose-area {
+        padding: 50px 0;
+    }
+    #product-area {
+        padding: 50px 0 30px;
+    }
+    #testimonial-area {
+        padding: 50px 0 100px;
+    }
+    #faq-area {
+        padding: 50px 0 0px;
+    }
+    .faq-img img {
+        max-width: 300px;
+    }
+    #newsletter-area {
+        padding: 50px 0 60px;
+    }
+    #contact-area {
+        padding: 50px 0 60px;
+    }
+    .contact-form {
+        margin: 0 0 50px;
+    }
+}
+
+
+/*----------------------------------------------------------------------
+    Small Screen Mobile
+-----------------------------------------------------------------------*/
+
+@media only screen and (min-width: 320px) and (max-width: 359px) {
+    .navbar-brand img {
+        max-width: 60px;
+    }
+    .attr-nav a {
+        padding: 5px 18px;
+        margin: 12px 0 0 25px;
+    }
+    h1,
+    h2 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    #welcome-area {
+        padding: 60px 0;
+    }
+    .wecome-content {
+        padding: 0;
+    }
+    .welcome-img img,
+    .slide-img img {
+        max-width: 300px;
+        margin: 0 auto
+    }
+    #slider-area {
+        height: auto;
+    }
+    .slide-content {
+        padding: 0 0 100px;
+    }
+    .slider-carousel .owl-dots {
+        bottom: 40px
+    }
+    .slider-carousel .owl-nav > div {
+        top: 35%;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+    .slider-carousel .owl-nav .owl-next {
+        padding: 4px 8px;
+    }
+    #about-area {
+        padding: 50px 0 0px;
+    }
+    .about-img img,
+    .why-choose-image img {
+        max-width: 300px;
+    }
+    .about-content {
+        margin: 0 0 50px;
+    }
+    #features-area {
+        padding: 50px 0 30px;
+    }
+    #video-area {
+        padding: 60px 0 70px;
+    }
+    .video-content a {
+        font-size: 24px;
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+    }
+    #core-features-area {
+        padding: 50px 0 0;
+    }
+    .core-feature-content.arrow-right::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 30px solid #e6f0fa;
+        border-bottom: 0;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: 100%;
+    }
+    .core-feature-content.arrow-right {
+        margin: 0 0 70px
+    }
+    .core-feature-content.arrow-left {
+        margin: 70px 0 0
+    }
+    .core-feature-content.arrow-left::after {
+        content: '';
+        background-color: transparent;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 0;
+        border-bottom: 30px solid #e6f0fa;
+        display: block;
+        position: absolute;
+        left: 50%;
+        width: 0;
+        top: -30px;
+    }
+    .core-features-single {
+        margin: 0 0 20px;
+    }
+    #why-choose-area {
+        padding: 50px 0;
+    }
+    #product-area {
+        padding: 50px 0 30px;
+    }
+    #testimonial-area {
+        padding: 50px 0 100px;
+    }
+    #faq-area {
+        padding: 50px 0 0px;
+    }
+    .faq-img img {
+        max-width: 300px;
+    }
+    #newsletter-area {
+        padding: 50px 0 60px;
+    }
+    #contact-area {
+        padding: 50px 0 60px;
+    }
+    .contact-form {
+        margin: 0 0 50px;
+    }
+}

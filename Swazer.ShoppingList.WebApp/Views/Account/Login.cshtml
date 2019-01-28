@@ -1,68 +1,98 @@
-﻿@model LoginViewModel
+﻿
+@model LoginViewModel
 @{
     ViewBag.Title = AccountStrings.Login;
+    Layout = "~/Views/Shared/_Layout_ShoppingStyle.cshtml";
 }
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <div id="loginForm" class="login-form-container background-img-heart-beat">
-                <div class="text-center">
-                    <img class="logo-img" src="~/Content/home/images/logo.png" alt="logo" />
-                </div>
-
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Email)
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Password)
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6 col-xs-6">
-                                <div class="checkbox">
-                                    <label>
-                                        @Html.CheckBoxFor(m => m.RememberMe)
-                                        @Html.DisplayNameFor(m => m.RememberMe)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xs-6">
-                                <p class="text-right forget-password">@Html.ActionLink(AccountStrings.ForgotYourPassword, "ForgotPassword")</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group text-center">
-                        <input type="submit" value="@AccountStrings.Login" class="btn btn-md bg-secondary-color" />
-                    </div>
-                }
-
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </div>
-
-            <p class="text-center">@AccountStrings.NoAccount  @Html.ActionLink(AccountStrings.Register, "Register", null, new { @class = "no-account-link" })</p>
+        <div class="col-md-2 col-md-offset-5 signInLogo">
+            <!--<h1><img class="main-logo img-responsive" src="images/logo-blue.png" alt=""></h1>-->
+            <a href="@Url.Action("Index","Home")"><img class="img-responsive " src="~/Content/ShoppingStyle/images/ico/apple-touch-icon-144-precomposed.png" alt="smares - Signin" /></a>
         </div>
     </div>
-</div>
 
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 signInTitle">
+            <h2>Sign In to Shopping</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default signInPanel">
+                <div class="panel-body">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger", style = "color: red;" })
+
+                        <div class="form-group">
+                            <div class="col-sm-12 control-label">
+                                @Html.LabelFor(m => m.Email, new { @class = "pull-left flip" })
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", tabindex = "1", autofocus = "" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", style = "color: red;" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 control-label">
+                                @Html.LabelFor(m => m.Password, new { @class = "pull-left flip" })
+                                @Html.ActionLink("Forgot Your Password", "ForgotPassword", null, new { @class = "forgotPassword" })
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Password), tabindex = "2" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", style = "color: red;" })
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">@AccountStrings.Login</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 signInTitle">
+            <div class="panel panel-default signInPanelRegistre">
+                <div class="panel-body">
+                    <div class="form-group">
+                        Dont Have a account <a class="register" href="@Url.Action("Register","Account")">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 signInFooter">
+            <div class="panel panel-default signInPanelFooter">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <a class="footerLink" href="@Url.Action("Terms","Home")">Term</a>
+                        <a class="footerLink" href="@Url.Action("PrivacyPolicy","Home")">Privacy</a>
+                        <a class="footerLink" href="@Url.Action("LandingPage","Home")#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        $(function () {
-              if ('@TempData["SuccessMessage"]' !== '') {
-                  toastr.success('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["SuccessMessage"]))');
-              }
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            if ('@TempData["ErrorMessage"]' !== '') {
+                debugger;
+                ShowFailMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["ErrorMessage"]))');
+            }
         });
     </script>
 }

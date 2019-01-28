@@ -1,0 +1,140 @@
+/* for landing page only */
+
+@font-face {
+    font-family: 'notoNaksh';
+    src: url('../POS/fonts/NotoNaskhArabic-Regular.ttf');
+}
+
+body {
+    font-family: notoNaksh, sans-serif;
+}
+
+.home-content.paddingRegistration {
+    padding-left: 0px;
+    padding-right: 100px;
+}
+
+.home-content .btn-primary {
+    margin-right: 0px !important;
+    margin-left: 25px !important;
+}
+
+.whatsit h1,
+.whatsit h2,
+.section-title h1,
+.feature h2,
+#testimonial-slider .item h2,
+.twitter-feed h1,
+#download-apps h1 {
+    letter-spacing: -1px;
+}
+
+.left-side {
+    border-right: 0px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+}
+
+    .left-side .compatibility .os {
+        padding-right: 0px !important;
+        padding-left: 170px !important;
+    }
+
+.left-side .compatibility a {
+    float:none;
+}
+
+.right-side .compatibility .os {
+    padding-left: 0px !important;
+    padding-right: 170px !important;
+}
+
+.left-side .compatibility .os-image {
+    left: 35px !important;
+    right:auto;
+}
+
+.right-side .compatibility .os-image {
+    right: 35px !important;
+    left:auto;
+}
+
+.btn-group-landing > .btn:first-child {
+    margin-left: 15px;
+}
+
+.footer-menu {
+    text-align: left;
+}
+
+.smares-copyright {
+    direction: ltr;
+    text-align: left;
+}
+
+.footer-menu {
+    text-align: right;
+}
+
+#reseller .panel-body i {
+    margin-left: 7px;
+}
+
+.contact-info-border {
+    border-right: 1px solid #dedede;
+    border-left: 0;
+}
+
+.contact-info-border > div {
+    padding-right: 30px;
+    padding-left: 0;
+}
+
+.bottom-footer > a > span {
+    margin-right: 6px;
+    margin-left: 0;
+}
+
+.phone-number-header {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 1199px) {
+    .home-content.paddingRegistration {
+        padding-right: 0;
+        padding-left: 50px;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .products-list li {
+        margin: 10px 15px;
+    }
+
+    #bottom-footer {
+        padding: 10px 0;
+    }
+
+    #bottom-footer, .footer-menu {
+        text-align: center;
+    }
+    .footer-menu {
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .smares-copyright {
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .contact-info-border {
+        border-right: 0;
+    }
+
+    .contact-info-border > div {
+        padding-right: 0;
+    }
+
+}

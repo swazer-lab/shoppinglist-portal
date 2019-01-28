@@ -74,40 +74,26 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            User user = UserService.Obj.FindByEmail(model.Email);
-            if (user == null)
+            try
             {
-                ModelState.AddModelError("", AccountStrings.WrongUserNamePassword);
-                return View(model);
-            }
-
-            //UserSmsVerificationService.Obj.SendSMSVerification(user, UserVerificationReason.Login);
-            SignInStatus result = SignInManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-
-            //return View("VerifyMobile", new VerifyMobileViewModel { UserName = user.UserName, PhoneNumber = user.Mobile });
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await ApplicationSignInManager.
-
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    //UserSmsVerificationService.Obj.SendSMSVerification(user, UserVerificationReason.Login);
-                    user.UpdateLastLoginTime();
-                    UserService.Obj.ShallowUpdate(user);
-                    return RedirectToAction("Redirection", "Account", new { area = "" });
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", AccountStrings.WrongUserNamePassword);
+                if (!ModelState.IsValid)
                     return View(model);
+
+                User user = UserService.Obj.FindByEmail(model.Email);
+
+                SignInStatus result = SignInManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+                return RedirectToAction("Index", "Home");
             }
+
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+
+                return View(model);
+
+                throw;
+            }            
         }
 
         #region Wathiq
@@ -164,19 +150,29 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [HandleAjaxException]
-        public ActionResult Register(RegisterViewModel model, string code, Guid smsRefId)
+        public ActionResult Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
-                throw new BusinessRuleException(ModelState.GetFirstError());
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(model);
 
-            UserSmsVerificationService.Obj.ThrowExceptionIfInvalidVerficationCode(smsRefId, code, UserVerificationReason.Registeration);
+                User user = user = new User(model.Name, model.Mobile, model.Email);
 
-            User user = user = new User(model.ArabicName, model.Mobile, model.Email);
+                user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
+                User result = UserService.Obj.Create(user, model.Password);
 
-            user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
-            User result = UserService.Obj.Create(user, model.Password);
-            return Json("");
+                TempData["SuccessMessage"] = "Operation is success";
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -187,7 +183,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             if (!ModelState.IsValid)
                 throw new BusinessRuleException(ModelState.GetFirstError());
 
-            User user = user = new User(model.ArabicName, model.Mobile, model.Email);
+            User user = user = new User(model.Name, model.Mobile, model.Email);
             user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
             UserService.Obj.ValidateUserWithPassword(user, model.Password);
 
