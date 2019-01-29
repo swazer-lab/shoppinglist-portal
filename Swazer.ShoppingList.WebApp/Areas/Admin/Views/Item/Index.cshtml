@@ -1,0 +1,68 @@
+﻿@model ItemIndexViewModel
+
+@{
+    ViewBag.Title = "Items";
+}
+
+@Html.Partial("_Breadcrumb", new BreadcrumbModel(new BreadItem("Items")))
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="ibox container-layer">
+                <div data-bind="visible: Spinning">
+                    @Html.Partial("_Spinning")
+                </div>
+                <div class="ibox-title">
+                    <div class="pull-left flip">
+                        <button class="btn btn-primary btn-xs" data-bind="click: PressCreate">Create</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    @Html.Partial("_List", Model)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div data-bind="visible: IsItemsEmpty && IsNoResultMode" style="display:none">
+                @Html.Partial("_NoResult")
+            </div>
+            @Html.Partial("_Detail", new ItemViewModel())
+            @Html.Partial("_CreateEdit", new ItemViewModel())
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/knockout/itemsVM.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var searchCriteriaVm = new ItemSearchCriteriaVM({
+                pageSize: @Model.PageSize,
+                totalCount: @Model.TotalCount,
+            });
+
+            var vm = new ItemMainVM({
+                searchCriteria: searchCriteriaVm,
+
+                createUrl: '@Url.Action("Create")',
+
+                editUrl: '@Url.Action("Edit")',
+                deleteUrl: '@Url.Action("Delete")',
+                searchUrl: '@Url.Action("Search")',
+                changeStatusUrl: '@Url.Action("ChangeStatus")',
+
+                createModePanelTitle: '@Html.Raw(SharedStrings.Create)',
+                editModePanelTitle: '@Html.Raw(SharedStrings.Edit)',
+                displayModePanelTitle: '@Html.Raw(SharedStrings.Details)',
+            });
+
+            ko.applyBindings(vm);
+            ko.validation.locale('@Html.KoValidationToken()');
+        });
+
+    </script>
+}
+

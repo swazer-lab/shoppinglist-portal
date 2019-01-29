@@ -1,0 +1,31 @@
+﻿@model ItemViewModel
+
+<!-- ko if: EditedElement() !== undefined-->
+<div class="ibox container-layer" data-bind="visible: IsCreateOrEditMode" style="display:none">
+    <div data-bind="visible: Spinning">
+        @Html.Partial("_Spinning")
+    </div>
+    <div class="ibox-title">
+        <h5 class="pull-left flip" data-bind="text: PanelTitle"></h5>
+    </div>
+    <form data-bind="submit:Save">
+        <div class="ibox-content">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row form-group">
+                            @Html.LabelFor(x => x.Title)
+                            <input class="form-control" data-bind="textInput: EditedElement().Title, validationElement:EditedElement().Title" />
+                            <span class="error" data-bind="validationMessage: EditedElement().Title"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ibox-footer">
+            <button type="submit" class="btn btn-primary">@SharedStrings.Save</button>
+            <button type="button" class="btn btn-default" data-bind="click:Cancel">@SharedStrings.Cancel</button>
+        </div>
+    </form>
+</div>
+<!-- /ko-->

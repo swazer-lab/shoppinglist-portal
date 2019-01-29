@@ -87,10 +87,8 @@ namespace Swazer.ShoppingList.Core
             this.Mobile = mobile;
             this.Email = email;
             this.UserName = email;
-            
+
             this.CreatedAt = DateTime.Now;
-            this.CreatedBy = Thread.CurrentPrincipal.Identity as User;
-            this.CreatedByID = this.CreatedBy?.Id;
         }
 
         #endregion

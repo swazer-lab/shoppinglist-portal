@@ -47,12 +47,12 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             User user = GetCurrentUser();
 
             Cart cart = null;
-
-            List<Item> items = model.Items?.Select(x => Item.Create(x.Title, x.Status)).ToList();
-
+            
             if (!model.CartId.HasValue)
             {
                 cart = Cart.Create(model.Title, model.Notes, model.Date);
+
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
                 CartMobileService.Obj.Create(cart, user, items);
             }
@@ -61,6 +61,8 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             {
                 cart = CartMobileService.Obj.GetById(model.CartId.Value);
                 cart.Update(model.Title, model.Notes, model.Date);
+
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
                 CartMobileService.Obj.Update(cart, items);
             }

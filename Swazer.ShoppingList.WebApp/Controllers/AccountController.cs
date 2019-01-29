@@ -54,7 +54,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             if (User.HasPermission(RoleNames.AdminRole))
                 return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
             else
-                return RedirectToAction("Create", "UserReservation", new { area = "" });
+                return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         // GET: /Account/Login
@@ -83,7 +83,21 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
                 SignInStatus result = SignInManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
-                return RedirectToAction("Index", "Home");
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        user.UpdateLastLoginTime();
+                        UserService.Obj.Update(user);
+                        return RedirectToAction("Redirection", "Account", new {area = "" });
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
             }
 
             catch (Exception ex)

@@ -22,7 +22,7 @@ namespace Swazer.ShoppingList.Domain
         {
         }
 
-        public Cart Create(Cart entity, User user, List<Item> items)
+        public Cart Create(Cart entity, User user, List<CartItem> items)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -52,7 +52,7 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public Cart Update(Cart entity, List<Item> items)
+        public Cart Update(Cart entity, List<CartItem> items)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));

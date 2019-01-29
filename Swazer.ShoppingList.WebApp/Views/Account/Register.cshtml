@@ -119,14 +119,13 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
         $(document).ready(function () {
-            debugger;
             if ('@TempData["ErrorMessage"]' !== '') {
-                debugger;
                 ShowFailMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["ErrorMessage"]))');
             }
         });

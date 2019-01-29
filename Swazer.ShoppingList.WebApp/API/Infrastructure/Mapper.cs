@@ -44,8 +44,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             return new ItemBindingModel()
             {
                 ItemId = model.ItemId,
-                Title = model.Title,
-                Status = model.Status
+                Title = model.Title
             };
         }
 

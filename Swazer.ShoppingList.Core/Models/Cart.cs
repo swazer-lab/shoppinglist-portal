@@ -16,6 +16,8 @@ namespace Swazer.ShoppingList.Core
 
         public DateTime Date { get; set; }
 
+        public bool IsActive { get; set; }
+
         public List<CartItem> Items { get; set; }
 
         public static Cart Create(string title, string notes, DateTime date)

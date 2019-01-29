@@ -315,6 +315,7 @@
     <Content Include="Content\flags\4x3\us.svg" />
     <Content Include="Content\flags\docs.css" />
     <Content Include="Content\flags\flag-icon.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\home-rtl.css" />
     <Content Include="Content\images\2572042b-e2dc-4749-b127-8bd7d540bd2d.jpeg" />
     <Content Include="Content\images\App_Store_Badge_US-UK_135x40.svg" />
@@ -350,7 +351,6 @@
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\mobile-view.css" />
-    <Content Include="Content\MP3\Notification.mp3" />
     <Content Include="Content\NewImage\Customer Order.png" />
     <Content Include="Content\NewImage\Customer Voice.png" />
     <Content Include="Content\NewImage\Kitchen Display System.png" />
@@ -420,7 +420,6 @@
     <Content Include="Content\site.css" />
     <Content Include="Content\ShoppingStyle\blue.css" />
     <Content Include="Content\ShoppingStyle\bootstrap.min.css" />
-    <Content Include="Content\ShoppingStyle\font-awesome.min.css" />
     <Content Include="Content\ShoppingStyle\images\bg\action-bg.jpg" />
     <Content Include="Content\ShoppingStyle\images\bg\action-bg2.jpg" />
     <Content Include="Content\ShoppingStyle\images\bg\apps-bg.jpg" />
@@ -642,8 +641,9 @@
     <Content Include="Content\Svg\tick.svg" />
     <Content Include="Content\Uploader-style.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\shopping-landing\fonts\icomoon.svg" />
-    <Content Include="fonts\shopping-landing\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ajaxredirect.js" />
     <Content Include="Scripts\ajaxredirect.min.js" />
@@ -674,7 +674,6 @@
     <Content Include="Scripts\home\wow.min.js" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="bundleconfig.json" />
-    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_CenterSupervisorNavigation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_DeleteModal.cshtml" />
@@ -685,7 +684,6 @@
     <Content Include="Areas\Admin\Views\Shared\_NoItems.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_NoResult.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Paging.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_PermissionNavigation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_RightSidebar.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ShowComplainDescription.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ShowRichContent.cshtml" />
@@ -717,6 +715,20 @@
     <Content Include="fonts\shopping-landing\fonts\icomoon.eot" />
     <Content Include="fonts\shopping-landing\fonts\icomoon.ttf" />
     <Content Include="fonts\shopping-landing\fonts\icomoon.woff" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\_Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\_List.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
@@ -737,6 +749,7 @@
     <Content Include="Scripts\knockout.infrastructure.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\knockout\itemsVM.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
@@ -1295,7 +1308,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemController.cs" />
     <Compile Include="Areas\Admin\Models\HomeModel.cs" />
+    <Compile Include="Areas\Admin\Models\ItemViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

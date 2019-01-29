@@ -21,7 +21,7 @@ namespace Swazer.ShoppingList.Domain
         {
         }
 
-        public void Create(List<Item> items, int cardId)
+        public void Create(List<CartItem> items, int cardId)
         {
             Delete(cardId);
 
@@ -29,7 +29,7 @@ namespace Swazer.ShoppingList.Domain
 
             foreach (var item in items)
             {
-                CartItem cartItem = CartItem.Create(cart, item);
+                CartItem cartItem = CartItem.Create(cart, item.Item, item.Status);
 
                 var createdItem = repository.Create(cartItem);
             }

@@ -13,13 +13,13 @@ namespace Swazer.ShoppingList.WebApp.Areas.Admin
                 url: "{lang}/Admin/{controller}/{action}/{id}",
                 //constraints: new { lang = @"(\w{2})" },   // In this case any two char will be accepted even 'ux' for example will work
                 constraints: new { lang = "en|ar" },     // here is the list of all the supported languages by the website.
-                defaults: new { lang = "ar", controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                defaults: new { lang = "en", controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
 
             context.MapRoute(
                 name: "Admin_default_withoutLang",
                 url: "Admin/{controller}/{action}/{id}",
-                defaults: new { lang = "ar", controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                defaults: new { lang = "en", controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -12,15 +12,37 @@ namespace Swazer.ShoppingList.Core
 
         public string Title { get; set; }
 
-        public ItemStatus Status { get; set; }
+        public bool IsActive { get; set; }
 
-        public static Item Create(string title, ItemStatus itemStatus)
+        public static Item Create(string title)
         {
             return new Item
             {
                 Title = title,
-                Status = itemStatus
+                IsActive = true
             };
+        }
+
+        public Item Update(string title, bool isActive)
+        {
+            this.Title = title;
+            this.IsActive = isActive;
+
+            return this;
+        }
+
+        public Item Activate()
+        {
+            this.IsActive = true;
+
+            return this;
+        }
+
+        public Item Deactivate()
+        {
+            this.IsActive = false;
+
+            return this;
         }
     }
 

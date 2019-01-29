@@ -42,16 +42,16 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public void MultipleCreate(List<Item> items, int cartId)
+        public void MultipleCreate(List<CartItem> items, int cartId)
         {
-            List<Item> itemList = new List<Item>();
+            List<CartItem> itemList = new List<CartItem>();
 
             if (items != null)
             {
                 foreach (var item in items)
                 {
-                    var createdItem = Create(item);
-                    itemList.Add(createdItem);
+                    var createdItem = Create(item.Item);
+                    itemList.Add(new CartItem() { Item = createdItem, Status = item.Status });
                 }
             }
 

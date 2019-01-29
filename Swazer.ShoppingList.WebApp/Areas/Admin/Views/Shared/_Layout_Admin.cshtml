@@ -10,16 +10,14 @@
     @Styles.Render("~/plugins/nprogressStyle")
     @Styles.Render("~/Content/datetimepicker")
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
     {
         @RenderSection("Styles", required: false)
     }
 
-    <link rel="stylesheet" href="~/Content/print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="~/Content/Admin/print.css" type="text/css" media="print" />
     <!-- Add jQuery Style direct - used for jQGrid plugin -->
-    @*<link href="@Url.Content("~/Scripts/Admin/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />*@
 
     <!-- Primary Inspinia style -->
     @Styles.Render("~/plugins/toastrStyles")
@@ -41,7 +39,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/plugins/slimScroll")
     @Scripts.Render("~/bundles/inspinia")
-    @Scripts.Render("~/bundles/colors")
 
     @Scripts.Render("~/plugins/toastr")
     @Scripts.Render("~/plugins/iCheck")
@@ -54,14 +51,7 @@
     <div class="device-lg visible-lg"></div>
 
     <div id="wrapper" class="@Html.PageClass()">
-        @if (User.HasPermission(RoleNames.AdminRole))
-        {
-            @Html.Partial("_Navigation");
-        }
-        else
-        {
-            @Html.Partial("_PermissionNavigation");
-        }
+        @Html.Partial("_Navigation");
         <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
             @Html.Partial("_TopNavbar")
             @RenderBody()

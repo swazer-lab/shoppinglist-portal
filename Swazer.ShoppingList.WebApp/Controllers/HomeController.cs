@@ -11,16 +11,13 @@ using Swazer.ShoppingList.WebApp.Resources;
 
 namespace Swazer.ShoppingList.WebApp.Controllers
 {
-    [AllowAnonymous]
+    [AllowUser]
     public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            User user = GetCurrentUser();
 
-        public ActionResult UserDashboard()
-        {
             return View();
         }
 
@@ -30,11 +27,13 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             return View(model: showLoginButton);
         }
 
+        [AllowAnonymous]
         public ActionResult NotFound()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Error()
         {
             return View();
