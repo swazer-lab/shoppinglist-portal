@@ -169,9 +169,7 @@ see this SO http://stackoverflow.com/a/19695851/4390133 */
     bottom: 0;
 }
 
-.clear1, .clear2 {
-    display: none !important;
-}
+.clear1, .clear2 { display:none !important;}
 
 .span-margin {
     margin-left: 3px;
@@ -192,45 +190,45 @@ textarea {
     padding: 40px 20px;
 }
 
-    .doctor-item .make-appointment-btn {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-    }
+.doctor-item .make-appointment-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
 
-    .doctor-item .doctor-name {
-        margin-bottom: 0;
-    }
+.doctor-item .doctor-name {
+    margin-bottom: 0;
+}
 
-    .doctor-item .doctor-detail {
-        margin-top: 35px;
-    }
+.doctor-item .doctor-detail {
+    margin-top: 35px;
+}
 
-    .doctor-item .doctor-img {
-        width: 175px;
-        height: 175px;
-        object-fit: scale-down;
-        margin: 0 auto 10px;
-        border: 4px solid #bbb;
-        box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.05);
-    }
+.doctor-item .doctor-img {
+    width: 175px;
+    height: 175px;
+    object-fit: scale-down;
+    margin: 0 auto 10px;
+    border: 4px solid #bbb;
+    box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .doctor-item .drop-down-list {
-        font-size: 15px;
-        display: block;
-        margin-bottom: 10px;
-    }
+.doctor-item .drop-down-list {
+    font-size: 15px;
+    display: block;
+    margin-bottom: 10px;
+}
 
-    .doctor-item .fa-check {
-        color: forestgreen
-    }
+.doctor-item .fa-check {
+    color: forestgreen
+}
 
-    .doctor-item .fa-times {
-        color: red
-    }
+.doctor-item .fa-times {
+    color: red
+}
 
 img {
-    max-width: 100% !important;
+    max-width: 100%!important;
 }
 
 .headline-p {

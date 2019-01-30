@@ -1,4 +1,9 @@
-﻿.nav-second-level li a {
+﻿
+body {
+    font-family: 'TheSans', sans-serif;
+}
+
+.nav-second-level li a {
     padding: 7px 10px 7px 10px;
     padding-right: 52px;
 }
@@ -72,4 +77,21 @@ body.mini-navbar #page-wrapper {
 .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
     border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important;
+}
+
+.offer-button {
+    left: 15px;
+    right: auto;
+}
+
+.toast-close-button {
+   top: 0;
+   left: -3.3rem;
+   right: auto;
+   float: left;
+}
+
+.toast-message {
+    margin-right: 60px;
+    text-align: right;
 }

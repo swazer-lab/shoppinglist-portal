@@ -3,7 +3,7 @@ var cWidth=64;
 var cHeight=55;
 var cTotalFrames=30;
 var cFrameWidth=64;
-var cImageSrc = '/Content/SmaresStyle/images/sprites.gif';
+var cImageSrc = '/Content/ShoppingStyle/images/sprites.gif';
 //var cImageSrc = 'Content/SmaresStyle/images/Comp-1.gif';
 var cImageTimeout=false;
 function startAnimation(){

@@ -91,10 +91,9 @@ namespace Swazer.ShoppingList.WebApp
                 "~/Content/flags/flag-icon.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/ShoppingStyle").Include(
-                "~/Content/ShoppingStyle/bootstrap.min.css",
+                "~/Content/bootstrap.min.css",
                 "~/Content/font-awesome.min.css",
                 "~/Content/ShoppingStyle/magnific-popup.css",
-                "~/Content/POS/css/owl.carousel.min.css",
                 "~/Content/Admin/animate.min.css",  // this will use the updated version of the animation
                 "~/Content/ShoppingStyle/main.css",
                 "~/Content/ShoppingStyle/blue.css",
@@ -121,8 +120,8 @@ namespace Swazer.ShoppingList.WebApp
             // bootstarp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                  "~/Scripts/bootstrap.js",
-                 "~/Scripts/respond.js",
-                 "~/Scripts/app.js"));
+                 "~/Scripts/respond.js"
+                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/ShoppingStyle").Include(
                  "~/Scripts/canvas.js",

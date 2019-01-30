@@ -1,4 +1,5 @@
-﻿    padding-top: 50px;
+﻿body {
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -8,6 +9,13 @@
     padding-right: 15px;
 }
 
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -15,204 +23,6 @@ textarea {
     max-width: 280px;
 }
 
-.message-box-container {
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 80px;
-    z-index: 10000;
-    height: 0;
+textarea {
+    resize: vertical;
 }
-
-.pointer {
-    cursor: pointer;
-}
-
-/* this is part of the workaround for the bootstrap bug for 'affix' class.*/
-@media (min-width: 979px) {
-    #Monitor_Detail.affix {
-        position: fixed;
-    }
-}
-
-select option[disabled] {
-    display: none;
-}
-
-@media (max-width: 991px) {
-    .navbar-header {
-        float: none;
-    }
-
-    .navbar-toggle {
-        display: block;
-    }
-
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-        .navbar-collapse.collapse {
-            display: none !important;
-        }
-
-    .navbar-nav {
-        float: none !important;
-        margin: 7.5px -15px;
-    }
-
-        .navbar-nav > li {
-            float: none;
-        }
-
-            .navbar-nav > li > a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in {
-        display: block !important;
-    }
-
-    .collapsing {
-        overflow: hidden !important;
-    }
-}
-
-.itemDetails > tbody > tr > td {
-    padding: 1px 1px 1px 0px;
-}
-
-.thumbImage {
-    height: 100px;
-    width: 100px;
-}
-
-.thumbImageDisplay {
-    max-height: 250px;
-    max-width: 250px;
-}
-
-
-
-.ct-chart {
-    position: relative;
-}
-
-.ct-legend {
-    position: relative;
-    z-index: 10;
-    list-style: none;
-}
-
-    .ct-legend li {
-        position: relative;
-        padding-left: 23px;
-        margin-bottom: 3px;
-        cursor: pointer;
-    }
-
-        .ct-legend li:before {
-            width: 12px;
-            height: 12px;
-            position: absolute;
-            left: 0;
-            content: '';
-            border: 3px solid transparent;
-            border-radius: 2px;
-            margin-top: 4px;
-        }
-
-        .ct-legend li.inactive:before {
-            background: transparent;
-        }
-
-    .ct-legend.ct-legend-inside {
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
-    .ct-legend .ct-series-0:before {
-        background-color: #B3E5FC;
-        border-color: #B3E5FC;
-    }
-
-    .ct-legend .ct-series-1:before {
-        background-color: #29B6F6;
-        border-color: #29B6F6;
-    }
-
-    .ct-legend .ct-series-2:before {
-        background-color: #0277BD;
-        border-color: #0277BD;
-    }
-
-    .ct-legend .ct-series-3:before {
-        background-color: #d17905;
-        border-color: #d17905;
-    }
-
-    .ct-legend .ct-series-4:before {
-        background-color: #453d3f;
-        border-color: #453d3f;
-    }
-
-
-    .ct-legend .ct-series-5:before {
-        background-color: #59922b;
-        border-color: #59922b;
-    }
-
-    .ct-legend .ct-series-6:before {
-        background-color: #0544d3;
-        border-color: #0544d3;
-    }
-
-    .ct-legend .ct-series-7:before {
-        background-color: #6b0392;
-        border-color: #6b0392;
-    }
-
-    .ct-legend .ct-series-8:before {
-        background-color: #f05b4f;
-        border-color: #f05b4f;
-    }
-
-    .ct-legend .ct-series-9:before {
-        background-color: #dda458;
-        border-color: #dda458;
-    }
-
-    .ct-legend .ct-series-10:before {
-        background-color: #eacf7d;
-        border-color: #eacf7d;
-    }
-
-    .ct-legend .ct-series-11:before {
-        background-color: #86797d;
-        border-color: #86797d;
-    }
-
-    .ct-legend .ct-series-12:before {
-        background-color: #b2c326;
-        border-color: #b2c326;
-    }
-
-    .ct-legend .ct-series-13:before {
-        background-color: #6188e2;
-        border-color: #6188e2;
-    }
-
-    .ct-legend .ct-series-14:before {
-        background-color: #a748ca;
-        border-color: #a748ca;
-    }
-
-
