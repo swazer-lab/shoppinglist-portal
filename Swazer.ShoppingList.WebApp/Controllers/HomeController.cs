@@ -16,7 +16,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
     {
         public ActionResult Index()
         {
-            User user = GetCurrentUser();
+            TempData["SuccessMessage"] = TempData["SuccessMessage"];
 
             return View();
         }

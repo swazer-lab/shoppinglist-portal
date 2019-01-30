@@ -73,14 +73,13 @@
                                 </label>
                             </div>
                             <div class="col-sm-12">
-                                @*<input type="password" class="form-control" id="inputPassword3" placeholder="Password" required>*@
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", style = "color: red;" })
                             </div>
                         </div>
                         <div class="form-group passwordRowNote">
                             <div class="col-sm-12">
-                                <h6>Use at least one letter, one numeral, and six characters.</h6>
+                                <h6></h6>
                             </div>
                         </div>
                         <div class="form-group last">
@@ -110,9 +109,9 @@
             <div class="panel panel-default signInPanelFooter">
                 <div class="panel-body">
                     <div class="form-group">
-                        <a class="footerLink" href="@Url.Action("Terms","Home")">Terms</a>
-                        <a class="footerLink" href="@Url.Action("PrivacyPolicy","Home")">Privacy</a>
-                        <a class="footerLink" href="@Url.Action("Index","Home")#contact">Contact</a>
+                        <a class="footerLink" href="#">Term</a>
+                        <a class="footerLink" href="#">Privacy</a>
+                        <a class="footerLink" href="#">Contact</a>
                     </div>
                 </div>
             </div>

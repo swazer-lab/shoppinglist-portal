@@ -18,13 +18,6 @@ namespace Swazer.ShoppingList.WebApp
             bundles.Add(new StyleBundle("~/plugins/nprogressStyle").Include(
                 "~/Content/Admin/plugins/nprogress/nprogress.min.css"));
 
-            // date picker
-            bundles.Add(new StyleBundle("~/Content/datetimepicker").Include(
-                "~/Content/Admin/plugins/datetime/bootstrap-datetimepicker.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
-                "~/Scripts/plugins/datetime/bootstrap-datetimepicker.min.js"));
-
             // Inspinia script
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
                 "~/Scripts/plugins/metisMenu/jquery.metisMenu.js",

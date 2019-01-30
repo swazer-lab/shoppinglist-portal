@@ -63,8 +63,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            TempData["SuccessMessage"] = TempData["SuccessMessage"];
-
             return View();
         }
 
@@ -175,8 +173,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
                 user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
                 User result = UserService.Obj.Create(user, model.Password);
-
-                TempData["SuccessMessage"] = "Operation is success";
 
                 return RedirectToAction("Index", "Home");
             }

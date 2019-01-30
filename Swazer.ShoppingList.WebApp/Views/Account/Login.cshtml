@@ -39,7 +39,6 @@
                         <div class="form-group">
                             <div class="col-sm-12 control-label">
                                 @Html.LabelFor(m => m.Password, new { @class = "pull-left flip" })
-                                @Html.ActionLink("Forgot Your Password", "ForgotPassword", null, new { @class = "forgotPassword" })
                             </div>
                             <div class="col-sm-12">
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Password), tabindex = "2" })
@@ -73,9 +72,9 @@
             <div class="panel panel-default signInPanelFooter">
                 <div class="panel-body">
                     <div class="form-group">
-                        <a class="footerLink" href="@Url.Action("Terms","Home")">Term</a>
-                        <a class="footerLink" href="@Url.Action("PrivacyPolicy","Home")">Privacy</a>
-                        <a class="footerLink" href="@Url.Action("LandingPage","Home")#contact">Contact</a>
+                        <a class="footerLink" href="#">Term</a>
+                        <a class="footerLink" href="#">Privacy</a>
+                        <a class="footerLink" href="#">Contact</a>
                     </div>
                 </div>
             </div>

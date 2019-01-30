@@ -47,12 +47,12 @@ namespace Swazer.ShoppingList.Domain
             // Configure validation logic for passwords
             entity.PasswordValidator = new CustomPasswordValidator
             {
-                RequiredLength = 8,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
+                RequiredLength = 6,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
                 RequireLowercase = false,
                 RequireUppercase = false,
-                RequireLetter = true,
+                RequireLetter = false,
             };
 
             // Configure user lockout defaults
