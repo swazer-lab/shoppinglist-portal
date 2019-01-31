@@ -79,11 +79,11 @@
     });
 
     self.NextPageActive = ko.pureComputed(function () {
-        return self.NextPage() != null;
+        return self.NextPage() !== null;
     });
 
     self.PreviousPageActive = ko.pureComputed(function () {
-        return self.PreviousPage() != null;
+        return self.PreviousPage() !== null;
     });
 
     self.LastPageActive = ko.pureComputed(function () {

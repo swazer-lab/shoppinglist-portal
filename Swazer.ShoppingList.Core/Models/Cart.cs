@@ -14,13 +14,13 @@ namespace Swazer.ShoppingList.Core
 
         public string Notes { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public bool IsActive { get; set; }
 
         public List<CartItem> Items { get; set; }
 
-        public static Cart Create(string title, string notes, DateTime date)
+        public static Cart Create(string title, string notes, DateTime? date)
         {
             return new Cart
             {
@@ -31,7 +31,7 @@ namespace Swazer.ShoppingList.Core
             };
         }
 
-        public Cart Update(string title, string notes, DateTime date)
+        public Cart Update(string title, string notes, DateTime? date)
         {
 
             Title = title;

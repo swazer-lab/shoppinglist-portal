@@ -54,7 +54,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
                 List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartMobileService.Obj.Create(cart, user, items);
+                cart = CartMobileService.Obj.Create(cart, user, items);
             }
 
             else
@@ -67,7 +67,11 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 CartMobileService.Obj.Update(cart, items);
             }
 
-            return Ok();
+            CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
+
+            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToItemBindingModel()).ToList();
+
+            return Ok(bindingModel);
         }
 
         [HttpPost]

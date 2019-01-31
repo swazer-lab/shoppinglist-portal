@@ -15,7 +15,7 @@ namespace Swazer.ShoppingList.WebApp.API.Models
 
         public string Notes { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
     }
 
     public class CreateCartBindingModel
@@ -27,7 +27,7 @@ namespace Swazer.ShoppingList.WebApp.API.Models
 
         public string Notes { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public List<ItemBindingModel> Items { get; set; }
     }
