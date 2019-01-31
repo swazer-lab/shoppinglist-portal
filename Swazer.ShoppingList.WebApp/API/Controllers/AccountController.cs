@@ -121,6 +121,7 @@ namespace Swazer.ShoppingList.WebApp.API
 
         [HttpGet]
         [Route("profile")]
+        [AllowApiUser]
         public IHttpActionResult UserProfile()
         {
             User user = GetCurrentUser();
