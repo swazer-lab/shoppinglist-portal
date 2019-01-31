@@ -18,4 +18,14 @@ namespace Swazer.ShoppingList.WebApp.API.Models
         [Required(ErrorMessageResourceName = "ItemStatusRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public ItemStatus Status { get; set; }
     }
+
+    public class ItemChangeStatusBindingModel
+    {
+        public int ItemId { get; set; }
+
+        public int CartId { get; set; }
+
+        [Required(ErrorMessageResourceName = "ItemStatusRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
+        public ItemStatus Status { get; set; }
+    }
 }

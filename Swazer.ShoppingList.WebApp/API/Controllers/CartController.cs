@@ -34,7 +34,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             foreach (var cart in result.Items.ToList())
             {
-                cart.Items = ItemMobileService.Obj.GetItemsByCard(cart.Cart.CartId).Select(x => x.ToItemBindingModel()).ToList();
+                cart.Items = ItemMobileService.Obj.GetItemsByCard(cart.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
             }
 
             return Ok(result);
@@ -47,7 +47,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             User user = GetCurrentUser();
 
             Cart cart = null;
-            
+
             if (!model.CartId.HasValue)
             {
                 cart = Cart.Create(model.Title, model.Notes, model.Date);
@@ -69,7 +69,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
 
-            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToItemBindingModel()).ToList();
+            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
 
             return Ok(bindingModel);
         }

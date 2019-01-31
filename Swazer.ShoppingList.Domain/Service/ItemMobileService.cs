@@ -73,18 +73,12 @@ namespace Swazer.ShoppingList.Domain
             return founded;
         }
 
-        public List<Item> GetItemsByCard(int cardId)
+        public List<CartItem> GetItemsByCard(int cardId)
         {
             IQueryConstraints<CartItem> constraints = new QueryConstraints<CartItem>()
                .Where(x => x.CartId == cardId);
 
-            List<int> itemIds = queryRepository.Find(constraints).Items.ToList().Select(x => x.ItemId).ToList();
-
-            IQueryConstraints<Item> constraintsItems = new QueryConstraints<Item>()
-               .IncludePath(x => x.CartItems)
-               .Where(x => itemIds.Contains(x.ItemId));
-
-            List<Item> items = queryRepository.Find(constraintsItems).Items.ToList();
+            List<CartItem> items = queryRepository.Find(constraints).Items.ToList();
 
             return items;
         }

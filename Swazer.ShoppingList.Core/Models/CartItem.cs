@@ -34,5 +34,10 @@ namespace Swazer.ShoppingList.Core
                 Status = status
             };
         }
+
+        public void ChangeStatus(ItemStatus status)
+        {
+            this.Status = status;
+        }
     }
 }

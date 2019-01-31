@@ -18,8 +18,6 @@ namespace Swazer.ShoppingList.Core
 
         public bool IsActive { get; set; }
 
-        public List<CartItem> Items { get; set; }
-
         public static Cart Create(string title, string notes, DateTime? date)
         {
             return new Cart
