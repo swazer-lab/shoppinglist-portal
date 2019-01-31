@@ -14,6 +14,8 @@ namespace Swazer.ShoppingList.Core
 
         public bool IsActive { get; set; }
 
+        public List<CartItem> CartItems { get; set; }
+
         public static Item Create(string title)
         {
             return new Item

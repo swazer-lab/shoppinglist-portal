@@ -21,7 +21,11 @@ namespace Swazer.ShoppingList.SqlServerRepository
         #endregion
 
         #region Tables
-   
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<CartOwner> CartOwners { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Item> Items { get; set; }
         #endregion
 
         public ShoppingListContext() : base("CnnStr1")
@@ -105,6 +109,9 @@ namespace Swazer.ShoppingList.SqlServerRepository
 
             modelBuilder.Entity<CartItem>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<CartItem>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
+
+            modelBuilder.Entity<Image>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
+            modelBuilder.Entity<Image>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
             modelBuilder.Entity<Item>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<Item>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);

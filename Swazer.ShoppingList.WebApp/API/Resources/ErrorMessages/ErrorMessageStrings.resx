@@ -126,6 +126,9 @@
   <data name="ItemTitleRequired" xml:space="preserve">
     <value>Title is required</value>
   </data>
+  <data name="PhotoRequired" xml:space="preserve">
+    <value>Photo is required</value>
+  </data>
   <data name="RegisterEmailRequired" xml:space="preserve">
     <value>Email is required</value>
   </data>

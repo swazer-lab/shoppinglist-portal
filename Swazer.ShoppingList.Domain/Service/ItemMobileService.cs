@@ -81,6 +81,7 @@ namespace Swazer.ShoppingList.Domain
             List<int> itemIds = queryRepository.Find(constraints).Items.ToList().Select(x => x.ItemId).ToList();
 
             IQueryConstraints<Item> constraintsItems = new QueryConstraints<Item>()
+               .IncludePath(x => x.CartItems)
                .Where(x => itemIds.Contains(x.ItemId));
 
             List<Item> items = queryRepository.Find(constraintsItems).Items.ToList();

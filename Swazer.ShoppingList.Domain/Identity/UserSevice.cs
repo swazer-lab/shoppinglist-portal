@@ -436,62 +436,23 @@ namespace Swazer.ShoppingList.Domain
             return user.Roles.Select(r => r.Name).ToList();
         }
 
-        //public bool SendEmailConfirmation(int userId, string url)
-        //{
-        //    var user = FindById(userId);
+        public int UpdateOrCreatePhoto(User user, string photo)
+        {
+            byte[] photoBytes = Convert.FromBase64String(photo);
 
-        //    if (user == null)
-        //        throw new EntityNotFoundException(nameof(User), userId);
+            using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
+            {
+                Image recordedImage = ImageService.Obj.FindByUserId(user.Id);
+                if (recordedImage != null)
+                    ImageService.Obj.Delete(recordedImage);
 
-        //    return _notificationRepository.SendEmailConfirmation(user.Email, $"{user.FirstName} {user.LastName}", url) > 0;
-        //}
+                Image image = Image.Create(user, photoBytes);
+                image = ImageService.Obj.Create(image);
 
-        //public bool SendForgetPasswordEmail(int userId, string url)
-        //{
-        //    var user = FindById(userId);
+                uow.Complete();
 
-        //    if (user == null)
-        //        throw new EntityNotFoundException(nameof(User), userId);
-
-        //    return _notificationRepository.SendForgetPasswordEmail(user.Email, $"{ user.FirstName} {user.LastName}", url) > 0;
-        //}
-
-        //public Task<IdentityResult> ResetUserPassword(User user, int forgetPasswordRequestId, string newPassword)
-        //{
-        //    if (user == null)
-        //        throw new ArgumentNullException(nameof(user));
-
-        //    if (forgetPasswordRequestId == 0)
-        //        throw new ArgumentNullException(nameof(forgetPasswordRequestId));
-
-        //    if (string.IsNullOrEmpty(newPassword))
-        //        throw new ArgumentNullException(nameof(newPassword));
-
-        //    if (!user.Validate())
-        //        throw new ValidationException(nameof(User), user.ValidationResults);
-
-        //    var constraints = new QueryConstraints<WathiqConfiguration>()
-        //        .Where(c => c.ConfigurationKey == ConfigurationKeyEnum.ForgetPasswordRequestTimeoutMinutes);
-
-        //    var configurationForgetPasswordTimeout = queryRepository.SingleOrDefault(constraints);
-
-        //    var constraints1 = new QueryConstraints<ForgetPasswordRequest>()
-        //        .Where(c => c.ForgetPasswordRequestId == forgetPasswordRequestId);
-
-        //    var forgetRequest = queryRepository.SingleOrDefault(constraints1);
-
-        //    if (forgetRequest == null)
-        //        throw new EntityNotFoundException(nameof(User), forgetPasswordRequestId);
-
-        //    if (forgetRequest.IsForgetPasswordRequestTimeout(int.Parse(configurationForgetPasswordTimeout.ConfigurationValue)))
-        //        throw new BusinessRuleException(nameof(User), BusinessRules.ForgetPasswordRequestTimeout);
-
-        //    var result = Obj.ResetPasswordAsync(forgetRequest.UserId, forgetRequest.ForgetPasswordRequestCode, newPassword);
-
-        //    if (result.Result.Succeeded)
-        //        repository.Update(forgetRequest.Deactivate());
-
-        //    return result;
-        //}
+                return image.ImageId;
+            }
+        }
     }
 }

@@ -126,6 +126,9 @@
   <data name="ItemTitleRequired" xml:space="preserve">
     <value>Başlık alanı zorunludur</value>
   </data>
+  <data name="PhotoRequired" xml:space="preserve">
+    <value>Fotoğraf gönderilmesi zorunludur.</value>
+  </data>
   <data name="RegisterEmailRequired" xml:space="preserve">
     <value>Email alanı zorunludur</value>
   </data>

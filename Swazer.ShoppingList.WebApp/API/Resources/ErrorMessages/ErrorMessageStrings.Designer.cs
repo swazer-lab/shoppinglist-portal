@@ -88,6 +88,15 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.ErrorMessages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Photo is required.
+        /// </summary>
+        public static string PhotoRequired {
+            get {
+                return ResourceManager.GetString("PhotoRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email is required.
         /// </summary>
         public static string RegisterEmailRequired {

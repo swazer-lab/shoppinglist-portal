@@ -730,11 +730,14 @@
     </Compile>
     <Compile Include="API\Controllers\AccountController.cs" />
     <Compile Include="API\Controllers\CartController.cs" />
+    <Compile Include="API\Controllers\CartItemController.cs" />
+    <Compile Include="API\Controllers\UserController.cs" />
     <Compile Include="API\Infrastructure\Mapper.cs" />
     <Compile Include="API\Models\AccountModels.cs" />
     <Compile Include="API\Models\CartBindingModels.cs" />
     <Compile Include="API\Models\ItemBindingModels.cs" />
     <Compile Include="API\Models\PagingBindingModel.cs" />
+    <Compile Include="API\Models\PhotoBindingModel.cs" />
     <Compile Include="API\Models\SearchCriteriaBindingModel.cs" />
     <Compile Include="API\Resources\ErrorMessages\ErrorMessageStrings.Designer.cs">
       <AutoGen>True</AutoGen>
