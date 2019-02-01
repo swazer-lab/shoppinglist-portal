@@ -523,6 +523,7 @@
     <Content Include="Scripts\knockout.infrastructure.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\knockout\cartsVM.js" />
     <Content Include="Scripts\knockout\itemsVM.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -720,6 +721,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ShoppingStyle.main.js" />
+    <Content Include="Scripts\ShowErrorSuccessMessages.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -758,6 +760,7 @@
     <Compile Include="Areas\Admin\Models\HomeModel.cs" />
     <Compile Include="Areas\Admin\Models\ItemViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -794,6 +797,9 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\ReplyViewModels.cs" />
     <Compile Include="ViewModels\SharedViewModels.cs" />
+    <Compile Include="ViewModels\UserViewModels\CartViewModels.cs" />
+    <Compile Include="ViewModels\UserViewModels\ItemViewModels.cs" />
+    <Compile Include="ViewModels\UserViewModels\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -813,6 +819,21 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\_CreateEdit.cshtml" />
+    <Content Include="Views\Cart\_Detail.cshtml" />
+    <Content Include="Views\Cart\_List.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumb.cshtml" />
+    <Content Include="Views\Shared\_DeleteModal.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Layout_User.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_NoItems.cshtml" />
+    <Content Include="Views\Shared\_NoResult.cshtml" />
+    <Content Include="Views\Shared\_Paging.cshtml" />
+    <Content Include="Views\Shared\_RightSidebar.cshtml" />
+    <Content Include="Views\Shared\_Spinning.cshtml" />
+    <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -822,7 +843,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Resources\" />
-    <Folder Include="ViewModels\UserViewModels\" />
     <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>

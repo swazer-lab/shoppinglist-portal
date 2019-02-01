@@ -29,13 +29,52 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
             return criteria;
         }
 
-        public static ItemViewModel ToViewModel(this Item model)
+        public static CartSearchCriterias ToSearchCriteria(this CartIndexSearchCriteria model, int userId)
         {
-            return new ItemViewModel
+            CartSearchCriterias criteria = CreateSearchCriteria<CartSearchCriterias>(model);
+            criteria.UserId = userId;
+
+            return criteria;
+        }
+
+        public static Areas.Admin.Models.ItemViewModel ToViewModel(this Item model)
+        {
+            return new Areas.Admin.Models.ItemViewModel
             {
                 ItemId = model.ItemId,
                 Title = model.Title,
                 IsActive = model.IsActive
+            };
+        }
+
+        public static Models.ItemViewModel ToViewModel(this CartItem model, Item item)
+        {
+            return new Models.ItemViewModel()
+            {
+                ItemId = model.ItemId,
+                Title = item.Title,
+                Status = model.Status
+            };
+        }
+
+        public static UserProfileViewModel ToViewModel(this User model)
+        {
+            return new UserProfileViewModel()
+            {
+                Email = model.Email,
+                Mobile = model.Mobile,
+                Name = model.Name
+            };
+        }
+
+        public static CartViewModel ToViewModel(this Cart model)
+        {
+            return new CartViewModel()
+            {
+                CartId = model.CartId,
+                Date = model.Date,
+                Notes = model.Notes,
+                Title = model.Title
             };
         }
     }

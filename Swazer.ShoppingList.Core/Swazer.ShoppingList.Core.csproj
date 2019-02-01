@@ -82,6 +82,7 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchCriterias\CartSearchCriterias.cs" />
     <Compile Include="SearchCriterias\ItemSearchCriteria.cs" />
     <Compile Include="SearchCriterias\Mobile\CartMobileSearchCriteria.cs" />
     <Compile Include="SearchCriterias\SearchCriteria.cs" />

@@ -1,0 +1,22 @@
+﻿@model Swazer.ShoppingList.WebApp.Models.BreadcrumbModel
+
+<div class="row wrapper border-bottom white-bg page-heading noPrint">
+    <div class="col-sm-12">
+        <h2>@Model.Current.Text</h2>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")">@SharedStrings.Home</a></li>
+            @foreach (BreadItem item in Model.InBetweenItems)
+            {
+                if (!string.IsNullOrEmpty(item.Url))
+                {
+                    <li><a href="@item.Url">@item.Text</a></li>
+                }
+                else
+                {
+                    <li>@item.Text</li>
+                }
+            }
+            <li class="active"><strong>@Model.Current.Text</strong></li>
+        </ol>
+    </div>
+</div>

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +11,6 @@ using Swazer.ShoppingList.WebApp.Models;
 using Swazer.ShoppingList.Core;
 using Swazer.ShoppingList.Domain;
 using Swazer.ShoppingList.WebApp.Infrastructure;
-using Swazer.ShoppingList.WebApp.Resources;
 
 namespace Swazer.ShoppingList.WebApp.Controllers
 {
@@ -54,7 +51,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             if (User.HasPermission(RoleNames.AdminRole))
                 return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
             else
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Cart", new { area = "" });
         }
 
         // GET: /Account/Login

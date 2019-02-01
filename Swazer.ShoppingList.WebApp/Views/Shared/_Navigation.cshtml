@@ -1,0 +1,29 @@
+﻿@using Swazer.ShoppingList.Core;
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span id="userAvatar">
+                        <span>@User.GetFullName()</span>
+                    </span>
+                    @{
+                        string rotateClass = "fa-flip-horizontal";
+                        if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+                        {
+                            rotateClass = "";
+                        }
+                    }
+                </div>
+                <div class="logo-element"></div>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">Home</span><span class="pull-right flip @rotateClass"></span></a>
+            </li>
+            <li class="@Html.IsSelected(controller: "Item", action: "Index")">
+                <a href="@Url.Action("Index", "Cart")">Carts</a>
+            </li>
+        </ul>
+    </div>
+</nav>

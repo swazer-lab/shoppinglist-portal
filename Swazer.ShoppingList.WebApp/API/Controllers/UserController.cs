@@ -29,6 +29,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpGet]
         [Route("getPhoto")]
+        [AllowAnonymous]
         public HttpResponseMessage GetPhoto([FromUri]int photoId)
         {
             Image image = ImageService.Obj.FindById(photoId);

@@ -1,10 +1,11 @@
-﻿@model Swazer.ShoppingList.WebApp.Areas.Admin.Models.ItemIndexViewModel
+﻿@model CartIndexViewModel
 
 @{
     ViewBag.Title = "Items";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
 }
 
-@Html.Partial("_Breadcrumb", new BreadcrumbModel(new BreadItem("Items")))
+@Html.Partial("_Breadcrumb", new BreadcrumbModel(new BreadItem("Carts")))
 
 <div class="wrapper wrapper-content">
     <div class="row">
@@ -28,23 +29,23 @@
             <div data-bind="visible: IsItemsEmpty && IsNoResultMode" style="display:none">
                 @Html.Partial("_NoResult")
             </div>
-            @Html.Partial("_Detail", new Swazer.ShoppingList.WebApp.Areas.Admin.Models.ItemViewModel())
-            @Html.Partial("_CreateEdit", new Swazer.ShoppingList.WebApp.Areas.Admin.Models.ItemViewModel())
+            @Html.Partial("_Detail", new CartViewModel())
+            @Html.Partial("_CreateEdit", new CartViewModel())
         </div>
     </div>
 </div>
 
 @section scripts {
-    <script src="~/Scripts/knockout/itemsVM.js"></script>
+    <script src="~/Scripts/knockout/cartsVM.js"></script>
 
     <script type="text/javascript">
         $(function () {
-            var searchCriteriaVm = new ItemSearchCriteriaVM({
+            var searchCriteriaVm = new CartSearchCriteriaVM({
                 pageSize: @Model.PageSize,
                 totalCount: @Model.TotalCount,
             });
 
-            var vm = new ItemMainVM({
+            var vm = new CartMainVM({
                 searchCriteria: searchCriteriaVm,
 
                 createUrl: '@Url.Action("Create")',

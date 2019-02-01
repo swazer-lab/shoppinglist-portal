@@ -1,4 +1,4 @@
-﻿@model Swazer.ShoppingList.WebApp.Areas.Admin.Models.ItemIndexViewModel
+﻿@model CartIndexViewModel
 
 <div class="clients-list">
     <div class="nav nav-tabs">
@@ -11,15 +11,13 @@
             <thead>
                 <tr>
                     <th>@Html.Raw(Html.DisplayNameFor(x => x.Items.First().Title).ToString().ToUpper())</th>
-                    <th>@Html.Raw(Html.DisplayNameFor(x => x.Items.First().IsActive).ToString().ToUpper())</th>
+                    <th>@Html.Raw(Html.DisplayNameFor(x => x.Items.First().Notes).ToString().ToUpper())</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: Items">
-                <tr class="clickable-row" data-bind="click: $parent.SelectRow, css:{'selected-row': $root.SelectedElement() !== undefined && $root.SelectedElement().ItemId() === $data.ItemId() }">
+            <tbody data-bind="foreach: Carts">
+                <tr class="clickable-row" data-bind="click: $parent.SelectRow, css:{'selected-row': $root.SelectedElement() !== undefined && $root.SelectedElement().CartId() === $data.CartId() }">
                     <td style="width: 35%" data-bind="text: Title()"></td>
-                    <td style="width:30%">
-                        <i data-bind="css: { 'fa-check': IsActive(), 'fa-times': !IsActive() }" class="fa" aria-hidden="true"></i>
-                    </td>
+                    <td style="width: 35%" data-bind="text: Note()"></td>
                 </tr>
             </tbody>
         </table>

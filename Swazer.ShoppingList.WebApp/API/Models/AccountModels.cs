@@ -23,12 +23,13 @@ namespace Swazer.ShoppingList.WebApp.API
         [Required(ErrorMessageResourceName = "RegisterPasswordRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Password { get; set; }
 
-        [Required(ErrorMessageResourceName = "RegisterMobileRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Mobile { get; set; }
     }
 
     public class UserProfileBindingModel
     {
+        public int? PhotoId { get; set; }
+
         public string Name { get; set; }
 
         public string Email { get; set; }

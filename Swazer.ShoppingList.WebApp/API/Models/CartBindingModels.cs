@@ -36,6 +36,8 @@ namespace Swazer.ShoppingList.WebApp.API.Models
     {
         public CartBindingModel Cart { get; set; }
 
+        public UserProfileBindingModel User { get; set; }
+
         public List<ItemBindingModel> Items { get; set; }
     }
 

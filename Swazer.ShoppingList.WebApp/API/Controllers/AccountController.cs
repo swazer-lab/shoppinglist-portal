@@ -127,6 +127,7 @@ namespace Swazer.ShoppingList.WebApp.API
             User user = GetCurrentUser();
 
             var userProfile = user.ToUserProfileBindingModel();
+            userProfile.PhotoId = ImageService.Obj.FindByUserId(user.Id)?.ImageId;
 
             return Ok(userProfile);
         }

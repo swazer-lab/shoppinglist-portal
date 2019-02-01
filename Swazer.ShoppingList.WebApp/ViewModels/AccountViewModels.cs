@@ -103,7 +103,6 @@ namespace Swazer.ShoppingList.WebApp.Models
         [Required(ErrorMessageResourceName = "RegisterPasswordRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Password { get; set; }
 
-        [Required(ErrorMessageResourceName = "RegisterMobileRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Mobile { get; set; }
     }
 

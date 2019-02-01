@@ -31,7 +31,6 @@ namespace Swazer.ShoppingList.Core
 
         public Cart Update(string title, string notes, DateTime? date)
         {
-
             Title = title;
             Notes = notes;
             Date = date;

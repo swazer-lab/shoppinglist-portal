@@ -1,0 +1,82 @@
+﻿@model CartViewModel
+
+<!-- ko if: EditedElement() !== undefined-->
+<div class="ibox container-layer" data-bind="visible: IsCreateOrEditMode" style="display:none">
+    <div data-bind="visible: Spinning">
+        @Html.Partial("_Spinning")
+    </div>
+    <div class="ibox-title">
+        <h5 class="pull-left flip" data-bind="text: PanelTitle"></h5>
+    </div>
+    <form data-bind="submit:Save">
+        <div class="ibox-content">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row form-group">
+                            @Html.LabelFor(x => x.Title)
+                            <input class="form-control" data-bind="textInput: EditedElement().Title, validationElement:EditedElement().Title" />
+                            <span class="error" data-bind="validationMessage: EditedElement().Title"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row form-group">
+                            @Html.LabelFor(x => x.Notes)
+                            <input class="form-control" data-bind="textInput: EditedElement().Note, validationElement:EditedElement().Note" />
+                            <span class="error" data-bind="validationMessage: EditedElement().Note"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row form-group">
+                            @Html.LabelFor(x => x.Items)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive" data-bind="visible: !EditedElement().IsItemsEmpty()">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center" scope="col" width="10%">
+                                                @Html.LabelFor(x => x.Items.FirstOrDefault().Status)
+                                            </th>
+                                            <th style="text-align: center" scope="col" width="80%">
+                                                @Html.LabelFor(x => x.Items.FirstOrDefault().Title)
+                                            </th>
+                                            <th style="text-align: center" scope="col" width="10%">
+                                                Delete
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- ko foreach: EditedElement().Items() -->
+                                        <tr>
+                                            <td style="text-align: center" width="10%">
+                                                <input type="checkbox" data-bind="iCheckBox: IsCompletedStatus" />
+                                            </td>
+                                            <td style="text-align: center" width="80%">
+                                                <input type="text" class="form-control " data-bind="textInput: Title, validationElement: Title" />
+                                            </td>
+                                            <td style="text-align: center" width="10%" data-bind="click: $root.EditedElement().DeleteItem, clickBubble: false">
+                                                <div data-bind="tooltip: true" data-toggle="tooltip" title="@SharedStrings.Delete">
+                                                    <span><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button data-bind="click: $root.EditedElement().AddNewItem" type="button" class="btn btn-primary">Add New Item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ibox-footer">
+            <button type="submit" class="btn btn-primary">@SharedStrings.Save</button>
+            <button type="button" class="btn btn-default" data-bind="click:Cancel">@SharedStrings.Cancel</button>
+        </div>
+    </form>
+</div>
+<!-- /ko-->

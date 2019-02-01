@@ -1,4 +1,4 @@
-﻿@model Swazer.ShoppingList.WebApp.Areas.Admin.Models.ItemViewModel
+﻿@model CartViewModel
 
 <!-- ko if: SelectedElement()!== undefined-->
 <div class="ibox container-layer" data-bind="visible: $root.IsDisplayMode">
@@ -17,9 +17,6 @@
                             </button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-sm btn-primary" data-bind="text: (SelectedElement().IsActive() === false) ? '@SharedStrings.MakeActive':'@SharedStrings.MakeDeactivate', click:ChangeStatus"></button>
-                        </div>
-                        <div class="btn-group" role="group">
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-Modal">@SharedStrings.Delete</button>
                         </div>
                     </div>
@@ -32,10 +29,31 @@
                     @Html.DisplayNameFor(x => x.Title)
                 </li>
                 <li class="list-group-item">
-                    <span class="flip pull-right">
-                        <i data-bind="css: { 'fa-check': SelectedElement().IsActive(), 'fa-times': !SelectedElement().IsActive() }" class="fa" aria-hidden="true"></i>
-                    </span>
-                    @Html.DisplayNameFor(x => x.IsActive)
+                    <span class="flip pull-right" data-bind="text:SelectedElement().Note"></span>
+                    @Html.DisplayNameFor(x => x.Notes)
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        Items
+                    </div>
+                </li>
+                <li class="list-group-item" data-bind="visible: !SelectedElement().IsItemsEmpty()">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>@Html.DisplayNameFor(x => x.Items.FirstOrDefault().Title)</td>
+                                <td>Completed</td>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach:SelectedElement().Items">
+                            <tr>
+                                <td data-bind="text:Title"></td>
+                                <td>
+                                    <i data-bind="css: { 'fa-check': IsCompletedStatus, 'fa-times': !IsCompletedStatus }" class="fa" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </li>
             </ul>
         </div>

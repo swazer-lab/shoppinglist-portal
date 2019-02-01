@@ -62,7 +62,6 @@
                             </div>
                             <div class="col-sm-12">
                                 @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", placeholder = "Mobile" })
-                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger", style = "color: red;" })
                             </div>
                         </div>
 
@@ -121,11 +120,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
     <script>
         $(document).ready(function () {
             if ('@TempData["ErrorMessage"]' !== '') {
-                ShowFailMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["ErrorMessage"]))');
+                ShowErrorMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["ErrorMessage"]))');
             }
         });
     </script>
