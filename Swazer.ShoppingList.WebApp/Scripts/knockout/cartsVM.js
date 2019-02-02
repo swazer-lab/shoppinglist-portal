@@ -22,7 +22,7 @@ function ItemVM(id, title, completedStatus) {
     self.copy = function () {
         return new ItemVM(self.ItemId(), self.Title(), self.IsCompletedStatus());
     };
-
+    
     self.toSubmitModel = function () {
         var status = self.IsCompletedStatus() ? 2 : 0;
         return {
@@ -33,16 +33,19 @@ function ItemVM(id, title, completedStatus) {
     };
 }
 
-function CartVM(id, title, note, items) {
+function CartVM(id, title, note, items, completedPercentage) {
     var self = this;
 
     self.CartId = ko.observable(id);
     self.Title = ko.observable(title).extend({ required: true });
     self.Note = ko.observable(note).extend({ required: true });
-    self.Items = ko.observableArray(items);
+    self.CompletedPercentage = ko.observable(completedPercentage);
+
+    self.ValidateOnlyWhenSubmit = ko.observable(false);
+    self.Items = ko.observableArray(items).extend({ isThereEmptyItem: { onlyIf: self.ValidateOnlyWhenSubmit } });
 
     self.IsItemsEmpty = ko.pureComputed(function () {
-        return (self.Items().length === 0);
+        return self.Items().length === 0;
     });
 
     self.DeleteItem = function (item) {
@@ -54,7 +57,7 @@ function CartVM(id, title, note, items) {
     };
 
     self.NewItem = ko.observable(self.CreateItemVM());
-    
+
     self.AddNewItem = function () {
         var item = self.NewItem();
         var createdItem = new ItemVM(item.ItemId(), item.Title(), item.IsCompletedStatus());
@@ -69,7 +72,7 @@ function CartVM(id, title, note, items) {
             items.push(c.copy());
         });
 
-        return new CartVM(self.CartId(), self.Title(), self.Note(), items);
+        return new CartVM(self.CartId(), self.Title(), self.Note(), items, self.CompletedPercentage());
     };
 
     self.toSubmitModel = function () {
@@ -97,6 +100,15 @@ function CartVM(id, title, note, items) {
     self.FullValidation = function () {
         if (self.Title() === undefined || self.Title() === '')
             return false;
+
+        var isThereEmptyItem = ko.utils.arrayFilter(self.Items(), function (item) {
+            return (item.Title() === '' || item.Title() === undefined);
+        }).length;
+
+        if (!(isThereEmptyItem === 0)) {
+            self.ValidateOnlyWhenSubmit(true);
+            return false;
+        }
 
         return true;
     };
@@ -128,6 +140,17 @@ function CartMainVM(options) {
         for (var i = 0; i < collection.length; i++) {
             var it = collection[i];
 
+            var completedPercentage;
+
+            if (it.Items.length !== 0) {
+                var completedItemLength = ko.utils.arrayFilter(it.Items,
+                    function (item) {
+                        return item.Status === 2;
+                    }).length;
+
+                completedPercentage = ((completedItemLength / it.Items.length) * 100).toFixed(3);
+            }
+
             var items = [];
             ko.utils.arrayForEach(it.Items, function (itemObj) {
 
@@ -136,7 +159,7 @@ function CartMainVM(options) {
                 items.push(new ItemVM(itemObj.ItemId, itemObj.Title, isStatusComplete));
             });
 
-            var op = new CartVM(it.CartId, it.Title, it.Notes, items);
+            var op = new CartVM(it.CartId, it.Title, it.Notes, items, completedPercentage);
 
             result.push(op);
         }

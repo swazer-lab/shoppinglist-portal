@@ -107,6 +107,18 @@ ko.validation.rules['oneElementAtLeastCheckBoxList'] = {
     message: 'At least one element must be added'
 }
 
+ko.validation.rules['isThereEmptyItem'] = {
+    validator: function (val) {
+        var length = ko.utils.arrayFilter(val,
+            function (item) {
+                return item.Title() === '' || item.Title() === undefined;
+            }).length;
+
+        return length === 0;
+    },
+    message: 'Title areas in items are required'
+};
+
 ko.validation.rules['isPeriodInActive'] = {
     validator: function (val) {
         var activatedPeriodsCount = ko.utils.arrayFilter(val, function (wp) {

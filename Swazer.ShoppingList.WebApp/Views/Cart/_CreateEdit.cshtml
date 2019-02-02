@@ -22,8 +22,7 @@
                     <div class="col-lg-12">
                         <div class="row form-group">
                             @Html.LabelFor(x => x.Notes)
-                            <input class="form-control" data-bind="textInput: EditedElement().Note, validationElement:EditedElement().Note" />
-                            <span class="error" data-bind="validationMessage: EditedElement().Note"></span>
+                            <input class="form-control" data-bind="textInput: EditedElement().Note" />
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -38,7 +37,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col" width="10%">
-                                                @Html.LabelFor(x => x.Items.FirstOrDefault().Status)
+                                                Completed
                                             </th>
                                             <th style="text-align: center" scope="col" width="80%">
                                                 @Html.LabelFor(x => x.Items.FirstOrDefault().Title)
@@ -51,13 +50,13 @@
                                     <tbody>
                                         <!-- ko foreach: EditedElement().Items() -->
                                         <tr>
-                                            <td style="text-align: center" width="10%">
+                                            <td class="vertical-center" style="text-align: center" width="10%">
                                                 <input type="checkbox" data-bind="iCheckBox: IsCompletedStatus" />
                                             </td>
-                                            <td style="text-align: center" width="80%">
+                                            <td class="vertical-center" style="text-align: center" width="80%">
                                                 <input type="text" class="form-control " data-bind="textInput: Title, validationElement: Title" />
                                             </td>
-                                            <td style="text-align: center" width="10%" data-bind="click: $root.EditedElement().DeleteItem, clickBubble: false">
+                                            <td class="vertical-center" style="text-align: center" width="10%" data-bind="click: $root.EditedElement().DeleteItem, clickBubble: false">
                                                 <div data-bind="tooltip: true" data-toggle="tooltip" title="@SharedStrings.Delete">
                                                     <span><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></span>
                                                 </div>
@@ -66,8 +65,9 @@
                                         <!-- /ko-->
                                     </tbody>
                                 </table>
+                                <span class="error" data-bind="validationMessage: EditedElement().Items"></span>
                             </div>
-                            <button data-bind="click: $root.EditedElement().AddNewItem" type="button" class="btn btn-primary">Add New Item</button>
+                            <button data-bind="click: $root.EditedElement().AddNewItem" type="button" class="btn btn-primary">Add Item</button>
                         </div>
                     </div>
                 </div>

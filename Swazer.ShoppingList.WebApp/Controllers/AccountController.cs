@@ -83,7 +83,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
                     case SignInStatus.Success:
                         user.UpdateLastLoginTime();
                         UserService.Obj.Update(user);
-                        return RedirectToAction("Redirection", "Account", new {area = "" });
+                        return RedirectToAction("Redirection", "Account", new { area = "" });
                     case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.RequiresVerification:
@@ -102,7 +102,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
                 return View(model);
 
                 throw;
-            }            
+            }
         }
 
         #region Wathiq
@@ -171,7 +171,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
                 user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
                 User result = UserService.Obj.Create(user, model.Password);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account", new { area = "" });
             }
 
             catch (Exception ex)

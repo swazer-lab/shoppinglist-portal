@@ -12,12 +12,16 @@
                 <tr>
                     <th>@Html.Raw(Html.DisplayNameFor(x => x.Items.First().Title).ToString().ToUpper())</th>
                     <th>@Html.Raw(Html.DisplayNameFor(x => x.Items.First().Notes).ToString().ToUpper())</th>
+                    <th>
+                        COMPLETION PERCENTAGE
+                    </th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: Carts">
                 <tr class="clickable-row" data-bind="click: $parent.SelectRow, css:{'selected-row': $root.SelectedElement() !== undefined && $root.SelectedElement().CartId() === $data.CartId() }">
                     <td style="width: 35%" data-bind="text: Title()"></td>
                     <td style="width: 35%" data-bind="text: Note()"></td>
+                    <td style="width: 35%" data-bind="text: CompletedPercentage()"></td>
                 </tr>
             </tbody>
         </table>
