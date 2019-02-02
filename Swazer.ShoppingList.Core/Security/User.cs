@@ -91,6 +91,14 @@ namespace Swazer.ShoppingList.Core
             this.CreatedAt = DateTime.Now;
         }
 
+        public User Update(string name, string mobile)
+        {
+            this.Name = name;
+            this.Mobile = mobile;
+
+            return this;
+        }
+
         #endregion
 
 

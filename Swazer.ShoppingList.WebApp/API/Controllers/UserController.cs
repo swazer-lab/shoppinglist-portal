@@ -9,6 +9,7 @@ using System.Web.Http;
 using Swazer.ShoppingList.Domain;
 using System.IO;
 using Swazer.ShoppingList.WebApp.API.Models;
+using Swazer.ShoppingList.WebApp.API.Infrastructure;
 
 namespace Swazer.ShoppingList.WebApp.API.Controllers
 {
@@ -25,6 +26,19 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             int imageId = UserService.Obj.UpdateOrCreatePhoto(user, model.Photo);
 
             return Ok(imageId);
+        }
+
+        [Route("update")]
+        [HttpPost]
+        public IHttpActionResult UpdateUser(UpdateUserBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            user.Update(model.Name, model.Mobile);
+
+            UserService.Obj.Update(user);
+
+            return Ok();
         }
 
         [HttpGet]

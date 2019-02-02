@@ -61,53 +61,53 @@ namespace Swazer.ShoppingList.WebApp.API
             return Ok();
         }
 
-        // GET api/Account/UserInfo
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Authorize]
-        [Route("UserInfo")]
-        public IHttpActionResult GetUserInfo()
-        {
-            User user = GetCurrentUser();
-            IList<UserLoginInfo> result = UserService.Obj.GetLogins(user.Id);
+        //// GET api/Account/UserInfo
+        ////[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        //[Authorize]
+        //[Route("UserInfo")]
+        //public IHttpActionResult GetUserInfo()
+        //{
+        //    User user = GetCurrentUser();
+        //    IList<UserLoginInfo> result = UserService.Obj.GetLogins(user.Id);
 
-            return Ok(new UserEditBindingModel
-            {
-                Email = user.Email,
-                Mobile = user.Mobile,
-                IsExternal = result.Count != 0,
-            });
-        }
+        //    return Ok(new UserEditBindingModel
+        //    {
+        //        Email = user.Email,
+        //        Mobile = user.Mobile,
+        //        IsExternal = result.Count != 0,
+        //    });
+        //}
 
-        [HttpPost]
-        [Route("Edit")]
-        [Authorize]
-        public IHttpActionResult Edit([FromBody] UserEditBindingModel model)
-        {
+        //[HttpPost]
+        //[Route("Edit")]
+        //[Authorize]
+        //public IHttpActionResult Edit([FromBody] UserEditBindingModel model)
+        //{
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
-        // POST api/Account/ChangePassword
-        [Route("ChangePassword")]
-        [Authorize]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        //// POST api/Account/ChangePassword
+        //[Route("ChangePassword")]
+        //[Authorize]
+        //public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
 
-            IdentityResult result = await UserService.Obj.ChangePasswordAsync(GetCurrentUser().Id, model.OldPassword, model.NewPassword);
+        //    IdentityResult result = await UserService.Obj.ChangePasswordAsync(GetCurrentUser().Id, model.OldPassword, model.NewPassword);
 
-            if (!result.Succeeded)
-            {
-                string message = result.Errors.FirstOrDefault();
-                if (message == "Incorrect password.")
-                    return BadRequest("");
+        //    if (!result.Succeeded)
+        //    {
+        //        string message = result.Errors.FirstOrDefault();
+        //        if (message == "Incorrect password.")
+        //            return BadRequest("");
 
-                return BadRequest(message);
-            }
+        //        return BadRequest(message);
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
         [HttpPost]
         [Route("verifyMobile")]
@@ -338,78 +338,78 @@ namespace Swazer.ShoppingList.WebApp.API
 
         //https://stackoverflow.com/a/28298790
         //http://codetrixstudio.com/mvc-web-api-facebook-sdk/
-        [OverrideAuthentication]
-        [AllowAnonymous]
-        [Route("RegisterExternal")]
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+        //[OverrideAuthentication]
+        //[AllowAnonymous]
+        //[Route("RegisterExternal")]
+        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        //{
+        //    //if (!ModelState.IsValid)
+        //    //    return BadRequest(ModelState);
 
-            try
-            {
-                ExternalLoginData externalLogin = await ExternalLoginData.FromToken(model.Provider, model.Token);
+        //    try
+        //    {
+        //        ExternalLoginData externalLogin = await ExternalLoginData.FromToken(model.Provider, model.Token);
 
-                if (externalLogin == null)
-                    throw new Exception("externalLogin can not be found, externalLogin is null");
+        //        if (externalLogin == null)
+        //            throw new Exception("externalLogin can not be found, externalLogin is null");
 
-                if (externalLogin.LoginProvider != model.Provider)
-                {
-                    Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    throw new Exception("Provider Conflicts, the Provider which send by user is not the same of the externalLogin's provider");
-                }
+        //        if (externalLogin.LoginProvider != model.Provider)
+        //        {
+        //            Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+        //            throw new Exception("Provider Conflicts, the Provider which send by user is not the same of the externalLogin's provider");
+        //        }
 
-                User user = await UserService.Obj.FindByEmailAsync(model.Email);
+        //        User user = await UserService.Obj.FindByEmailAsync(model.Email);
 
-                bool hasRegistered = user != null;
-                if (!hasRegistered)
-                {
-                    user = new User(model.ArabicName, model.Mobile, model.Email);
-                    user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
-                    user = await UserService.Obj.CreateExternalUserAsync(user, new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
-                }
+        //        bool hasRegistered = user != null;
+        //        if (!hasRegistered)
+        //        {
+        //            user = new User(model.ArabicName, model.Mobile, model.Email);
+        //            user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
+        //            user = await UserService.Obj.CreateExternalUserAsync(user, new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+        //        }
 
-                //authenticate
-                ClaimsIdentity identity = await UserService.Obj.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
-                IEnumerable<Claim> claims = externalLogin.GetClaims();
-                identity.AddClaims(claims);
-                Authentication.SignIn(identity);
+        //        //authenticate
+        //        ClaimsIdentity identity = await UserService.Obj.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+        //        IEnumerable<Claim> claims = externalLogin.GetClaims();
+        //        identity.AddClaims(claims);
+        //        Authentication.SignIn(identity);
 
-                ClaimsIdentity oAuthIdentity = new ClaimsIdentity(Startup.OAuthOptions.AuthenticationType);
+        //        ClaimsIdentity oAuthIdentity = new ClaimsIdentity(Startup.OAuthOptions.AuthenticationType);
 
-                oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-                oAuthIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-                oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, RoleNames.UserRole));
+        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, RoleNames.UserRole));
 
-                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, new AuthenticationProperties());
+        //        AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, new AuthenticationProperties());
 
-                DateTime currentUtc = DateTime.UtcNow;
-                ticket.Properties.IssuedUtc = currentUtc;
-                ticket.Properties.ExpiresUtc = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan);
+        //        DateTime currentUtc = DateTime.UtcNow;
+        //        ticket.Properties.IssuedUtc = currentUtc;
+        //        ticket.Properties.ExpiresUtc = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan);
 
-                string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
-                Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+        //        string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
+        //        Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-                var token = new
-                {
-                    userName = user.UserName,
-                    userId = user.Id,
-                    access_token = accessToken,
-                    token_type = "bearer",
-                    expires_in = Startup.OAuthOptions.AccessTokenExpireTimeSpan.TotalSeconds.ToString(),
-                    issued = currentUtc.ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"),
-                    expires = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan).ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'")
-                };
+        //        var token = new
+        //        {
+        //            userName = user.UserName,
+        //            userId = user.Id,
+        //            access_token = accessToken,
+        //            token_type = "bearer",
+        //            expires_in = Startup.OAuthOptions.AccessTokenExpireTimeSpan.TotalSeconds.ToString(),
+        //            issued = currentUtc.ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"),
+        //            expires = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan).ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'")
+        //        };
 
-                return Ok(token);
-            }
-            catch (Exception ex)
-            {
-                TracingSystem.TraceException(ex);
-                return InternalServerError();
-            }
-        }
+        //        return Ok(token);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TracingSystem.TraceException(ex);
+        //        return InternalServerError();
+        //    }
+        //}
 
     }
 }
