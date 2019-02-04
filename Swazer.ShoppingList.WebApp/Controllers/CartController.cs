@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Swazer.ShoppingList.WebApp.Controllers
 {
-    [AllowApiUser]
+    [AllowUser]
     public class CartController : BaseController
     {
         public ActionResult Index(CartIndexSearchCriteria criteria)
@@ -49,7 +49,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             foreach (var cart in result.Items)
             {
                 cart.Items = Domain.Service.User.ItemService.Obj.GetItemsByCard(cart.CartId.Value).Select(x => x.ToViewModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-                cart.User = user.ToViewModel();
             }
 
             return result;

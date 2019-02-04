@@ -33,6 +33,10 @@
                     @Html.DisplayNameFor(x => x.Notes)
                 </li>
                 <li class="list-group-item">
+                    <span class="flip pull-right" data-bind="text:SelectedElement().EndDateDisplay"></span>
+                    @Html.DisplayNameFor(x => x.Date)
+                </li>
+                <li class="list-group-item">
                     <span class="flip pull-right" data-bind="text:SelectedElement().CompletedPercentage"></span>
                     Completion Percentage
                 </li>

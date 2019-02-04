@@ -31,7 +31,7 @@ namespace Swazer.ShoppingList.WebApp.Models
 
         public DateTime? Date { get; set; }
 
-        public UserProfileViewModel User { get; set; }
+        public List<UserProfileViewModel> Users { get; set; }
 
         public List<ItemViewModel> Items { get; set; }
     }

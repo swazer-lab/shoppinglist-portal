@@ -159,7 +159,8 @@
     <Content Include="Content\Admin\plugins\bootstrap-rtl\bootstrap-flipped.min.css" />
     <Content Include="Content\Admin\plugins\bootstrap-rtl\bootstrap-rtl.css" />
     <Content Include="Content\Admin\plugins\bootstrap-rtl\bootstrap-rtl.min.css" />
-    <Content Include="Content\Admin\plugins\datapicker\datepicker3.css" />
+    <Content Include="Content\Admin\plugins\datetime\bootstrap-datetimepicker.css" />
+    <Content Include="Content\Admin\plugins\datetime\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Admin\plugins\iCheck\custom.css" />
     <Content Include="Content\Admin\plugins\iCheck\green%402x-o.png" />
     <Content Include="Content\Admin\plugins\iCheck\green%402x.png" />
@@ -531,6 +532,7 @@
     <Content Include="Scripts\pagingVM.js" />
     <Content Include="Scripts\pagingVM.min.js" />
     <Content Include="Scripts\pagingVueComponent.js" />
+    <Content Include="Scripts\plugins\datapicker\datepicker3.css" />
     <Content Include="Scripts\plugins\iCheck\icheck.min.js" />
     <Content Include="Scripts\plugins\jquery-ui\i18n\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\plugins\jquery-ui\i18n\jquery.ui.datepicker-af.min.js" />
@@ -761,6 +763,7 @@
     <Compile Include="Areas\Admin\Models\ItemViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DashboardUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -834,6 +837,8 @@
     <Content Include="Views\Shared\_RightSidebar.cshtml" />
     <Content Include="Views\Shared\_Spinning.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\DashboardUser\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -16,7 +16,7 @@ body {
     margin-right: 20px !important;
 }
 
-#sidebar-collapse >.nav > li.active {
+#sidebar-collapse > .nav > li.active {
     border-left: 0px;
     border-right: 4px solid #1791f2;
 }
@@ -70,8 +70,8 @@ body.mini-navbar #page-wrapper {
 */
 .btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
-  border-top-right-radius: 4px !important;
-  border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
 }
 
 .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
@@ -85,10 +85,10 @@ body.mini-navbar #page-wrapper {
 }
 
 .toast-close-button {
-   top: 0;
-   left: -3.3rem;
-   right: auto;
-   float: left;
+    top: 0;
+    left: -3.3rem;
+    right: auto;
+    float: left;
 }
 
 .toast-message {

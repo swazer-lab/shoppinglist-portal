@@ -35,7 +35,13 @@
     </div>
 </div>
 
+@section Styles {
+    @Styles.Render("~/Content/datetimepicker")
+}
+
 @section scripts {
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimepicker")
     <script src="~/Scripts/knockout/cartsVM.js"></script>
 
     <script type="text/javascript">

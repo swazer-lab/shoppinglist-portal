@@ -33,13 +33,31 @@ function ItemVM(id, title, completedStatus) {
     };
 }
 
-function CartVM(id, title, note, items, completedPercentage) {
+function CartVM(id, title, note, endDate, items, completedPercentage) {
     var self = this;
 
     self.CartId = ko.observable(id);
     self.Title = ko.observable(title).extend({ required: true });
-    self.Note = ko.observable(note).extend({ required: true });
+    self.Note = ko.observable(note);
     self.CompletedPercentage = ko.observable(completedPercentage);
+
+    self.EndDateJs = ko.observable(endDate);
+
+    self.EndDate = ko.pureComputed({
+        read: function () {
+            return moment(self.EndDateJs());
+        },
+        write: function (value) {
+            var s = convertMomentToUnix(value);
+            self.EndDateJs(s);
+        }
+    });
+
+    self.EndDateDisplay = ko.pureComputed(function () {
+        if (!self.EndDate())
+            return '';
+        return self.EndDate().format("M/D/YYYY");
+    });
 
     self.ValidateOnlyWhenSubmit = ko.observable(false);
     self.Items = ko.observableArray(items).extend({ isThereEmptyItem: { onlyIf: self.ValidateOnlyWhenSubmit } });
@@ -59,6 +77,7 @@ function CartVM(id, title, note, items, completedPercentage) {
     self.NewItem = ko.observable(self.CreateItemVM());
 
     self.AddNewItem = function () {
+        self.ValidateOnlyWhenSubmit(false);
         var item = self.NewItem();
         var createdItem = new ItemVM(item.ItemId(), item.Title(), item.IsCompletedStatus());
 
@@ -72,7 +91,7 @@ function CartVM(id, title, note, items, completedPercentage) {
             items.push(c.copy());
         });
 
-        return new CartVM(self.CartId(), self.Title(), self.Note(), items, self.CompletedPercentage());
+        return new CartVM(self.CartId(), self.Title(), self.Note(), self.EndDate(), items, self.CompletedPercentage());
     };
 
     self.toSubmitModel = function () {
@@ -80,6 +99,7 @@ function CartVM(id, title, note, items, completedPercentage) {
             CartId: self.CartId(),
             Title: self.Title(),
             Notes: self.Note(),
+            Date: self.EndDate().format("MM/DD/YYYY"),
             Items: []
         };
 
@@ -159,7 +179,7 @@ function CartMainVM(options) {
                 items.push(new ItemVM(itemObj.ItemId, itemObj.Title, isStatusComplete));
             });
 
-            var op = new CartVM(it.CartId, it.Title, it.Notes, items, completedPercentage);
+            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage);
 
             result.push(op);
         }
@@ -193,7 +213,7 @@ function CartMainVM(options) {
     });
 
     self.CreateNewElement = function () {
-        return new CartVM(0, '', '');
+        return new CartVM(0, '', '', '');
     };
 
     self.EnterEditMode = function () {

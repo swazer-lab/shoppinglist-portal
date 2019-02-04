@@ -133,6 +133,19 @@ namespace Swazer.ShoppingList.Domain
             return items;
         }
 
+        public List<CartOwner> GetUsersByCart(int cartId)
+        {
+            if (cartId == 0)
+                throw new ArgumentNullException(nameof(cartId));
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .Where(x => x.CartId == cartId);
+
+            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
+
+            return items;
+        }
+
         public CartOwner Create(CartOwner entity)
         {
             if (entity == null)

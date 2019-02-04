@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Swazer.ShoppingList.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,5 +13,7 @@ namespace Swazer.ShoppingList.WebApp.Models
         public string Email { get; set; }
 
         public string Mobile { get; set; }
+
+        public AccessLevel AccessLevel { get; set; }
     }
 }

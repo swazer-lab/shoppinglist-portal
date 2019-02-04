@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Swazer.ShoppingList.WebApp.Areas.Admin.Controllers
 {
+    [AllowAdmin]
     public class ItemController : BaseController
     {
         public ActionResult Index(ItemIndexSearchCriteria criteria)

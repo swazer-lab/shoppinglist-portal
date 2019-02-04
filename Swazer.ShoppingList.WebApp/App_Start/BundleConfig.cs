@@ -26,7 +26,7 @@ namespace Swazer.ShoppingList.WebApp
 
             bundles.Add(new StyleBundle("~/Content/AdmincssRTL").Include(
                 "~/Content/Admin/plugins/bootstrap-rtl/bootstrap-rtl.min.css",
-                "~/Content/style-rtl.css"));
+                "~/Content/Admin/style-rtl.css"));
 
             bundles.Add(new StyleBundle("~/Content/Admincss").Include(
                 "~/Content/bootstrap.min.css",
@@ -70,6 +70,14 @@ namespace Swazer.ShoppingList.WebApp
                 "~/Scripts/plugins/moment/moment.js",
                 "~/Scripts/plugins/moment/moment-with-locales.min.js",
                 "~/Scripts/plugins/moment/moment-timezone-with-data.min.js"));
+
+            //date picker
+
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+               "~/Scripts/plugins/datetime/bootstrap-datetimepicker.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datetimepicker").Include(
+               "~/Content/Admin/plugins/datetime/bootstrap-datetimepicker.css"));
 
             // jQueryUI 
             bundles.Add(new StyleBundle("~/bundles/jqueryui").Include(

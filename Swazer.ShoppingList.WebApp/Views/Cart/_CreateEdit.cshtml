@@ -27,6 +27,13 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="row form-group">
+                            @Html.LabelFor(x => x.Date)
+                            <input class="form-control" data-bind="datetimePicker: {value: EditedElement().EndDate}, validationElement:EditedElement().EndDateJs" />
+                            <span class="error" data-bind="validationMessage: EditedElement().EndDateJs"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row form-group">
                             @Html.LabelFor(x => x.Items)
                         </div>
                     </div>

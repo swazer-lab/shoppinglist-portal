@@ -11,13 +11,10 @@ using Swazer.ShoppingList.WebApp.Resources;
 
 namespace Swazer.ShoppingList.WebApp.Controllers
 {
-    [AllowUser]
     public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            TempData["SuccessMessage"] = TempData["SuccessMessage"];
-
             return View();
         }
 

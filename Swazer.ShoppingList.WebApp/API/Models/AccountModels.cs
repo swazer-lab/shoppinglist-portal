@@ -35,6 +35,8 @@ namespace Swazer.ShoppingList.WebApp.API
         public string Email { get; set; }
         
         public string Mobile { get; set; }
+
+        public AccessLevel AccessLevel { get; set; }
     }
 
     public class UpdateUserBindingModel
