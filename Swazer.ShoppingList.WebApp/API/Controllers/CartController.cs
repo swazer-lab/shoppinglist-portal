@@ -84,5 +84,37 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             return Ok();
         }
+
+        [Route("generateShareUrl")]
+        [HttpPost]
+        public IHttpActionResult GenerateShareUrl(CartGenerateShareBindingModel model)
+        {
+            string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
+
+            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
+
+            return Ok(fullUrl);
+        }
+
+        [HttpGet]
+        [Route("getAccess")]
+        public IHttpActionResult GetAccess(string encodedUrl)
+        {
+            int[] parameters = UserCodeOperation.DecodeCode(encodedUrl);
+            int cartId = parameters[0];
+            AccessLevel accessLevel = (AccessLevel)parameters[1];
+
+            User user = GetCurrentUser();
+
+            Cart cart = CartService.Obj.GetById(parameters[0]);
+
+            CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
+
+            CartService.Obj.Create(cartOwner);
+
+            CartBindingModel cartBindingModel = cart.ToCartBindingModel();
+
+            return Ok(cartBindingModel);
+        }
     }
 }

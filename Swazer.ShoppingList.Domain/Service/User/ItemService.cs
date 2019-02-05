@@ -10,7 +10,6 @@ namespace Swazer.ShoppingList.Domain.Service.User
 {
     public class ItemService : BaseDomainService
     {
-
         public static ItemService Obj { get; }
 
         static ItemService()

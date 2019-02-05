@@ -146,6 +146,24 @@ namespace Swazer.ShoppingList.Domain
             return items;
         }
 
+
+        public CartOwner GetCartUser(int cartId, int ownerId)
+        {
+            if (cartId == 0)
+                throw new ArgumentNullException(nameof(cartId));
+
+            if (ownerId == 0)
+                throw new ArgumentNullException(nameof(ownerId));
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .AndAlso(x => x.CartId == cartId)
+               .AndAlso(x => x.UserId == ownerId);
+
+            CartOwner founded = queryRepository.SingleOrDefault(constraints);
+
+            return founded;
+        }
+
         public CartOwner Create(CartOwner entity)
         {
             if (entity == null)
@@ -154,13 +172,43 @@ namespace Swazer.ShoppingList.Domain
             if (!entity.Validate())
                 throw new ValidationException(entity.ValidationResults);
 
+            CartOwner cartOwner = GetCartUser(entity.CartId, entity.UserId);
+
+            if (cartOwner != null)
+                if (cartOwner.AccessLevel == entity.AccessLevel)
+                {
+                    return cartOwner;
+                }
+                else
+                {
+                    cartOwner.UpdateAccessLevel(entity.AccessLevel);
+                    Update(cartOwner);
+                    return cartOwner;
+                }
+
             CartOwner createdEntity = repository.Create(entity);
+
             if (createdEntity == null)
                 throw new RepositoryException("Entity not created");
 
             Tracer.Log.EntityCreated(nameof(CartOwner), createdEntity.CartId);
 
             return createdEntity;
+        }
+
+        public CartOwner Update(CartOwner entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (!entity.Validate())
+                throw new ValidationException(entity.ValidationResults);
+
+            CartOwner uptadedEntity = repository.Update(entity);
+
+            Tracer.Log.EntityUpdated(nameof(CartOwner), entity.CartOwnerId);
+
+            return uptadedEntity ?? entity;
         }
     }
 }

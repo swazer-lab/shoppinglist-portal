@@ -23,15 +23,23 @@ namespace Swazer.ShoppingList.Core
 
         public AccessLevel AccessLevel { get; set; }
 
-        public static CartOwner Create(Cart cart, User owner)
+        public static CartOwner Create(Cart cart, User owner, AccessLevel accessLevel = 0)
         {
             return new CartOwner
             {
                 Cart = cart,
                 CartId = cart.CartId,
                 User = owner,
-                UserId = owner.Id
+                UserId = owner.Id,
+                AccessLevel = accessLevel
             };
+        }
+
+        public CartOwner UpdateAccessLevel(AccessLevel accessLevel)
+        {
+            this.AccessLevel = accessLevel;
+
+            return this;
         }
     }
 

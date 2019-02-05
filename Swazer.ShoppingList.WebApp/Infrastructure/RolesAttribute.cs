@@ -26,10 +26,13 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
                 throw new PermissionException();
             }
 
+            var returnUrl = filterContext.HttpContext.Request.Url.GetComponents(UriComponents.PathAndQuery, UriFormat.SafeUnescaped);
+
             filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary {
                 { "area", "" },
                 { "controller", "Account" },
                 { "action", "Login" },
+                { "returnUrl", returnUrl}
             });
         }
     }

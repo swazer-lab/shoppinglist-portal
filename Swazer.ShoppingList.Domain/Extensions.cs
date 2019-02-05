@@ -32,5 +32,16 @@ namespace Swazer.ShoppingList.Domain
 
             return queryRepository.SingleOrDefault(constraints) == null;
         }
+
+        public static bool IsCartOwnerUnique(this CartOwner model)
+        {
+            IGenericQueryRepository queryRepository = RepositoryFactory.CreateQueryRepository();
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+                .AndAlso(x => x.CartId == model.CartId)
+                .AndAlso(x => x.UserId == model.UserId);
+
+            return queryRepository.SingleOrDefault(constraints) == null;
+        }
     }
 }

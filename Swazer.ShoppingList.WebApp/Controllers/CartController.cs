@@ -2,10 +2,8 @@
 using Swazer.ShoppingList.Domain;
 using Swazer.ShoppingList.WebApp.Infrastructure;
 using Swazer.ShoppingList.WebApp.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Swazer.ShoppingList.WebApp.Controllers
@@ -37,7 +35,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             CartSearchCriterias criteria = criteriaModel.ToSearchCriteria(user.Id);
             IQueryResult<Cart> results = CartService.Obj.Find(criteria);
 
-           var result = new CartIndexViewModel
+            var result = new CartIndexViewModel
             {
                 Items = results.Items.Select(x => x.ToViewModel()).ToList(),
                 TotalCount = results.TotalCount,
@@ -52,7 +50,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             }
 
             return result;
-
         }
 
         [HttpPost]
@@ -108,6 +105,25 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             CartService.Obj.Delete(id);
 
             return Json(getCartIndexModel(criteria, "Success"));
+        }
+
+        [HttpGet]
+        public ActionResult GetAccess(string id)
+        {
+            int[] parameters = UserCodeOperation.DecodeCode(id);
+
+            int cartId = parameters[0];
+            AccessLevel accessLevel = (AccessLevel)parameters[1];
+
+            User user = GetCurrentUser();
+
+            Cart cart = CartService.Obj.GetById(cartId);
+
+            CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
+
+            CartService.Obj.Create(cartOwner);
+
+            return RedirectToAction("Index");
         }
     }
 }
