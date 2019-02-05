@@ -78,7 +78,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
                 SignInStatus result = SignInManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
-                if(returnUrl.Contains("GetAccess"))
+                if(returnUrl != null && returnUrl.Contains("GetAccess"))
                 {
                     return Redirect(returnUrl);
                 }
