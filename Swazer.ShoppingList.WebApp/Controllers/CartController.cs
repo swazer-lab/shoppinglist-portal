@@ -114,7 +114,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
+            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
 
             return Json(fullUrl, JsonRequestBehavior.AllowGet);
         }
@@ -136,6 +136,15 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             CartService.Obj.Create(cartOwner);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult UserProfile()
+        {
+            User user = GetCurrentUser();
+
+             UserProfileViewModel viewModel = user.ToViewModel();
+
+            return View(viewModel);
         }
     }
 }

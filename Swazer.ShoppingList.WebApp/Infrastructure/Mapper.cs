@@ -67,5 +67,16 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
                 Title = model.Title
             };
         }
+
+        public static UserProfileViewModel ToViewModel(this User model)
+        {
+            return new UserProfileViewModel()
+            {
+                UserId = model.Id,
+                Name = model.Name, 
+                Email = model.Email,
+                Mobile = model.Mobile
+            };
+        }
     }
 }

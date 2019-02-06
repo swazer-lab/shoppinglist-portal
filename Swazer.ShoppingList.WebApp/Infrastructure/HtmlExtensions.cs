@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.Domain;
 using Swazer.ShoppingList.WebApp.Models;
 using Swazer.ShoppingList.WebApp.Resources;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
@@ -71,9 +73,25 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
             return providerName;
         }
 
-        public static string GetFullName(this IPrincipal user)
+        public static string GetEmail(this IPrincipal user)
         {
             return user.Identity.Name;
+        }
+
+        public static string GetName(this IPrincipal user)
+        {
+            var name = UserService.Obj.FindByEmail(user.Identity.Name).Name;
+
+            return name;
+        }
+
+        public static string GetPhoto(this IPrincipal user)
+        {
+            var id = UserService.Obj.FindByEmail(user.Identity.Name).Id;
+
+            var image = ImageService.Obj.FindByUserId(id);
+
+            return Convert.ToBase64String(image.BlobContent);
         }
 
         public static IEnumerable<EnumSelectListItem> GetList<TEnum>()

@@ -8,12 +8,14 @@ namespace Swazer.ShoppingList.WebApp.Models
 {
     public class UserProfileViewModel
     {
+        public int UserId { get; set; }
+
         public string Name { get; set; }
 
         public string Email { get; set; }
 
         public string Mobile { get; set; }
 
-        public AccessLevel AccessLevel { get; set; }
+        public int PhotoId { get; set; }
     }
 }

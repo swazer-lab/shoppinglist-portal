@@ -210,6 +210,7 @@
     <Content Include="Content\POS\images\discounts.jpg" />
     <Content Include="Content\POS\images\ease-of-use.jpg" />
     <Content Include="Content\POS\images\first_ipad.png" />
+    <Content Include="Content\POS\images\goodImage.jpg" />
     <Content Include="Content\POS\images\handheld_pos.jpg" />
     <Content Include="Content\POS\images\handheld_pos_2.png" />
     <Content Include="Content\POS\images\hardware_bg.jpg" />
@@ -844,6 +845,7 @@
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\DashboardUser\Index.cshtml" />
     <Content Include="Views\Cart\_Sharing.cshtml" />
+    <Content Include="Views\Cart\UserProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

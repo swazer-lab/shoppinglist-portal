@@ -5,9 +5,15 @@
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <span id="userAvatar">
-                        <span>@User.GetFullName()</span>
-                    </span>
+                    <img width="48" height="48" class="circle-border" src='data:image/gif;base64,@User.GetPhoto()' />
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="block m-t-xs font-bold"> @User.GetName()</span>
+                        <span class="text-muted text-xs block">@User.GetEmail()<b class="caret"></b></span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a class="dropdown-item" href="@Url.Action("UserProfile","Cart")">Profile</a></li>
+                        <li><a class="dropdown-item" href="profile.html">Edit</a></li>
+                    </ul>
                     @{
                         string rotateClass = "fa-flip-horizontal";
                         if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
@@ -16,7 +22,10 @@
                         }
                     }
                 </div>
-                <div class="logo-element"></div>
+                <div class="logo-element">
+                    IN+
+                </div>
+
             </li>
             <li>
                 <a href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-lg fa-fw"></i><span class="nav-label" data-i18n="nav.forms">Home</span><span class="pull-right flip @rotateClass"></span></a>
