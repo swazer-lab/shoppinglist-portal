@@ -1,0 +1,33 @@
+﻿
+<div class="modal inmodal" id="share-Modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInDown">
+            <div class="modal-header">
+                <i class="fa fa-share-alt modal-icon"></i>
+                <h4 class="modal-title text-center">Share</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-sm-6">
+                        <select class="form-control" data-bind="options: AccessLevelForUsers,
+                                        value: SelectedAccessLevel,
+                                        optionsText:'text'"></select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-success" data-bind="click: CopyShareLink">Copy Share Link</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-12">
+                        <input class="form-control" id="generatedUrl" data-bind="textInput: GeneratedUrl()" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

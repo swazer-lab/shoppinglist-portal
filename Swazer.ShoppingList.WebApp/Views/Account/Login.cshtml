@@ -60,7 +60,14 @@
             <div class="panel panel-default signInPanelRegistre">
                 <div class="panel-body">
                     <div class="form-group">
-                        Dont Have a account <a class="register" href="@Url.Action("Register","Account")">Sign Up</a>
+                        @if (ViewBag.ReturnUrl == null)
+                        {
+                            <a class="register" href="@Url.Action("Register","Account")">Sign Up</a>
+                        }
+                        else
+                        {
+                            <a class="register" href="@Url.Action("Register","Account", new { returnUrl = ViewBag.ReturnUrl})">Sign Up</a>
+                        }
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             foreach (var cart in result.Items.ToList())
             {
                 cart.Items = ItemMobileService.Obj.GetItemsByCard(cart.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-                cart.Users = CartService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId))).ToList();
+                cart.Users = CartService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
             }
 
             return Ok(result);
@@ -71,7 +71,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
 
             bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-            bindingModel.Users = CartService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId))).ToList();
+            bindingModel.Users = CartService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
 
             return Ok(bindingModel);
         }
@@ -91,7 +91,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
+            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
 
             return Ok(fullUrl);
         }

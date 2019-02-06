@@ -22,7 +22,7 @@ function ItemVM(id, title, completedStatus) {
     self.copy = function () {
         return new ItemVM(self.ItemId(), self.Title(), self.IsCompletedStatus());
     };
-    
+
     self.toSubmitModel = function () {
         var status = self.IsCompletedStatus() ? 2 : 0;
         return {
@@ -33,16 +33,17 @@ function ItemVM(id, title, completedStatus) {
     };
 }
 
-function CartVM(id, title, note, endDate, items, completedPercentage) {
+function CartVM(id, title, note, endDate, items, completedPercentage, accessLevel) {
     var self = this;
 
     self.CartId = ko.observable(id);
     self.Title = ko.observable(title).extend({ required: true });
     self.Note = ko.observable(note);
+    self.AccessLevel = ko.observable(accessLevel);
     self.CompletedPercentage = ko.observable(completedPercentage);
 
     self.EndDateJs = ko.observable(endDate);
-
+    
     self.EndDate = ko.pureComputed({
         read: function () {
             return moment(self.EndDateJs());
@@ -64,6 +65,10 @@ function CartVM(id, title, note, endDate, items, completedPercentage) {
 
     self.IsItemsEmpty = ko.pureComputed(function () {
         return self.Items().length === 0;
+    });
+
+    self.IsAccessLevelRead = ko.pureComputed(function () {
+        return self.AccessLevel() === 2;
     });
 
     self.DeleteItem = function (item) {
@@ -142,6 +147,7 @@ function CartMainVM(options) {
     self.DeleteUrl = options.deleteUrl;
     self.ChangeStatusUrl = options.changeStatusUrl;
     self.SearchUrl = options.searchUrl;
+    self.GenerateShareUrl = options.generateShareUrl;
 
     self.CreateModePanelTitle = options.createModePanelTitle;
     self.EditModePanelTitle = options.editModePanelTitle;
@@ -179,7 +185,7 @@ function CartMainVM(options) {
                 items.push(new ItemVM(itemObj.ItemId, itemObj.Title, isStatusComplete));
             });
 
-            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage);
+            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage, it.AccessLevel);
 
             result.push(op);
         }
@@ -190,6 +196,28 @@ function CartMainVM(options) {
     self.PanelTitle = ko.observable(self.DisplayModePanelTitle);
     self.Mode = ko.observable(self.DisplayMode);
     self.SearchCriteria = ko.observable(options.searchCriteria);
+
+    // Access Levels
+    self.AllAccessLevels = ko.observableArray(options.accessLevels);
+
+    self.AccessLevelForUsers = ko.pureComputed(function () {
+        return ko.utils.arrayFilter(self.AllAccessLevels(), function (accessLevel) {
+            return accessLevel.value !== 0;
+        });
+    });
+
+    self.SelectedAccessLevel = ko.observable();
+
+    self.GeneratedUrl = ko.observable();
+
+    self.CopyShareLink = function () {
+        var copyText = document.getElementById("generatedUrl");
+
+        copyText.select();
+        document.execCommand("copy");
+    };
+    //
+
     self.Carts = ko.observableArray();
     self.Spinning = ko.observable(false);
     self.EditedElement = ko.observable();
@@ -269,6 +297,11 @@ function CartMainVM(options) {
         var newEl = self.CreateNewElement();
         self.EditedElement(newEl);
         self.SelectedElement(newEl);
+    };
+
+    self.GetSharingLink = function () {
+        self.GenerateShare();
+        $('#share-Modal').modal('show');
     };
 
     self.SelectRow = function (row) {
@@ -425,6 +458,21 @@ function CartMainVM(options) {
         });
     };
 
+    self.GenerateShare = function () {
+        $.ajax({
+            async: true,
+            method: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            url: self.GenerateShareUrl,
+            data: { CartId: self.SelectedElement().CartId(), AccessLevel: self.SelectedAccessLevel().value },
+            success: function (e) {
+                self.GeneratedUrl(e);
+            },
+            error: self.HandleError
+        });
+    };
+
     self.HandleSuccess = function (e) {
         var observableItems = self.mapItems(e.Items);
         self.Carts(observableItems);
@@ -442,6 +490,12 @@ function CartMainVM(options) {
 
     self.currentPageSubscription = self.SearchCriteria().Paging().CurrentPage.subscribe(function (newValue) {
         self.Search();
+    });
+
+    self.accessLevelSubscription = self.SelectedAccessLevel.subscribe(function () {
+        if (self.SelectedElement()) {
+            self.GenerateShare();
+        }
     });
 
     self.dispose = function () {

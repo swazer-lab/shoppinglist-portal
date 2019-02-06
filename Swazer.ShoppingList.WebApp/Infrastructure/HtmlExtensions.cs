@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.WebApp.Models;
 using Swazer.ShoppingList.WebApp.Resources;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,29 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
         public static string GetFullName(this IPrincipal user)
         {
             return user.Identity.Name;
+        }
+
+        public static IEnumerable<EnumSelectListItem> GetList<TEnum>()
+        {
+            if (!typeof(TEnum).IsEnum)
+                throw new ArgumentException("EnumT must be an enumerated type");
+
+            foreach (object item in Enum.GetValues(typeof(TEnum)))
+            {
+                string localizedName;
+                try
+                {
+                    Type type = typeof(TEnum);
+                    MemberInfo[] memInfo = type.GetMember(item.ToString());
+                    object[] attributes = memInfo[0].GetCustomAttributes(typeof(DisplayAttribute), false);
+                    localizedName = ((DisplayAttribute)attributes[0]).GetName();
+                }
+                catch
+                {
+                    localizedName = item.ToString();
+                }
+                yield return new EnumSelectListItem { text = localizedName, value = (int)item };
+            }
         }
 
         public static string KoValidationToken(this HtmlHelper helper)

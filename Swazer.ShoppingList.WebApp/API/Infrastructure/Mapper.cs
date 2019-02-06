@@ -59,14 +59,15 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             };
         }
 
-        public static UserProfileBindingModel ToUserProfileBindingModel(this CartOwner model, User user)
+        public static UserProfileBindingModel ToUserProfileBindingModel(this CartOwner model, User user, Image image)
         {
             return new UserProfileBindingModel()
             {
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Name = user.Name,
-                AccessLevel = model.AccessLevel
+                AccessLevel = model.AccessLevel,
+                PhotoId = image?.ImageId
             };
         }
 

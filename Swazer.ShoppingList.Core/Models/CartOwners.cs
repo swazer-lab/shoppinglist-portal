@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -43,11 +44,15 @@ namespace Swazer.ShoppingList.Core
         }
     }
 
-
     public enum AccessLevel
     {
+        [Display(Name ="Owner")]
         Owner,
+
+        [Display(Name = "ReadWrite")]
         ReadWrite,
+
+        [Display(Name = "Read")]
         Read
     }
 }

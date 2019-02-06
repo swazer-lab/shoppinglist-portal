@@ -46,6 +46,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             foreach (var cart in result.Items)
             {
+                cart.AccessLevel = CartService.Obj.GetCartUser(cart.CartId.Value, user.Id).AccessLevel;
                 cart.Items = Domain.Service.User.ItemService.Obj.GetItemsByCard(cart.CartId.Value).Select(x => x.ToViewModel(ItemService.Obj.GetById(x.ItemId))).ToList();
             }
 
@@ -105,6 +106,17 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             CartService.Obj.Delete(id);
 
             return Json(getCartIndexModel(criteria, "Success"));
+        }
+
+        [HttpGet]
+        [HandleAjaxException]
+        public ActionResult GenerateShareUrl(GenerateSharingUrlViewModel model)
+        {
+            string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
+
+            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
+
+            return Json(fullUrl, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

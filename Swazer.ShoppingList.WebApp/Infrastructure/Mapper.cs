@@ -57,17 +57,6 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
             };
         }
 
-        public static UserProfileViewModel ToViewModel(this CartOwner model, User user)
-        {
-            return new UserProfileViewModel()
-            {
-                Email = user.Email,
-                Mobile = user.Mobile,
-                Name = user.Name,
-                AccessLevel = model.AccessLevel
-            };
-        }
-
         public static CartViewModel ToViewModel(this Cart model)
         {
             return new CartViewModel()

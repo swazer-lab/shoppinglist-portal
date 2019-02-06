@@ -536,6 +536,7 @@
     <Content Include="Scripts\pagingVM.min.js" />
     <Content Include="Scripts\pagingVueComponent.js" />
     <Content Include="Scripts\plugins\datapicker\datepicker3.css" />
+    <Content Include="Scripts\plugins\datetime\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\plugins\iCheck\icheck.min.js" />
     <Content Include="Scripts\plugins\jquery-ui\i18n\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\plugins\jquery-ui\i18n\jquery.ui.datepicker-af.min.js" />
@@ -842,6 +843,7 @@
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\DashboardUser\Index.cshtml" />
+    <Content Include="Views\Cart\_Sharing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

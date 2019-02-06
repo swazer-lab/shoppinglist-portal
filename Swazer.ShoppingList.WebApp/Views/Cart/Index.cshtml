@@ -34,6 +34,7 @@
         </div>
     </div>
 </div>
+@Html.Partial("_Sharing")
 
 @section Styles {
     @Styles.Render("~/Content/datetimepicker")
@@ -53,13 +54,15 @@
 
             var vm = new CartMainVM({
                 searchCriteria: searchCriteriaVm,
-
+                
+                accessLevels: @Html.Raw(Json.Encode(Model.AccessLevels)),
                 createUrl: '@Url.Action("Create")',
 
                 editUrl: '@Url.Action("Edit")',
                 deleteUrl: '@Url.Action("Delete")',
                 searchUrl: '@Url.Action("Search")',
                 changeStatusUrl: '@Url.Action("ChangeStatus")',
+                generateShareUrl: '@Url.Action("GenerateShareUrl")',
 
                 createModePanelTitle: '@Html.Raw(SharedStrings.Create)',
                 editModePanelTitle: '@Html.Raw(SharedStrings.Edit)',

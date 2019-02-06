@@ -22,7 +22,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default signInPanel">
                 <div class="panel-body">
-                    @using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">

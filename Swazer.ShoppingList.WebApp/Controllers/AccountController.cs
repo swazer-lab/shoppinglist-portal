@@ -156,15 +156,17 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         //}
 
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model, string returnUrl)
         {
             try
             {
@@ -176,7 +178,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
                 user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
                 User result = UserService.Obj.Create(user, model.Password);
 
-                return RedirectToAction("Login", "Account", new { area = "" });
+                return RedirectToAction("Login", "Account", new { returnUrl = returnUrl, area = "" });
             }
 
             catch (Exception ex)

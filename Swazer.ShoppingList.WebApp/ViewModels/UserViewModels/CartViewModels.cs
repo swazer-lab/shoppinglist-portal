@@ -1,4 +1,6 @@
-﻿using Swazer.ShoppingList.WebApp.Models;
+﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.WebApp.Infrastructure;
+using Swazer.ShoppingList.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace Swazer.ShoppingList.WebApp.Models
 
         public List<CartViewModel> Items { get; set; }
 
+        public IEnumerable<EnumSelectListItem> AccessLevels => HtmlExtensions.GetList<AccessLevel>();
+
         public int SelectedRowId { get; set; }
 
         public string Message { get; set; }
@@ -31,9 +35,23 @@ namespace Swazer.ShoppingList.WebApp.Models
 
         public DateTime? Date { get; set; }
 
-        public List<UserProfileViewModel> Users { get; set; }
+        public AccessLevel AccessLevel { get; set; }
 
         public List<ItemViewModel> Items { get; set; }
+    }
+
+    public class EnumSelectListItem
+    {
+        public string text { get; set; }
+
+        public int value { get; set; }
+    }
+
+    public class GenerateSharingUrlViewModel
+    {
+        public int CartId { get; set; }
+
+        public AccessLevel AccessLevel { get; set; }
     }
 
     public class CartIndexSearchCriteria : SearchCriteriaModel
