@@ -33,7 +33,7 @@ function ItemVM(id, title, completedStatus) {
     };
 
     self.toSubmitModel = function () {
-        var status = self.IsCompletedStatus() ? 2 : 0;
+        var status = self.IsCompletedStatus() ? 1 : 0;
         return {
             ItemId: self.ItemId(),
             Title: self.Title(),
@@ -194,7 +194,7 @@ function CartMainVM(options) {
             var items = [];
             ko.utils.arrayForEach(it.Items, function (itemObj) {
 
-                var isStatusComplete = itemObj.Status === 2;
+                var isStatusComplete = itemObj.Status === 1;
 
                 items.push(new ItemVM(itemObj.ItemId, itemObj.Title, isStatusComplete));
             });
