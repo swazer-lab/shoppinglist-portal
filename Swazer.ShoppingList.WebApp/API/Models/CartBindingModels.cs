@@ -49,6 +49,11 @@ namespace Swazer.ShoppingList.WebApp.API.Models
         public AccessLevel AccessLevel { get; set; }
     }
 
+    public class GetAccessBindingModel
+    {
+        public string Id { get; set; }
+    }
+
     public class CartSearchCriteriaBindingModel : SearchCriteriaBindingModel
     {
 

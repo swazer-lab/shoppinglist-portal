@@ -96,11 +96,11 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             return Ok(fullUrl);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("getAccess")]
-        public IHttpActionResult GetAccess(string encodedUrl)
+        public IHttpActionResult GetAccess([FromBody]GetAccessBindingModel model)
         {
-            int[] parameters = UserCodeOperation.DecodeCode(encodedUrl);
+            int[] parameters = UserCodeOperation.DecodeCode(model.Id);
             int cartId = parameters[0];
             AccessLevel accessLevel = (AccessLevel)parameters[1];
 

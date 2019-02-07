@@ -1,0 +1,120 @@
+﻿
+@model UserProfileViewModel
+
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+@Html.Partial("_Breadcrumb", new BreadcrumbModel(new BreadItem("Profile Edit")))
+
+@{
+    if (string.IsNullOrEmpty(Model.Photo))
+    {
+        Model.Photo = "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAEjASMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKytb8SaV4fg8zULpYyQSsa8u/wBFHJ+pwPevM9Z+Lt9OzR6RapbR8gSS4Zz9B0H0OetAHsOQASSMDrniqM2saXbnE+pWcZHUPOox9QSK+dtQ8R6zqhJvNSuZQf4TIQvPooIAH0FZZJJ5J+pOaAPplfEWiOcLrOnMTxgXSE/kDV2G5guV3QTxyj1Rgw/ME18s1LBdXFs4eCeSJh0aNyCPxBBoA+pqK8A0v4jeI9MZQ179riGMpcjcSPY8EfmfpXonh/4paTqjJBqCmwnOACxzGx9jgEc+oA96AO7opqssihkYMrAEMCDnPTBHBz606gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK878afEiLSmk07R2SW8GVknIBSI9wOxYfkD1ycgR/Efxw2mq2i6ZLi6dcTyqeYwR90Y6Eg8+gPqePHCSSTnrzz/OgCa7vLm/uXubuZ5pnOWdyST+J/kOB2qGiigAooooAKKKKACiiigDqvCnjvUvDUqxFmubAn5rdyTtB67c9D7dD3HevcdG1qx13T47ywm8yNhhh/Eh/usOoI/I9ckc18yVueF/E954Y1Rbm3JaFiBNASQHXuPYjkg9j6gkEA+j6Kp6ZqVtq+nQX1m4eCZQwPcHoQR2IOQR2Iq5QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABWF4v8Qp4a0Ca8yDO37u3Q45cjjPqAASfpjuK3a8N+KWttqXiU2Mb5t7EbMA8FzyxPuOB+B9TQBxU00tzO88zl5JGLMxOSSeSSfUkmo6KKACiiigAooooAKKKKACiiigAooooA774Y+JzpWrDSrl/wDRLtgELHASQ8AjPQHgH3we1e218qqzIwZSVYEEEHkYPGPQg19H+EdZGveGbO+YgzFdkv8AvrwSfTJAP0IoA26KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigCC8uVtLKe5c/LFGzn8ASf5V8w3dw95dz3MpJkmkZ2J6kk5P6mvoTx1cG28Eas4JBMGzOcHDEKf0JFfOtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXq/wAHNRJTUdNZjgbZkB9+Gx/47XlFdr8Krgw+NY4weJoJEPocAMP1WgD3aiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA5b4jgnwDqeOwjJ+glQn9M18+19HeM7U3ng3VoVGWNuzgdzt+YY98ivnGgAooooAKKKKACiiigAooooAKKKKACiiigArrfhmD/AMJ7p/oBKfw8th/MiuSruvhNamfxe0+OILd2z9cKPxIJ/I0Ae40UUUAFFFFABRRRQAUU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CiiigAooooAKKKKACiiigAooooAKKKKACiiigDU8P67deHtXhv7Zj8hxIhOBIpPIP1HIPYgHtX0Xpep22sabBf2j7oZk3DJGQehBHYg5BHqK+YK9D+FviY6fqZ0e5f8A0a7OYs9EkxwB6bgMfUD1NAHtFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFBwMnPTrmiuc8daydF8KXk6NtnlHkxY67mBBx7gZP4CgDx7x74gOv+Jp3jcm1tyYYR2IHVvxOTn0x6VzFBJ65/E0UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABTo3eKRZEYq6EMrA9CDwQexBGabRQB9IeEtcXxD4ctb7I80jZMB2deD9AeCPYituvHPhHrJttWuNJkb93cr5kYP8AfXqB7kZ/IV7HQAUUUUAFFFFABRRRQAUUUUAFFFFABXkXxh1MyX1jpatxEhmcD1YkDI9QAT+Neu187eO746h401OXIKxymJcHONgCnH1IJ/E0Ac7RRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAF/RNRbStbsr5SR5MqsecZAIyPoQSPxr6aR1kjV1IKsuQRyDnpj8DXytX0b4LvjqHg7S5ywLiEIx91JU5+pGfxoA3qKKKACiiigAooooAKKKKACiiigBk0qxQSSt91ELEjsACT+gr5du5muLyedvvSSM5zyckkn9a+ldekMXh3U5M8paysPYhDXzJ1OfWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAr234SXfneFJYCeYLhgB6BgCP1JrxKvW/g1ITaatHn7skTY+oYf0oA9QooooAKKKKACiiigAooooAKKKKAMrxOceFNYPpYzn/AMhtXzTX0v4m58KawPWxn/8AQGr5ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK9W+DHTWh6GA5+vmf4V5TXq3wYHy62f8Arh/7UoA9VooooAKKKKACiiigAooooAKKKKAMvxL/AMiprH/XjP8A+i2r5or6X8S/8iprH/XjP/6LavmigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAr1f4Mfc1r6wfykryivV/gx9zWvrB/KSgD1SiiigAooooAKKKKACiiigAooooAy/Ev/ACKmsf8AXjP/AOi2r5ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK9X+DH3Na+sH8pKKKAPVKKKKACiiigAooooA//9k=";
+    }
+}
+
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-4 col-md-offset-4">
+            <form data-bind="submit:Save">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5 class="pull-left flip">Edit Profile</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    @Html.LabelFor(x => x.Name)
+                                    <input class="form-control" data-bind="textInput: Name, validationElement:Name" />
+                                    <span class="error" data-bind="validationMessage: Name"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    @Html.LabelFor(x => x.Mobile)
+                                    <input class="form-control" data-bind="textInput: Mobile" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
+                                    <label>Photo</label>
+                                    <button type="button" class="form-control btn btn-primary" onclick="getElementById('photo').click()">
+                                        @SharedStrings.Upload
+                                        <input id="photo" style="display: none;" accept="image/*" type="file" data-bind="fileBind: File">
+                                    </button>
+                                    <br />
+                                    <img data-bind="attr: { src: 'data:image/jpeg;base64,' + File() }" style="width: 100px; height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+
+            var model = @Html.Raw(Json.Encode(Model));
+            var url = '@Url.Action("UserProfileEdit", "Cart")'
+
+            function ProfileVM() {
+                var self = this;
+
+                self.Name = ko.observable(model.Name).extend({ required: true });
+                self.Mobile = ko.observable(model.Mobile);
+                self.File = ko.observable(model.Photo);
+
+                self.ShowErrors = function () {
+                    var errors = ko.validation.group(self, { deep: true });
+                    if (errors().length !== 0) {
+                        return errors.showAllMessages();
+                    }
+                }
+
+                self.FullValidation = function () {
+                    if (!self.Name()) {
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                self.Save = function () {
+                    if (!self.FullValidation()) {
+                        self.ShowErrors();
+                        return false;
+                    }
+
+                    $.ajax({
+                        async: true,
+                        method: 'POST',
+                        url: url,
+                        data: {
+                            Name: self.Name(),
+                            Mobile: self.Mobile(),
+                            Photo: self.File(),
+                        },
+                        success: function () {
+                            window.location.href = "@Url.Action("UserProfile", "Cart")";
+                        },
+                        error: function (message) {
+                            ShowErrorMessage(message.responseJSON);
+                        }
+                    });
+                };
+            }
+
+            ko.applyBindings(new ProfileVM());
+        });
+
+    </script>
+}

@@ -91,7 +91,10 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
 
             var image = ImageService.Obj.FindByUserId(id);
 
-            return Convert.ToBase64String(image.BlobContent);
+            if (image != null)
+                return Convert.ToBase64String(image?.BlobContent);
+
+            return string.Empty;
         }
 
         public static IEnumerable<EnumSelectListItem> GetList<TEnum>()

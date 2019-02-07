@@ -2,6 +2,7 @@
 using Swazer.ShoppingList.Domain;
 using Swazer.ShoppingList.WebApp.Infrastructure;
 using Swazer.ShoppingList.WebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -48,6 +49,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             {
                 cart.AccessLevel = CartService.Obj.GetCartUser(cart.CartId.Value, user.Id).AccessLevel;
                 cart.Items = Domain.Service.User.ItemService.Obj.GetItemsByCard(cart.CartId.Value).Select(x => x.ToViewModel(ItemService.Obj.GetById(x.ItemId))).ToList();
+                cart.Users = CartService.Obj.GetUsersByCartForWeb(cart.CartId.Value, user.Id).Select(x => x.ToViewModel()).ToList();
             }
 
             return result;
@@ -143,8 +145,46 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             User user = GetCurrentUser();
 
              UserProfileViewModel viewModel = user.ToViewModel();
+            
+            var image = ImageService.Obj.FindByUserId(user.Id);
+
+            if (image != null)
+                viewModel.Photo = Convert.ToBase64String(image?.BlobContent);
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult UserProfileEdit()
+        {
+            User user = GetCurrentUser();
+
+            UserProfileViewModel viewModel = user.ToViewModel();
+
+            var image = ImageService.Obj.FindByUserId(user.Id);
+
+            if (image != null)
+                viewModel.Photo = Convert.ToBase64String(image?.BlobContent);
+
+            return View(viewModel);
+        }
+        
+        [HttpPost]
+        [HandleAjaxException]
+        public ActionResult UserProfileEdit(UserProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+                throw new BusinessRuleException(ModelState.GetFirstError());
+
+            User user = GetCurrentUser();
+
+            user.Update(model.Name, model.Mobile);
+
+            UserService.Obj.Update(user);
+
+            UserService.Obj.UpdateOrCreatePhoto(user, model.Photo);
+
+            return Json(string.Empty);
         }
     }
 }

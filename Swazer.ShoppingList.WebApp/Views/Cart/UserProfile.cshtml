@@ -15,7 +15,14 @@
                     <h5>Profile Detail</h5>
                 </div>
                 <div class="ibox-content no-padding border-left-right">
-                    <img height="200" width="200" alt="image" class="circle-border" src="~/Content/POS/images/goodImage.jpg" style="padding:10px">
+                    @if (!string.IsNullOrEmpty(Model.Photo))
+                    {
+                        <img height="200" width="200" alt="image" class="circle-border" src="data:image/jpeg;base64,@Model.Photo" style="padding:10px">
+                    }
+                    else
+                    {
+                        <img height="200" width="200" alt="image" class="circle-border" src="~/Content/POS/images/PlaceHolher.jpg" style="padding:10px">
+                    }
                 </div>
                 <div class="ibox-content profile-content">
                     <h5>

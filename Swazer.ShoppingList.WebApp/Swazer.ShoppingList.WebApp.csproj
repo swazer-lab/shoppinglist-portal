@@ -220,6 +220,7 @@
     <Content Include="Content\POS\images\network_printer.png" />
     <Content Include="Content\POS\images\network_switch.jpg" />
     <Content Include="Content\POS\images\notifications.jpeg" />
+    <Content Include="Content\POS\images\PlaceHolher.jpg" />
     <Content Include="Content\POS\images\pos-setup.png" />
     <Content Include="Content\POS\images\pos.png" />
     <Content Include="Content\POS\images\slide-1.png" />
@@ -846,6 +847,7 @@
     <Content Include="Views\DashboardUser\Index.cshtml" />
     <Content Include="Views\Cart\_Sharing.cshtml" />
     <Content Include="Views\Cart\UserProfile.cshtml" />
+    <Content Include="Views\Cart\UserProfileEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -5,14 +5,21 @@
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <img width="48" height="48" class="circle-border" src='data:image/gif;base64,@User.GetPhoto()' />
+                    @if (!string.IsNullOrEmpty(User.GetPhoto()))
+                    {
+                        <img width="48" height="48" class="circle-border" src='data:image/gif;base64,@User.GetPhoto()' />
+                    }
+                    else
+                    {
+                        <img width="48" height="48" class="circle-border" src='~/Content/POS/images/PlaceHolher.jpg' />
+                    }
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold"> @User.GetName()</span>
                         <span class="text-muted text-xs block">@User.GetEmail()<b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a class="dropdown-item" href="@Url.Action("UserProfile","Cart")">Profile</a></li>
-                        <li><a class="dropdown-item" href="profile.html">Edit</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("UserProfileEdit","Cart")">Edit</a></li>
                     </ul>
                     @{
                         string rotateClass = "fa-flip-horizontal";

@@ -38,6 +38,8 @@ namespace Swazer.ShoppingList.WebApp.Models
         public AccessLevel AccessLevel { get; set; }
 
         public List<ItemViewModel> Items { get; set; }
+
+        public List<UserProfileViewModel> Users { get; set; }
     }
 
     public class EnumSelectListItem

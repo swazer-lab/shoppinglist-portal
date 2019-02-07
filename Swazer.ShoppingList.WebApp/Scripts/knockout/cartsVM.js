@@ -12,6 +12,15 @@
     };
 }
 
+function UserVM(name, email, mobile, accessLevel) {
+    var self = this;
+
+    self.Name = ko.observable(name);
+    self.Email = ko.observable(email);
+    self.Mobile = ko.observable(mobile);
+    self.AccessLevel = ko.observable(accessLevel);
+}
+
 function ItemVM(id, title, completedStatus) {
     var self = this;
 
@@ -33,7 +42,7 @@ function ItemVM(id, title, completedStatus) {
     };
 }
 
-function CartVM(id, title, note, endDate, items, completedPercentage, accessLevel) {
+function CartVM(id, title, note, endDate, items, completedPercentage, accessLevel, users) {
     var self = this;
 
     self.CartId = ko.observable(id);
@@ -62,9 +71,14 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
 
     self.ValidateOnlyWhenSubmit = ko.observable(false);
     self.Items = ko.observableArray(items).extend({ isThereEmptyItem: { onlyIf: self.ValidateOnlyWhenSubmit } });
+    self.Users = ko.observableArray(users);
 
     self.IsItemsEmpty = ko.pureComputed(function () {
         return self.Items().length === 0;
+    });
+
+    self.IsUsersEmpty = ko.pureComputed(function () {
+        return self.Users().length === 0;
     });
 
     self.IsAccessLevelRead = ko.pureComputed(function () {
@@ -96,7 +110,7 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
             items.push(c.copy());
         });
 
-        return new CartVM(self.CartId(), self.Title(), self.Note(), self.EndDate(), items, self.CompletedPercentage());
+        return new CartVM(self.CartId(), self.Title(), self.Note(), self.EndDate(), items);
     };
 
     self.toSubmitModel = function () {
@@ -185,7 +199,12 @@ function CartMainVM(options) {
                 items.push(new ItemVM(itemObj.ItemId, itemObj.Title, isStatusComplete));
             });
 
-            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage, it.AccessLevel);
+            var users = [];
+            ko.utils.arrayForEach(it.Users, function (userObj) {
+                users.push(new UserVM(userObj.Name, userObj.Email, userObj.Mobile, userObj.AccessLevel));
+            });
+            
+            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage, it.AccessLevel, users);
 
             result.push(op);
         }
