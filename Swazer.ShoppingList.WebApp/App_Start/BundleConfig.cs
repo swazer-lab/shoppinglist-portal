@@ -139,7 +139,8 @@ namespace Swazer.ShoppingList.WebApp
                  "~/Scripts/ShoppingStyle.main.js",
                  "~/Scripts/POS/owl.carousel.min.js",
                  "~/Scripts/preloader.js",
-                 "~/Scripts/wow.min.js"));
+                 "~/Scripts/wow.min.js",
+                 "~/Scripts/ShowErrorSuccessMessages.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                 "~/Scripts/jquery.unobtrusive*",

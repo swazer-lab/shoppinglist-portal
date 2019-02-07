@@ -91,7 +91,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
+            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
 
             return Ok(fullUrl);
         }
@@ -112,9 +112,12 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             CartService.Obj.Create(cartOwner);
 
-            CartBindingModel cartBindingModel = cart.ToCartBindingModel();
+            CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
 
-            return Ok(cartBindingModel);
+            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
+            bindingModel.Users = CartService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+
+            return Ok(bindingModel);
         }
     }
 }

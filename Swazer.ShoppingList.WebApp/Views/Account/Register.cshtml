@@ -1,5 +1,6 @@
 ﻿
 @model RegisterViewModel
+
 @{
     ViewBag.Title = "Sign up";
     Layout = "~/Views/Shared/_Layout_ShoppingStyle.cshtml";
@@ -122,6 +123,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            debugger;
             if ('@TempData["ErrorMessage"]' !== '') {
                 ShowErrorMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["ErrorMessage"]))');
             }
