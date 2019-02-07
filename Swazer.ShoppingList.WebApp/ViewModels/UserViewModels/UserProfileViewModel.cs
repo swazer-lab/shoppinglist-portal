@@ -1,4 +1,5 @@
 ﻿using Swazer.ShoppingList.Core;
+using Swazer.ShoppingList.WebApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,10 @@ namespace Swazer.ShoppingList.WebApp.Models
         public string Email { get; set; }
 
         public string Mobile { get; set; }
+
+        public AccessLevel AccessLevel { get; set; }
+
+        public string DisplayAccessLevel => AccessLevel.GetDisplayAttribute();
 
         public string Photo { get; set; }
     }

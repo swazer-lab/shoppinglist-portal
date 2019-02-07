@@ -24,6 +24,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<CartOwner> CartOwners { get; set; }
+        public DbSet<Friend> Friends { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Item> Items { get; set; }
         #endregion
@@ -69,6 +70,16 @@ namespace Swazer.ShoppingList.SqlServerRepository
                 .Property(r => r.ConcurrencyStamp)
                 .IsRowVersion();
 
+            modelBuilder.Entity<Friend>()
+                 .HasRequired(c => c.RequestedBy)
+                 .WithMany()
+                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Friend>()
+                .HasRequired(c => c.RequestedTo)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<IdentityRole>().Property(u => u.Name).HasMaxLength(256);
             modelBuilder.Entity<IdentityRole>().HasMany(r => r.Claims).WithRequired().HasForeignKey(r => r.RoleId);
 
@@ -106,6 +117,9 @@ namespace Swazer.ShoppingList.SqlServerRepository
 
             modelBuilder.Entity<Cart>().Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<Cart>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
+
+            modelBuilder.Entity<Friend>().Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
+            modelBuilder.Entity<Friend>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
             modelBuilder.Entity<CartItem>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<CartItem>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);

@@ -83,6 +83,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartOwners.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

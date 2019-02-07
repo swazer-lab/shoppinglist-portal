@@ -85,6 +85,10 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
         return self.AccessLevel() === 2;
     });
 
+    self.IsAccessLevelOwner = ko.pureComputed(function () {
+        return self.AccessLevel() === 0;
+    });
+
     self.DeleteItem = function (item) {
         self.Items.remove(item);
     };
@@ -185,7 +189,7 @@ function CartMainVM(options) {
             if (it.Items.length !== 0) {
                 var completedItemLength = ko.utils.arrayFilter(it.Items,
                     function (item) {
-                        return item.Status === 2;
+                        return item.Status === 1;
                     }).length;
 
                 completedPercentage = ((completedItemLength / it.Items.length) * 100).toFixed(3);
@@ -201,7 +205,7 @@ function CartMainVM(options) {
 
             var users = [];
             ko.utils.arrayForEach(it.Users, function (userObj) {
-                users.push(new UserVM(userObj.Name, userObj.Email, userObj.Mobile, userObj.AccessLevel));
+                users.push(new UserVM(userObj.Name, userObj.Email, userObj.Mobile, userObj.DisplayAccessLevel));
             });
             
             var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage, it.AccessLevel, users);

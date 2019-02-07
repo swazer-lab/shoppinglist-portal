@@ -49,7 +49,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             {
                 cart.AccessLevel = CartService.Obj.GetCartUser(cart.CartId.Value, user.Id).AccessLevel;
                 cart.Items = Domain.Service.User.ItemService.Obj.GetItemsByCard(cart.CartId.Value).Select(x => x.ToViewModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-                cart.Users = CartService.Obj.GetUsersByCartForWeb(cart.CartId.Value, user.Id).Select(x => x.ToViewModel()).ToList();
+                cart.Users = CartService.Obj.GetUsersByCartForWeb(cart.CartId.Value, user.Id).Select(x => x.ToUserProfileViewModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
             }
 
             return result;
@@ -116,7 +116,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
+            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
 
             return Json(fullUrl, JsonRequestBehavior.AllowGet);
         }

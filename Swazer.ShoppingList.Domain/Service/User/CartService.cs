@@ -146,23 +146,19 @@ namespace Swazer.ShoppingList.Domain
             return items;
         }
 
-        public List<User> GetUsersByCartForWeb(int cartId, int currentUserId)
+        public List<CartOwner> GetUsersByCartForWeb(int cartId, int userId)
         {
             if (cartId == 0)
                 throw new ArgumentNullException(nameof(cartId));
 
             IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.CartId == cartId);
+               .Where(x => x.CartId == cartId)
+               .AndAlso(x => x.UserId != userId);
 
-            List<int> userIds = queryRepository.Find(constraints).Items.ToList().Select(x => x.UserId).ToList();
+            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
 
-            IQueryConstraints<User> constraint = new QueryConstraints<User>()
-               .Where(x => userIds.Contains(x.Id))
-               .AndAlso(x => x.Id != currentUserId);
-
-            return queryRepository.Find(constraint).Items.ToList();
+            return items;
         }
-
 
         public CartOwner GetCartUser(int cartId, int ownerId)
         {
