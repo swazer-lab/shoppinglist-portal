@@ -90,6 +90,7 @@
     <Compile Include="SearchCriterias\CartSearchCriterias.cs" />
     <Compile Include="SearchCriterias\ItemSearchCriteria.cs" />
     <Compile Include="SearchCriterias\Mobile\CartMobileSearchCriteria.cs" />
+    <Compile Include="SearchCriterias\Mobile\FriendMobileSearchCriteria.cs" />
     <Compile Include="SearchCriterias\SearchCriteria.cs" />
     <Compile Include="SearchCriterias\UserSearchCriteria.cs" />
     <Compile Include="Security\User.cs" />

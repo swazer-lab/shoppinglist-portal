@@ -61,5 +61,29 @@ namespace Swazer.ShoppingList.Domain
 
             return queryRepository.Find(constraints).Items.ToList();
         }
+
+        public IQueryResult<User> Find(FriendMobileSearchCriteria criterias)
+        {
+            if (criterias == null)
+                throw new ArgumentNullException(nameof(criterias));
+
+            IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
+                .PageAndSort(criterias, x => x.Id)
+                .Where(x => x.RequestedById == criterias.UserId || x.RequestedToId == criterias.UserId);
+
+            List<Friend> result = queryRepository.Find(constraints).Items.ToList();
+
+            List<int> requestedByIds = result.Select(x => x.RequestedById).ToList();
+            List<int> requestedToIds = result.Select(x => x.RequestedToId).ToList();
+
+            requestedByIds.AddRange(requestedToIds);
+
+            IQueryConstraints<User> constraintsUser = new QueryConstraints<User>()
+                .PageAndSort(criterias, x => x.Id)
+                .Where(x => requestedByIds.Contains(x.Id))
+                .AndAlso(x => x.Id != criterias.UserId);
+
+            return queryRepository.Find(constraintsUser);
+        }
     }
 }

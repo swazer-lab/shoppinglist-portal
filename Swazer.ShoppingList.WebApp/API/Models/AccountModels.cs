@@ -28,6 +28,8 @@ namespace Swazer.ShoppingList.WebApp.API
 
     public class UserProfileBindingModel
     {
+        public int UserId { get; set; }
+
         public int? PhotoId { get; set; }
 
         public string Name { get; set; }

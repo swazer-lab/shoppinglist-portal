@@ -28,6 +28,15 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             return criteria;
         }
 
+        public static FriendMobileSearchCriteria ToSearchCriteria(this FriendSearchCriteriaBindingModel model, int userId)
+        {
+            FriendMobileSearchCriteria criteria = CreateSearchCriteria<FriendMobileSearchCriteria>(model);
+
+            criteria.UserId = userId;
+
+            return criteria;
+        }
+
         public static CartBindingModel ToCartBindingModel(this Cart model)
         {
             return new CartBindingModel()
@@ -53,6 +62,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
         {
             return new UserProfileBindingModel()
             {
+                UserId = user.Id,
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Name = user.Name,
