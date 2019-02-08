@@ -63,7 +63,10 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 cart = CartMobileService.Obj.GetById(model.CartId.Value);
                 cart.Update(model.Title, model.Notes, model.Date);
 
-                List<CartOwner> users = model.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
+                List<CartOwner> users = new List<CartOwner>();
+
+                if (model.Users != null)
+                    users = model.Users?.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
 
                 List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
@@ -95,7 +98,9 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
+            string baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+
+            string fullUrl = $"{baseUrl}/Cart/GetAccess/{codedUrl}";
 
             return Ok(fullUrl);
         }
