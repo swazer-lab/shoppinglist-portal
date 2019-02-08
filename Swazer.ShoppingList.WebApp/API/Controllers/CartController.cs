@@ -63,9 +63,13 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 cart = CartMobileService.Obj.GetById(model.CartId.Value);
                 cart.Update(model.Title, model.Notes, model.Date);
 
+                List<CartOwner> users = model.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
+
                 List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartMobileService.Obj.Update(cart, items);
+                users.Add(CartOwner.Create(cart, user, AccessLevel.Owner));
+
+                CartMobileService.Obj.Update(cart, items, users);
             }
 
             CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();

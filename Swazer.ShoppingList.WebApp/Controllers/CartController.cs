@@ -25,11 +25,11 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
         public ActionResult Search(CartIndexSearchCriteria criteria)
         {
-            CartIndexViewModel model = getCartIndexModel(criteria);
+            CartIndexViewModel model = GetCartIndexModel(criteria);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        private CartIndexViewModel getCartIndexModel(CartIndexSearchCriteria criteriaModel, string message = "")
+        private CartIndexViewModel GetCartIndexModel(CartIndexSearchCriteria criteriaModel, string message = "")
         {
             User user = GetCurrentUser();
 
@@ -79,10 +79,10 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
                 List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartMobileService.Obj.Update(cart, items);
+                CartMobileService.Obj.Update(cart, items, null);
             }
 
-            return Json(getCartIndexModel(criteria, "Success"));
+            return Json(GetCartIndexModel(criteria, "Success"));
         }
 
         [HttpPost]
@@ -98,7 +98,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             ItemService.Obj.Update(entity);
 
-            return Json(getCartIndexModel(criteria, "Success"));
+            return Json(GetCartIndexModel(criteria, "Success"));
         }
 
         [HttpPost]
@@ -107,7 +107,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         {
             CartService.Obj.Delete(id);
 
-            return Json(getCartIndexModel(criteria, "Success"));
+            return Json(GetCartIndexModel(criteria, "Success"));
         }
 
         [HttpGet]

@@ -1,14 +1,6 @@
 ﻿using Swazer.ShoppingList.Core;
-using Swazer.ShoppingList.Domain.BusinessRuleResource;
 using Swazer.ShoppingList.WebApp.API.Resources.ErrorMessages;
-using Swazer.ShoppingList.WebApp.API.Resources.Register;
-using Swazer.ShoppingList.WebApp.Infrastructure;
-using Swazer.ShoppingList.WebApp.Resources;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Swazer.ShoppingList.WebApp.API
 {

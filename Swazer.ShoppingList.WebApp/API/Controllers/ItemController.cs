@@ -1,5 +1,6 @@
 ﻿using Swazer.ShoppingList.Core;
 using Swazer.ShoppingList.Domain;
+using Swazer.ShoppingList.WebApp.API.Infrastructure;
 using Swazer.ShoppingList.WebApp.API.Models;
 using Swazer.ShoppingList.WebApp.Infrastructure;
 using System;
@@ -25,7 +26,14 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             ItemCardMobileService.Obj.Update(cartItem);
 
-            return Ok();
+            Cart cart = CartMobileService.Obj.GetById(model.CartId);
+
+            CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
+
+            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
+            bindingModel.Users = CartService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+
+            return Ok(bindingModel);
         }
     }
 }

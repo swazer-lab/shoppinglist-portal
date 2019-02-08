@@ -73,6 +73,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
         {
             return new UserProfileBindingModel()
             {
+                UserId = user.Id,
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Name = user.Name,

@@ -31,6 +31,8 @@ namespace Swazer.ShoppingList.WebApp.API.Models
         public DateTime? Date { get; set; }
 
         public List<ItemBindingModel> Items { get; set; }
+
+        public List<UserProfileBindingModel> Users { get; set; }
     }
 
     public class CartIndexBindingModel

@@ -52,7 +52,7 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public Cart Update(Cart entity, List<CartItem> items)
+        public Cart Update(Cart entity, List<CartItem> items, List<CartOwner> users)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -65,6 +65,8 @@ namespace Swazer.ShoppingList.Domain
             using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
             {
                 uptadedEntity = repository.Update(entity);
+
+                Obj.UpdateCartUsers(users, uptadedEntity.CartId);
 
                 ItemMobileService.Obj.MultipleCreate(items, uptadedEntity.CartId);
 
@@ -148,6 +150,30 @@ namespace Swazer.ShoppingList.Domain
             Tracer.Log.EntityCreated(nameof(CartOwner), createdEntity.CartId);
 
             return createdEntity;
+        }
+
+        public void DeleteCartUser(int cartId)
+        {
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+              .Where(x => x.CartId == cartId);
+
+            List<CartOwner> users = queryRepository.Find(constraints).Items.ToList();
+
+            foreach (var user in users)
+            {
+                repository.Delete(user);
+            }
+        }
+
+        public void UpdateCartUsers(List<CartOwner> users, int cartId)
+        {
+            DeleteCartUser(cartId);
+
+            foreach (var user in users)
+            {
+                repository.Create(user);
+            }
+
         }
     }
 }
