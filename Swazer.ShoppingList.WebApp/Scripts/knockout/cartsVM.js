@@ -64,7 +64,7 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
     });
 
     self.EndDateDisplay = ko.pureComputed(function () {
-        if (!self.EndDate())
+        if (!self.EndDate()._isValid)
             return '';
         return self.EndDate().format("M/D/YYYY");
     });

@@ -21,21 +21,6 @@ namespace Swazer.ShoppingList.Domain.Service.User
         {
         }
 
-        public CartItem Update(CartItem entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            CartItem uptadedEntity = repository.Update(entity);
-
-            Tracer.Log.EntityUpdated(nameof(CartItem), entity.ItemId);
-
-            return uptadedEntity ?? entity;
-        }
-
         public void Create(List<CartItem> items, int cardId)
         {
             Delete(cardId);
@@ -61,25 +46,6 @@ namespace Swazer.ShoppingList.Domain.Service.User
             IEnumerable<CartItem> items = queryRepository.Find(constraints).Items;
 
             repository.Delete(items);
-        }
-
-
-        public CartItem GetByCartIdAndItemId(int cartId, int itemId)
-        {
-            if (cartId == 0 || itemId == 0)
-                throw new ArgumentNullException(nameof(cartId));
-
-            IQueryConstraints<CartItem> constraint = new QueryConstraints<CartItem>()
-                .AndAlso(x => x.ItemId == itemId)
-                .AndAlso(x => x.CartId == cartId);
-
-            CartItem founded = queryRepository.SingleOrDefault(constraint);
-            if (founded == null)
-                throw new BusinessRuleException(BusinessRuleExceptionType.NotFound);
-
-            Tracer.Log.EntityRetrieved(nameof(CartItem), founded.ItemId);
-
-            return founded;
         }
     }
 }

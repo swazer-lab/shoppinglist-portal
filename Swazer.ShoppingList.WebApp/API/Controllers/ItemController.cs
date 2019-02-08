@@ -30,8 +30,8 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
 
-            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-            bindingModel.Users = CartService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemMobileService.Obj.GetById(x.ItemId))).ToList();
+            bindingModel.Users = CartOwnerMobileService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
 
             return Ok(bindingModel);
         }

@@ -47,9 +47,9 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             foreach (var cart in result.Items)
             {
-                cart.AccessLevel = CartService.Obj.GetCartUser(cart.CartId.Value, user.Id).AccessLevel;
+                cart.AccessLevel = CartOwnerService.Obj.GetCartUser(cart.CartId.Value, user.Id).AccessLevel;
                 cart.Items = Domain.Service.User.ItemService.Obj.GetItemsByCard(cart.CartId.Value).Select(x => x.ToViewModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-                cart.Users = CartService.Obj.GetUsersByCartForWeb(cart.CartId.Value, user.Id).Select(x => x.ToUserProfileViewModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+                cart.Users = CartOwnerService.Obj.GetUsersByCart(cart.CartId.Value, user.Id).Select(x => x.ToUserProfileViewModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
             }
 
             return result;
@@ -74,12 +74,12 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             else
             {
-                cart = CartMobileService.Obj.GetById(viewModel.CartId.Value);
+                cart = CartService.Obj.GetById(viewModel.CartId.Value);
                 cart.Update(viewModel.Title, viewModel.Notes, viewModel.Date);
 
                 List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartMobileService.Obj.Update(cart, items, null);
+                CartService.Obj.Update(cart, items);
             }
 
             return Json(GetCartIndexModel(criteria, "Success"));
@@ -139,7 +139,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
 
-            CartService.Obj.Create(cartOwner);
+            CartOwnerService.Obj.Create(cartOwner);
 
             return RedirectToAction("Index");
         }

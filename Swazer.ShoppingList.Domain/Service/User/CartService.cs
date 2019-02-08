@@ -37,7 +37,7 @@ namespace Swazer.ShoppingList.Domain
                 createdEntity = repository.Create(entity);
 
                 CartOwner cartOwner = CartOwner.Create(createdEntity, user);
-                Create(cartOwner);
+                CartOwnerService.Obj.Create(cartOwner);
 
                 Service.User.ItemService.Obj.MultipleCreate(items, createdEntity.CartId);
 
@@ -95,7 +95,7 @@ namespace Swazer.ShoppingList.Domain
             if (criterias == null)
                 throw new ArgumentNullException(nameof(criterias));
 
-            List<CartOwner> carts = GetCartsByUser(criterias.UserId);
+            List<CartOwner> carts = CartOwnerService.Obj.GetCartsByUser(criterias.UserId);
 
             var cartIds = carts.Select(x => x.CartId).ToList();
 
@@ -118,110 +118,6 @@ namespace Swazer.ShoppingList.Domain
             Cart Cart = queryRepository.Find(constraints).Items.SingleOrDefault();
 
             repository.Delete(Cart);
-        }
-
-        public List<CartOwner> GetCartsByUser(int userId)
-        {
-            if (userId == 0)
-                throw new ArgumentNullException(nameof(userId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.UserId == userId);
-
-            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
-
-            return items;
-        }
-
-        public List<CartOwner> GetUsersByCart(int cartId)
-        {
-            if (cartId == 0)
-                throw new ArgumentNullException(nameof(cartId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.CartId == cartId);
-
-            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
-
-            return items;
-        }
-
-        public List<CartOwner> GetUsersByCartForWeb(int cartId, int userId)
-        {
-            if (cartId == 0)
-                throw new ArgumentNullException(nameof(cartId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.CartId == cartId)
-               .AndAlso(x => x.UserId != userId);
-
-            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
-
-            return items;
-        }
-
-        public CartOwner GetCartUser(int cartId, int ownerId)
-        {
-            if (cartId == 0)
-                throw new ArgumentNullException(nameof(cartId));
-
-            if (ownerId == 0)
-                throw new ArgumentNullException(nameof(ownerId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .AndAlso(x => x.CartId == cartId)
-               .AndAlso(x => x.UserId == ownerId);
-
-            CartOwner founded = queryRepository.SingleOrDefault(constraints);
-
-            return founded;
-        }
-
-        public CartOwner Create(CartOwner entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            CartOwner cartOwner = GetCartUser(entity.CartId, entity.UserId);
-
-            if (cartOwner != null)
-                if (cartOwner.AccessLevel == entity.AccessLevel)
-                {
-                    return cartOwner;
-                }
-                else
-                {
-                    cartOwner.UpdateAccessLevel(entity.AccessLevel);
-                    Update(cartOwner);
-                    return cartOwner;
-                }
-
-            CartOwner createdEntity = repository.Create(entity);
-
-            if (createdEntity == null)
-                throw new RepositoryException("Entity not created");
-
-            Tracer.Log.EntityCreated(nameof(CartOwner), createdEntity.CartId);
-
-            return createdEntity;
-        }
-
-        public CartOwner Update(CartOwner entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            CartOwner uptadedEntity = repository.Update(entity);
-
-            Tracer.Log.EntityUpdated(nameof(CartOwner), entity.CartOwnerId);
-
-            return uptadedEntity ?? entity;
         }
     }
 }

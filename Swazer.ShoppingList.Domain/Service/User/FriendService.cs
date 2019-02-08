@@ -43,7 +43,7 @@ namespace Swazer.ShoppingList.Domain
         {
             List<Friend> friends = GetAllFriends();
 
-            List<CartOwner> cartOwners = CartService.Obj.GetUsersByCart(cartId);
+            List<CartOwner> cartOwners = CartOwnerService.Obj.GetUsersByCart(cartId, userId);
 
             if (cartOwners.Count == 1)
                 Create(cartOwners.FirstOrDefault().UserId, userId);

@@ -37,7 +37,7 @@ namespace Swazer.ShoppingList.Domain
                 createdEntity = repository.Create(entity);
 
                 CartOwner cartOwner = CartOwner.Create(createdEntity, user);
-                Create(cartOwner);
+                CartOwnerMobileService.Obj.Create(cartOwner);
 
                 ItemMobileService.Obj.MultipleCreate(items, createdEntity.CartId);
 
@@ -66,7 +66,7 @@ namespace Swazer.ShoppingList.Domain
             {
                 uptadedEntity = repository.Update(entity);
 
-                Obj.UpdateCartUsers(users, uptadedEntity.CartId);
+                CartOwnerMobileService.Obj.UpdateCartUsers(users, uptadedEntity.CartId);
 
                 ItemMobileService.Obj.MultipleCreate(items, uptadedEntity.CartId);
 
@@ -97,7 +97,7 @@ namespace Swazer.ShoppingList.Domain
             if (criterias == null)
                 throw new ArgumentNullException(nameof(criterias));
 
-            List<CartOwner> carts = GetCartsByUser(criterias.UserId);
+            List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(criterias.UserId);
 
             var cartIds = carts.Select(x => x.CartId).ToList();
 
@@ -120,60 +120,6 @@ namespace Swazer.ShoppingList.Domain
             Cart Cart = queryRepository.Find(constraints).Items.SingleOrDefault();
 
             repository.Delete(Cart);
-        }
-
-        public List<CartOwner> GetCartsByUser(int userId)
-        {
-            if (userId == 0)
-                throw new ArgumentNullException(nameof(userId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.UserId == userId);
-
-            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
-
-            return items;
-        }
-
-        public CartOwner Create(CartOwner entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            CartOwner createdEntity = repository.Create(entity);
-            if (createdEntity == null)
-                throw new RepositoryException("Entity not created");
-
-            Tracer.Log.EntityCreated(nameof(CartOwner), createdEntity.CartId);
-
-            return createdEntity;
-        }
-
-        public void DeleteCartUser(int cartId)
-        {
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-              .Where(x => x.CartId == cartId);
-
-            List<CartOwner> users = queryRepository.Find(constraints).Items.ToList();
-
-            foreach (var user in users)
-            {
-                repository.Delete(user);
-            }
-        }
-
-        public void UpdateCartUsers(List<CartOwner> users, int cartId)
-        {
-            DeleteCartUser(cartId);
-
-            foreach (var user in users)
-            {
-                repository.Create(user);
-            }
-
         }
     }
 }

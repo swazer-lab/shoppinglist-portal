@@ -32,21 +32,6 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public Image Update(Image entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            if (!entity.Validate())
-                throw new ValidationException(entity.ValidationResults);
-
-            Image uptadedEntity = repository.Update(entity);
-
-            Tracer.Log.EntityUpdated(nameof(Image), entity.ImageId);
-
-            return uptadedEntity ?? entity;
-        }
-
         public Image FindByUserId(int userId)
         {
             IQueryConstraints<Image> constraint = new QueryConstraints<Image>()

@@ -56,7 +56,6 @@ namespace Swazer.ShoppingList.Domain
             }
 
             ItemCardMobileService.Obj.Create(itemList, cartId);
-
         }
 
         public Item GetByName(string name)
@@ -81,6 +80,20 @@ namespace Swazer.ShoppingList.Domain
             List<CartItem> items = queryRepository.Find(constraints).Items.ToList();
 
             return items;
+        }
+
+        public Item GetById(int entityId)
+        {
+            IQueryConstraints<Item> constraint = new QueryConstraints<Item>()
+                .Where(x => x.ItemId == entityId);
+
+            Item founded = queryRepository.SingleOrDefault(constraint);
+            if (founded == null)
+                throw new BusinessRuleException(BusinessRuleExceptionType.NotFound);
+
+            Tracer.Log.EntityRetrieved(nameof(Item), founded.ItemId);
+
+            return founded;
         }
     }
 }
