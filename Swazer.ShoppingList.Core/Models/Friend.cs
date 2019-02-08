@@ -24,6 +24,20 @@ namespace Swazer.ShoppingList.Core
         public DateTime RequestTime { get; set; }
 
         public FriendRequestFlag FriendRequestFlag { get; set; }
+
+        public static Friend Create(User requestedBy, User requestedTo)
+        {
+            return new Friend
+            {
+                RequestedBy = requestedBy,
+                RequestedById = requestedBy.Id,
+                RequestedTo = requestedTo,
+                RequestedToId = requestedTo.Id,
+                FriendRequestFlag = FriendRequestFlag.None,
+                RequestTime = DateTime.Now,
+                CreatedAt = DateTime.Now
+            };
+        }
     }
 
     public enum FriendRequestFlag

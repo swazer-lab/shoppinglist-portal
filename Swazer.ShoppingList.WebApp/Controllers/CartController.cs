@@ -131,6 +131,8 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             User user = GetCurrentUser();
 
+            FriendService.Obj.CreateFriends(user.Id, cartId);
+
             Cart cart = CartService.Obj.GetById(cartId);
 
             CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);

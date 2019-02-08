@@ -33,6 +33,12 @@ namespace Swazer.ShoppingList.Domain
             return queryRepository.SingleOrDefault(constraints) == null;
         }
 
+
+        public static bool AreTheyAlreadyFriend(this Friend model, List<Friend> friends)
+        {
+            return friends.Where(x => ( x.RequestedById == model.RequestedById || x.RequestedById == model.RequestedToId) && ( x.RequestedToId == model.RequestedToId || x.RequestedToId == model.RequestedById)).Count() != 0;
+        }
+
         public static bool IsCartOwnerUnique(this CartOwner model)
         {
             IGenericQueryRepository queryRepository = RepositoryFactory.CreateQueryRepository();

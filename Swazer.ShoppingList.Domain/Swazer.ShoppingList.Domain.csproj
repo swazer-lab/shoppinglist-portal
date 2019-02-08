@@ -91,6 +91,7 @@
     <Compile Include="Service\Mobile\ItemCardMobileService.cs" />
     <Compile Include="Service\Mobile\ItemMobileService.cs" />
     <Compile Include="Service\User\CartService.cs" />
+    <Compile Include="Service\User\FriendService.cs" />
     <Compile Include="Service\User\ItemCartService.cs" />
     <Compile Include="Service\User\ItemService.cs" />
     <Compile Include="SMSEmailNotificationService.cs" />
