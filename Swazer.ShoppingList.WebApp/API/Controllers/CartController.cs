@@ -91,7 +91,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         {
             string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
 
-            string fullUrl = $"http://localhost:63493/Cart/GetAccess/" + $"{codedUrl}";
+            string fullUrl = $"http://shopping.swazerlab.com/Cart/GetAccess/" + $"{codedUrl}";
 
             return Ok(fullUrl);
         }
