@@ -9,4 +9,9 @@ namespace Swazer.ShoppingList.WebApp.API.Models
     {
 
     }
+
+    public class UserSearchCriteriaBindingModel : SearchCriteriaBindingModel
+    {
+        public string Name { get; set; }
+    }
 }

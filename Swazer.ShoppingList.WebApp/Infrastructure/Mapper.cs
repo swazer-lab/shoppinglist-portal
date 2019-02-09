@@ -62,6 +62,7 @@ namespace Swazer.ShoppingList.WebApp.Infrastructure
         {
             return new UserProfileViewModel()
             {
+                UserId = user.Id,
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Name = user.Name,

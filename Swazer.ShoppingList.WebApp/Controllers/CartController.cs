@@ -32,7 +32,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         private CartIndexViewModel GetCartIndexModel(CartIndexSearchCriteria criteriaModel, string message = "")
         {
             User user = GetCurrentUser();
-
+            
             CartSearchCriterias criteria = criteriaModel.ToSearchCriteria(user.Id);
             IQueryResult<Cart> results = CartService.Obj.Find(criteria);
 
@@ -77,9 +77,14 @@ namespace Swazer.ShoppingList.WebApp.Controllers
                 cart = CartService.Obj.GetById(viewModel.CartId.Value);
                 cart.Update(viewModel.Title, viewModel.Notes, viewModel.Date);
 
+                List<CartOwner> users = new List<CartOwner>();
+
+                if (viewModel.Users != null)
+                    users = viewModel.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
+
                 List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartService.Obj.Update(cart, items);
+                CartService.Obj.Update(cart, items, users);
             }
 
             return Json(GetCartIndexModel(criteria, "Success"));

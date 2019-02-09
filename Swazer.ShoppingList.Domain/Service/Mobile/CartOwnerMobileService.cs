@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Swazer.ShoppingList.Domain
@@ -50,7 +51,7 @@ namespace Swazer.ShoppingList.Domain
 
             return items;
         }
-        
+
         public List<CartOwner> GetUsersByCart(int cartId)
         {
             if (cartId == 0)
@@ -66,8 +67,11 @@ namespace Swazer.ShoppingList.Domain
 
         public void DeleteCartUser(int cartId)
         {
+            User currentUser = UserService.Obj.FindByName(Thread.CurrentPrincipal.Identity.Name);
+
             IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-              .Where(x => x.CartId == cartId);
+              .AndAlso(x => x.CartId == cartId)
+              .AndAlso(x => x.UserId != currentUser.Id);
 
             List<CartOwner> users = queryRepository.Find(constraints).Items.ToList();
 

@@ -104,19 +104,18 @@ namespace Swazer.ShoppingList.Domain
             return null;
         }
 
-        public IQueryResult<User> Find(UserSearchCriterias userSearchCriteria)
+        public IQueryResult<User> Find(UserMobileSearchCriteria userSearchCriteria)
         {
             if (userSearchCriteria == null)
                 throw new ArgumentNullException(nameof(userSearchCriteria), "must not be null.");
 
+            var adminUser = FindByEmail("admin@admin.com");
+
             IQueryConstraints<User> constraints = new QueryConstraints<User>()
                 .PageAndSort(userSearchCriteria, c => c.CreatedAt)
-                .IncludePath(u => u.Roles)
-                .AndAlsoIf(c => c.Email.Contains(userSearchCriteria.Email), !string.IsNullOrEmpty(userSearchCriteria.Email))
-                .AndAlsoIf(c => c.IsActive == userSearchCriteria.IsActive, userSearchCriteria.IsActive.HasValue)    
-                .AndAlsoIf(c => c.Roles.Select(x => x.Name).Contains(userSearchCriteria.Role.Name), userSearchCriteria.Role != null)
-                .AndAlso(c => !c.Roles.Select(x => x.Name).Contains(RoleNames.UserRole))
-                .Page(userSearchCriteria.PageNumber, userSearchCriteria.PageSize);
+                .AndAlsoIf(c => c.Name.Contains(userSearchCriteria.Name), !string.IsNullOrEmpty(userSearchCriteria.Name))
+                .AndAlso(c => c.Id != userSearchCriteria.UserId)
+                .AndAlso(c => c.Id != adminUser.Id);
 
             return queryRepository.Find(constraints);
         }
@@ -202,7 +201,7 @@ namespace Swazer.ShoppingList.Domain
             IdentityResult identity = TaskUtil.Await(() => CreateAsync(user, password));
 
             if (!identity.Succeeded)
-                throw new BusinessRuleException(nameof(User) ,"");
+                throw new BusinessRuleException(nameof(User), "");
 
             return TaskUtil.Await(() => identityUserRepository.FindByNameAsync(user.UserName));
         }
@@ -292,7 +291,7 @@ namespace Swazer.ShoppingList.Domain
             foreach (int i in ids)
                 Tracer.Log.EntityDeleted(nameof(User), i);
         }
- 
+
         public void ChangeStatus(int[] ids, bool isActive)
         {
             if (ids == null)

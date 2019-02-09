@@ -27,6 +27,16 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
 
             return criteria;
         }
+        
+        public static UserMobileSearchCriteria ToSearchCriteria(this UserSearchCriteriaBindingModel model, int id)
+        {
+            UserMobileSearchCriteria criteria = CreateSearchCriteria<UserMobileSearchCriteria>(model);
+
+            criteria.UserId = id;
+            criteria.Name = model.Name;
+
+            return criteria;
+        }
 
         public static FriendMobileSearchCriteria ToSearchCriteria(this FriendSearchCriteriaBindingModel model, int userId)
         {

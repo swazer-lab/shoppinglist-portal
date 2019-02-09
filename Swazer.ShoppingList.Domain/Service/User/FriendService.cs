@@ -68,7 +68,6 @@ namespace Swazer.ShoppingList.Domain
                 throw new ArgumentNullException(nameof(criterias));
 
             IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
-                .PageAndSort(criterias, x => x.Id)
                 .Where(x => x.RequestedById == criterias.UserId || x.RequestedToId == criterias.UserId);
 
             List<Friend> result = queryRepository.Find(constraints).Items.ToList();

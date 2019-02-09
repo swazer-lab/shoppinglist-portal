@@ -17,6 +17,30 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
     [AllowApiUser]
     public class UserController : BaseApiController
     {
+        [Route("fetch")]
+        [HttpGet]
+        public IHttpActionResult FetchUsers([FromUri]UserSearchCriteriaBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            UserMobileSearchCriteria userMobileSearchCriteria = model.ToSearchCriteria(user.Id);
+
+            IQueryResult<User> carts = UserService.Obj.Find(userMobileSearchCriteria);
+
+            var result = new PagingBindingModel<UserProfileBindingModel>()
+            {
+                Items = carts.Items.Select(x => x.ToUserProfileBindingModel()).ToList(),
+                TotalCount = carts.TotalCount
+            };
+
+            foreach (var userBindingModel in result.Items.ToList())
+            {
+                userBindingModel.PhotoId = ImageService.Obj.FindByUserId(userBindingModel.UserId)?.ImageId;
+            }
+
+            return Ok(result);
+        }
+
         [Route("updatePhoto")]
         [HttpPost]
         public IHttpActionResult UpdateUserPhoto([FromBody]PhotoBindingModel model)

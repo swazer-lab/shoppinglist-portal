@@ -12,13 +12,28 @@
     };
 }
 
-function UserVM(name, email, mobile, accessLevel) {
+function UserVM(id, name, email, mobile, accessLevel) {
     var self = this;
 
+    self.Id = ko.observable(id);
     self.Name = ko.observable(name);
     self.Email = ko.observable(email);
     self.Mobile = ko.observable(mobile);
     self.AccessLevel = ko.observable(accessLevel);
+
+    self.copy = function () {
+        return new UserVM(self.Id(), self.Name(), self.Email(), self.Mobile(), self.AccessLevel());
+    };
+
+    self.toSubmitModel = function () {
+        return {
+            UserId: self.Id(),
+            Name: self.Name(),
+            Email: self.Email(),
+            Mobile: self.Mobile(),
+            AccessLevel: self.AccessLevel()
+        };
+    };
 }
 
 function ItemVM(id, title, completedStatus) {
@@ -42,7 +57,8 @@ function ItemVM(id, title, completedStatus) {
     };
 }
 
-function CartVM(id, title, note, endDate, items, completedPercentage, accessLevel, users) {
+function CartVM(id, title, note, endDate, items, users, completedPercentage, accessLevel) {
+    debugger;
     var self = this;
 
     self.CartId = ko.observable(id);
@@ -89,6 +105,10 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
         return self.AccessLevel() === 0;
     });
 
+    self.DeleteUser = function (user) {
+        self.Users.remove(user);
+    };
+
     self.DeleteItem = function (item) {
         self.Items.remove(item);
     };
@@ -109,12 +129,17 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
 
     self.copy = function () {
         var items = [];
-
+        var users = [];
+        
         ko.utils.arrayForEach(self.Items(), function (c) {
             items.push(c.copy());
         });
 
-        return new CartVM(self.CartId(), self.Title(), self.Note(), self.EndDate(), items);
+        ko.utils.arrayForEach(self.Users(), function (c) {
+            users.push(c.copy());
+        });
+
+        return new CartVM(self.CartId(), self.Title(), self.Note(), self.EndDate(), items, users, '', self.AccessLevel());
     };
 
     self.toSubmitModel = function () {
@@ -123,11 +148,16 @@ function CartVM(id, title, note, endDate, items, completedPercentage, accessLeve
             Title: self.Title(),
             Notes: self.Note(),
             Date: self.EndDate().format("MM/DD/YYYY"),
-            Items: []
+            Items: [],
+            Users: []
         };
 
         ko.utils.arrayForEach(self.Items(), function (item) {
             model.Items.push(item.toSubmitModel());
+        });
+
+        ko.utils.arrayForEach(self.Users(), function (user) {
+            model.Users.push(user.toSubmitModel());
         });
 
         return model;
@@ -205,10 +235,10 @@ function CartMainVM(options) {
 
             var users = [];
             ko.utils.arrayForEach(it.Users, function (userObj) {
-                users.push(new UserVM(userObj.Name, userObj.Email, userObj.Mobile, userObj.DisplayAccessLevel));
+                users.push(new UserVM(userObj.UserId, userObj.Name, userObj.Email, userObj.Mobile, userObj.DisplayAccessLevel));
             });
             
-            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, completedPercentage, it.AccessLevel, users);
+            var op = new CartVM(it.CartId, it.Title, it.Notes, it.Date, items, users, completedPercentage, it.AccessLevel);
 
             result.push(op);
         }

@@ -52,7 +52,7 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
-        public Cart Update(Cart entity, List<CartItem> items)
+        public Cart Update(Cart entity, List<CartItem> items, List<CartOwner> users)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -65,6 +65,8 @@ namespace Swazer.ShoppingList.Domain
             using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
             {
                 uptadedEntity = repository.Update(entity);
+
+                CartOwnerService.Obj.UpdateCartUsers(users, uptadedEntity.CartId);
 
                 Service.User.ItemService.Obj.MultipleCreate(items, uptadedEntity.CartId);
 
