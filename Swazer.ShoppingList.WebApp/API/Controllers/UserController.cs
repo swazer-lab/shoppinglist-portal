@@ -19,18 +19,15 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
     {
         [Route("fetch")]
         [HttpGet]
-        public IHttpActionResult FetchUsers([FromUri]UserSearchCriteriaBindingModel model)
+        public IHttpActionResult FetchUsers(string name = "")
         {
             User user = GetCurrentUser();
-
-            UserMobileSearchCriteria userMobileSearchCriteria = model.ToSearchCriteria(user.Id);
-
-            IQueryResult<User> carts = UserService.Obj.Find(userMobileSearchCriteria);
+            
+            List<User> carts = UserService.Obj.Find(name).Take(5).ToList();
 
             var result = new PagingBindingModel<UserProfileBindingModel>()
             {
-                Items = carts.Items.Select(x => x.ToUserProfileBindingModel()).ToList(),
-                TotalCount = carts.TotalCount
+                Items = carts.Select(x => x.ToUserProfileBindingModel()).ToList()
             };
 
             foreach (var userBindingModel in result.Items.ToList())

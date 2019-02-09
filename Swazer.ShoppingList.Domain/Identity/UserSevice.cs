@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Swazer.ShoppingList.Domain
@@ -104,20 +105,17 @@ namespace Swazer.ShoppingList.Domain
             return null;
         }
 
-        public IQueryResult<User> Find(UserMobileSearchCriteria userSearchCriteria)
+        public List<User> Find(string name)
         {
-            if (userSearchCriteria == null)
-                throw new ArgumentNullException(nameof(userSearchCriteria), "must not be null.");
-
             var adminUser = FindByEmail("admin@admin.com");
+            User currentUser = FindByName(Thread.CurrentPrincipal.Identity.Name);
 
             IQueryConstraints<User> constraints = new QueryConstraints<User>()
-                .PageAndSort(userSearchCriteria, c => c.CreatedAt)
-                .AndAlsoIf(c => c.Name.Contains(userSearchCriteria.Name), !string.IsNullOrEmpty(userSearchCriteria.Name))
-                .AndAlso(c => c.Id != userSearchCriteria.UserId)
+                .AndAlsoIf(c => c.Name.Contains(name), !string.IsNullOrEmpty(name))
+                .AndAlso(c => c.Id != currentUser.Id)
                 .AndAlso(c => c.Id != adminUser.Id);
 
-            return queryRepository.Find(constraints);
+            return queryRepository.Find(constraints).Items.ToList();
         }
 
         public List<User> GetAll()

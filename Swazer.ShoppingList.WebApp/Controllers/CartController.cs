@@ -32,7 +32,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         private CartIndexViewModel GetCartIndexModel(CartIndexSearchCriteria criteriaModel, string message = "")
         {
             User user = GetCurrentUser();
-            
+
             CartSearchCriterias criteria = criteriaModel.ToSearchCriteria(user.Id);
             IQueryResult<Cart> results = CartService.Obj.Find(criteria);
 
@@ -138,6 +138,12 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             User user = GetCurrentUser();
 
+            CartOwner currentCartUser = CartOwnerService.Obj.GetCartUser(cartId, user.Id);
+
+            if (currentCartUser != null)
+                if (currentCartUser.AccessLevel == AccessLevel.Owner)
+                    return RedirectToAction("Index");
+
             FriendService.Obj.CreateFriends(user.Id, cartId);
 
             Cart cart = CartService.Obj.GetById(cartId);
@@ -153,8 +159,8 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         {
             User user = GetCurrentUser();
 
-             UserProfileViewModel viewModel = user.ToViewModel();
-            
+            UserProfileViewModel viewModel = user.ToViewModel();
+
             var image = ImageService.Obj.FindByUserId(user.Id);
 
             if (image != null)
@@ -177,7 +183,7 @@ namespace Swazer.ShoppingList.WebApp.Controllers
 
             return View(viewModel);
         }
-        
+
         [HttpPost]
         [HandleAjaxException]
         public ActionResult UserProfileEdit(UserProfileViewModel model)
