@@ -49,7 +49,10 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             FriendService.Obj.Create(userFrom.Id, userTo.Id);
 
-            return Ok();
+            UserProfileBindingModel friend = userTo.ToUserProfileBindingModel();
+            friend.PhotoId = ImageService.Obj.FindByUserId(friend.UserId)?.ImageId;
+
+            return Ok(friend);
         }
     }
 }
