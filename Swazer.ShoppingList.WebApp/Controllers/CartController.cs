@@ -131,28 +131,41 @@ namespace Swazer.ShoppingList.WebApp.Controllers
         [HttpGet]
         public ActionResult GetAccess(string id)
         {
-            int[] parameters = UserCodeOperation.DecodeCode(id);
+            try
+            {
+                int[] parameters = UserCodeOperation.DecodeCode(id);
 
-            int cartId = parameters[0];
-            AccessLevel accessLevel = (AccessLevel)parameters[1];
+                int cartId = parameters[0];
+                AccessLevel accessLevel = (AccessLevel)parameters[1];
 
-            User user = GetCurrentUser();
+                if (accessLevel == AccessLevel.Owner)
+                    throw new BusinessRuleException("Owner access level must not be selected");
 
-            CartOwner currentCartUser = CartOwnerService.Obj.GetCartUser(cartId, user.Id);
+                User user = GetCurrentUser();
 
-            if (currentCartUser != null)
-                if (currentCartUser.AccessLevel == AccessLevel.Owner)
-                    return RedirectToAction("Index");
+                CartOwner currentCartUser = CartOwnerService.Obj.GetCartUser(cartId, user.Id);
 
-            FriendService.Obj.CreateFriends(user.Id, cartId);
+                if (currentCartUser != null)
+                    if (currentCartUser.AccessLevel == AccessLevel.Owner)
+                        return RedirectToAction("Index");
 
-            Cart cart = CartService.Obj.GetById(cartId);
+                FriendService.Obj.CreateFriends(user.Id, cartId);
 
-            CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
+                Cart cart = CartService.Obj.GetById(cartId);
 
-            CartOwnerService.Obj.Create(cartOwner);
+                CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
 
-            return RedirectToAction("Index");
+                CartOwnerService.Obj.Create(cartOwner);
+
+                return RedirectToAction("Index");
+            }
+
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult UserProfile()

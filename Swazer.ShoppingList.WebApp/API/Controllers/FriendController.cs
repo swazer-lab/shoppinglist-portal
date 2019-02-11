@@ -39,5 +39,17 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             return Ok(result);
         }
+
+        [Route("add")]
+        [HttpPost]
+        public IHttpActionResult AddFriend([FromBody]CreateFriendBindingModel model)
+        {
+            User userFrom = GetCurrentUser();
+            User userTo = UserService.Obj.FindById(model.FriendId);
+
+            FriendService.Obj.Create(userFrom.Id, userTo.Id);
+
+            return Ok();
+        }
     }
 }
