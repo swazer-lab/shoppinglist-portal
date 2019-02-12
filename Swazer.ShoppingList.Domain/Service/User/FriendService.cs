@@ -62,6 +62,8 @@ namespace Swazer.ShoppingList.Domain
             return queryRepository.Find(constraints).Items.ToList();
         }
 
+
+
         public IQueryResult<User> Find(FriendMobileSearchCriteria criterias)
         {
             if (criterias == null)

@@ -110,12 +110,24 @@ namespace Swazer.ShoppingList.Domain
             var adminUser = FindByEmail("admin@admin.com");
             User currentUser = FindByName(Thread.CurrentPrincipal.Identity.Name);
 
-            IQueryConstraints<User> constraints = new QueryConstraints<User>()
-                .AndAlsoIf(c => c.Name.Contains(name), !string.IsNullOrEmpty(name))
-                .AndAlso(c => c.Id != currentUser.Id)
-                .AndAlso(c => c.Id != adminUser.Id);
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
 
-            return queryRepository.Find(constraints).Items.ToList();
+            IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
+                 .Where(x => x.RequestedById == currentUser.Id || x.RequestedToId == currentUser.Id);
+
+            List<Friend> result = queryRepository.Find(constraints).Items.ToList();
+
+            List<int> requestedByIds = result.Select(x => x.RequestedById).ToList();
+            List<int> requestedToIds = result.Select(x => x.RequestedToId).ToList();
+
+            requestedByIds.AddRange(requestedToIds);
+
+            IQueryConstraints<User> constraintsUser = new QueryConstraints<User>()
+                .Where(x => !requestedByIds.Contains(x.Id))
+                .AndAlso(x => x.Id != adminUser.Id);
+
+            return queryRepository.Find(constraintsUser).Items.ToList();
         }
 
         public List<User> GetAll()
