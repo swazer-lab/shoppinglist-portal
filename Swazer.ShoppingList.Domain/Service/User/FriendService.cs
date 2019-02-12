@@ -30,6 +30,9 @@ namespace Swazer.ShoppingList.Domain
             if (newFriend.AreTheyAlreadyFriend(friends))
                 return null;
 
+            if (savedUserId == userToSaveId)
+                return null;
+
             Friend createdEntity = repository.Create(newFriend);
             if (createdEntity == null)
                 throw new RepositoryException("Entity not created");

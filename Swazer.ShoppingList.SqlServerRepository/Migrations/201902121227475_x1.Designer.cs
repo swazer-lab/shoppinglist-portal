@@ -13,7 +13,7 @@ namespace Swazer.ShoppingList.SqlServerRepository.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901240742152_x1"; }
+            get { return "201902121227475_x1"; }
         }
         
         string IMigrationMetadata.Source

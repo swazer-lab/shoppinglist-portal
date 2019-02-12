@@ -64,37 +64,9 @@
     <Compile Include="Caching\Hash\Utility.cs" />
     <Compile Include="Identity\IdentityRoleRepository.cs" />
     <Compile Include="Identity\IdentityUserRepository.cs" />
-    <Compile Include="Migrations\201901240742152_x1.cs" />
-    <Compile Include="Migrations\201901240742152_x1.Designer.cs">
-      <DependentUpon>201901240742152_x1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901240811199_x2.cs" />
-    <Compile Include="Migrations\201901240811199_x2.Designer.cs">
-      <DependentUpon>201901240811199_x2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901240852096_x3.cs" />
-    <Compile Include="Migrations\201901240852096_x3.Designer.cs">
-      <DependentUpon>201901240852096_x3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901241201091_x4.cs" />
-    <Compile Include="Migrations\201901241201091_x4.Designer.cs">
-      <DependentUpon>201901241201091_x4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901291211081_x5.cs" />
-    <Compile Include="Migrations\201901291211081_x5.Designer.cs">
-      <DependentUpon>201901291211081_x5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901310604033_x6.cs" />
-    <Compile Include="Migrations\201901310604033_x6.Designer.cs">
-      <DependentUpon>201901310604033_x6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901310821478_x7.cs" />
-    <Compile Include="Migrations\201901310821478_x7.Designer.cs">
-      <DependentUpon>201901310821478_x7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071423494_x8.cs" />
-    <Compile Include="Migrations\201902071423494_x8.Designer.cs">
-      <DependentUpon>201902071423494_x8.cs</DependentUpon>
+    <Compile Include="Migrations\201902121227475_x1.cs" />
+    <Compile Include="Migrations\201902121227475_x1.Designer.cs">
+      <DependentUpon>201902121227475_x1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,29 +78,8 @@
     <Compile Include="ThrowHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901240742152_x1.resx">
-      <DependentUpon>201901240742152_x1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901240811199_x2.resx">
-      <DependentUpon>201901240811199_x2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901240852096_x3.resx">
-      <DependentUpon>201901240852096_x3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901241201091_x4.resx">
-      <DependentUpon>201901241201091_x4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901291211081_x5.resx">
-      <DependentUpon>201901291211081_x5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901310604033_x6.resx">
-      <DependentUpon>201901310604033_x6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901310821478_x7.resx">
-      <DependentUpon>201901310821478_x7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071423494_x8.resx">
-      <DependentUpon>201902071423494_x8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902121227475_x1.resx">
+      <DependentUpon>201902121227475_x1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RepositoryResource.en.resx" />
     <EmbeddedResource Include="RepositoryResource.resx" />

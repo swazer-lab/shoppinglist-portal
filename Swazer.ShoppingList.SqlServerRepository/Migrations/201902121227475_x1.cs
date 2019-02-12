@@ -8,29 +8,47 @@ namespace Swazer.ShoppingList.SqlServerRepository.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.RoleClaims",
+                "dbo.CartItems",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        RoleId = c.Int(nullable: false),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
+                        CartItemId = c.Int(nullable: false, identity: true),
+                        CartId = c.Int(nullable: false),
+                        ItemId = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
-                .Index(t => t.RoleId);
+                .PrimaryKey(t => t.CartItemId)
+                .ForeignKey("dbo.Carts", t => t.CartId, cascadeDelete: true)
+                .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: true)
+                .Index(t => t.CartId)
+                .Index(t => t.ItemId);
             
             CreateTable(
-                "dbo.Roles",
+                "dbo.Carts",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 256),
-                        ArabicName = c.String(),
-                        EnglishName = c.String(),
-                        ConcurrencyStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                        CartId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Notes = c.String(),
+                        Date = c.DateTime(),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.CartId);
+            
+            CreateTable(
+                "dbo.CartOwners",
+                c => new
+                    {
+                        CartOwnerId = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        CartId = c.Int(nullable: false),
+                        AccessLevel = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.CartOwnerId)
+                .ForeignKey("dbo.Carts", t => t.CartId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.CartId);
             
             CreateTable(
                 "dbo.Users",
@@ -50,10 +68,8 @@ namespace Swazer.ShoppingList.SqlServerRepository.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         IsActive = c.Boolean(),
-                        ArabicName = c.String(maxLength: 250),
-                        EnglishName = c.String(maxLength: 250),
+                        Name = c.String(maxLength: 250),
                         Mobile = c.String(maxLength: 15),
-                        Address = c.String(maxLength: 500),
                         LastLoginTime = c.DateTime(),
                         CreatedByID = c.Int(),
                         UpdatedByID = c.Int(),
@@ -90,6 +106,70 @@ namespace Swazer.ShoppingList.SqlServerRepository.Migrations
                         UserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey })
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 256),
+                        ArabicName = c.String(),
+                        EnglishName = c.String(),
+                        ConcurrencyStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.RoleClaims",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        RoleId = c.Int(nullable: false),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Items",
+                c => new
+                    {
+                        ItemId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ItemId);
+            
+            CreateTable(
+                "dbo.Friends",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        RequestedById = c.Int(nullable: false),
+                        RequestedToId = c.Int(nullable: false),
+                        RequestTime = c.DateTime(nullable: false),
+                        FriendRequestFlag = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.RequestedById)
+                .ForeignKey("dbo.Users", t => t.RequestedToId)
+                .Index(t => t.RequestedById)
+                .Index(t => t.RequestedToId);
+            
+            CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        ImageId = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        BlobContent = c.Binary(nullable: false),
+                    })
+                .PrimaryKey(t => t.ImageId)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
@@ -154,32 +234,52 @@ namespace Swazer.ShoppingList.SqlServerRepository.Migrations
             DropForeignKey("dbo.UserSmsVerifications", "UserVerificationStatusId", "dbo.UserVerificationStatus");
             DropForeignKey("dbo.UserSmsVerifications", "UserVerificationReasonId", "dbo.UserVerificationReasons");
             DropForeignKey("dbo.UserSmsVerifications", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Images", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Friends", "RequestedToId", "dbo.Users");
+            DropForeignKey("dbo.Friends", "RequestedById", "dbo.Users");
+            DropForeignKey("dbo.CartItems", "ItemId", "dbo.Items");
+            DropForeignKey("dbo.CartItems", "CartId", "dbo.Carts");
+            DropForeignKey("dbo.CartOwners", "UserId", "dbo.Users");
             DropForeignKey("dbo.Users", "UpdatedByID", "dbo.Users");
-            DropForeignKey("dbo.Users", "CreatedByID", "dbo.Users");
             DropForeignKey("dbo.UsersRoles", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.UsersRoles", "UserID", "dbo.Users");
             DropForeignKey("dbo.UserLogins", "UserId", "dbo.Users");
             DropForeignKey("dbo.UserClaims", "UserId", "dbo.Users");
             DropForeignKey("dbo.RoleClaims", "RoleId", "dbo.Roles");
+            DropForeignKey("dbo.Users", "CreatedByID", "dbo.Users");
+            DropForeignKey("dbo.CartOwners", "CartId", "dbo.Carts");
             DropIndex("dbo.UsersRoles", new[] { "RoleID" });
             DropIndex("dbo.UsersRoles", new[] { "UserID" });
             DropIndex("dbo.UserSmsVerifications", new[] { "UserId" });
             DropIndex("dbo.UserSmsVerifications", new[] { "UserVerificationReasonId" });
             DropIndex("dbo.UserSmsVerifications", new[] { "UserVerificationStatusId" });
+            DropIndex("dbo.Images", new[] { "UserId" });
+            DropIndex("dbo.Friends", new[] { "RequestedToId" });
+            DropIndex("dbo.Friends", new[] { "RequestedById" });
+            DropIndex("dbo.RoleClaims", new[] { "RoleId" });
             DropIndex("dbo.UserLogins", new[] { "UserId" });
             DropIndex("dbo.UserClaims", new[] { "UserId" });
             DropIndex("dbo.Users", new[] { "UpdatedByID" });
             DropIndex("dbo.Users", new[] { "CreatedByID" });
-            DropIndex("dbo.RoleClaims", new[] { "RoleId" });
+            DropIndex("dbo.CartOwners", new[] { "CartId" });
+            DropIndex("dbo.CartOwners", new[] { "UserId" });
+            DropIndex("dbo.CartItems", new[] { "ItemId" });
+            DropIndex("dbo.CartItems", new[] { "CartId" });
             DropTable("dbo.UsersRoles");
             DropTable("dbo.UserVerificationStatus");
             DropTable("dbo.UserVerificationReasons");
             DropTable("dbo.UserSmsVerifications");
+            DropTable("dbo.Images");
+            DropTable("dbo.Friends");
+            DropTable("dbo.Items");
+            DropTable("dbo.RoleClaims");
+            DropTable("dbo.Roles");
             DropTable("dbo.UserLogins");
             DropTable("dbo.UserClaims");
             DropTable("dbo.Users");
-            DropTable("dbo.Roles");
-            DropTable("dbo.RoleClaims");
+            DropTable("dbo.CartOwners");
+            DropTable("dbo.Carts");
+            DropTable("dbo.CartItems");
         }
     }
 }

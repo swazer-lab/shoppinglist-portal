@@ -135,7 +135,10 @@ namespace Swazer.ShoppingList.Domain
 
             foreach (var user in users)
             {
-                repository.Create(user);
+                var cartUser = GetCartUser(cartId, user.UserId);
+
+                if (cartUser == null)
+                    repository.Create(user);
             }
         }
     }

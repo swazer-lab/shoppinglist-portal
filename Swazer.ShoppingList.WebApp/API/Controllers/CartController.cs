@@ -73,10 +73,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 CartMobileService.Obj.Update(cart, items, users);
             }
 
-            CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
-
-            bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemService.Obj.GetById(x.ItemId))).ToList();
-            bindingModel.Users = CartOwnerMobileService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+            CartIndexBindingModel bindingModel = getCartIndexBindingModel(cart);
 
             return Ok(bindingModel);
         }
@@ -112,19 +109,35 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             AccessLevel accessLevel = (AccessLevel)parameters[1];
 
             User user = GetCurrentUser();
+            Cart cart = CartMobileService.Obj.GetById(cartId);
 
-            Cart cart = CartMobileService.Obj.GetById(parameters[0]);
+            CartOwner currentCartUser = CartOwnerMobileService.Obj.GetCartUser(cartId, user.Id);
+
+            if (currentCartUser != null)
+                if (currentCartUser.AccessLevel == AccessLevel.Owner)
+                {
+                    CartIndexBindingModel earlyBindingModel = getCartIndexBindingModel(cart);
+
+                    return Ok(earlyBindingModel);
+                }
 
             CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
 
             CartOwnerMobileService.Obj.Create(cartOwner);
 
-            CartIndexBindingModel bindingModel = cart.ToCartIndexBindingModel();
+            CartIndexBindingModel bindingModel = getCartIndexBindingModel(cart);
+
+            return Ok(bindingModel);
+        }
+
+        private CartIndexBindingModel getCartIndexBindingModel(Cart cart)
+        {
+            var bindingModel = cart.ToCartIndexBindingModel();
 
             bindingModel.Items = ItemMobileService.Obj.GetItemsByCard(bindingModel.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemMobileService.Obj.GetById(x.ItemId))).ToList();
             bindingModel.Users = CartOwnerMobileService.Obj.GetUsersByCart(bindingModel.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
 
-            return Ok(bindingModel);
+            return bindingModel;
         }
     }
 }
