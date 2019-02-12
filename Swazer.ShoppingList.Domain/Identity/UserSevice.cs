@@ -125,6 +125,7 @@ namespace Swazer.ShoppingList.Domain
 
             IQueryConstraints<User> constraintsUser = new QueryConstraints<User>()
                 .Where(x => !requestedByIds.Contains(x.Id))
+                .AndAlsoIf(x => x.Name.Contains(name), !string.IsNullOrEmpty(name))
                 .AndAlso(x => x.Id != adminUser.Id);
 
             return queryRepository.Find(constraintsUser).Items.ToList();
