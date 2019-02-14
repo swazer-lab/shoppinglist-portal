@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Threading.Tasks;
 
 namespace Swazer.ShoppingList.WebApp.API.Controllers
 {
@@ -83,6 +84,37 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         public IHttpActionResult RemoveCard(int cartId)
         {
             CartMobileService.Obj.Delete(cartId);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("shareCart")]
+        public async Task<IHttpActionResult> MakeSharing(ShareBindingModel model)
+        {
+            string userCode = UserCodeOperation.ProduceCode(model.CartId, (int)model.AccessLevel);
+
+            foreach (var email in model.Emails)
+            {
+                User user = UserService.Obj.FindByEmail(email);
+
+                if (user != null)
+                {
+                    Cart cart = CartMobileService.Obj.GetById(model.CartId);
+
+                    CartOwner cartOwner = CartOwner.Create(cart, user, model.AccessLevel);
+
+                    CartOwnerMobileService.Obj.Create(cartOwner);
+
+                    await UserService.Obj.SendEmailToShareCard(user.Email, userCode);
+                }
+
+                else
+                {
+                    await UserService.Obj.SendEmailToShareCard(email, userCode);
+                }
+
+            }
 
             return Ok();
         }

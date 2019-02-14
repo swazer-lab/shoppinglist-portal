@@ -751,6 +751,7 @@
     <Compile Include="API\Models\PagingBindingModel.cs" />
     <Compile Include="API\Models\PhotoBindingModel.cs" />
     <Compile Include="API\Models\SearchCriteriaBindingModel.cs" />
+    <Compile Include="API\Models\ShareBindingModel.cs" />
     <Compile Include="API\Resources\ErrorMessages\ErrorMessageStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
