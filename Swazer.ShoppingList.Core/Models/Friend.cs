@@ -33,15 +33,23 @@ namespace Swazer.ShoppingList.Core
                 RequestedById = requestedBy.Id,
                 RequestedTo = requestedTo,
                 RequestedToId = requestedTo.Id,
-                FriendRequestFlag = FriendRequestFlag.None,
+                FriendRequestFlag = FriendRequestFlag.Approved,
                 RequestTime = DateTime.Now,
                 CreatedAt = DateTime.Now
             };
+        }
+
+        public Friend Blocked()
+        {
+            this.FriendRequestFlag = FriendRequestFlag.Blocked;
+
+            return this;
         }
     }
 
     public enum FriendRequestFlag
     {
-        None,
+        Approved,
+        Blocked
     };
 }

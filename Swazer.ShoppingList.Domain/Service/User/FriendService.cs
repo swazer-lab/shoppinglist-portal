@@ -42,6 +42,16 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
+        public Friend Update(Friend friend)
+        {
+            if (friend == null)
+                throw new BusinessRuleException(BusinessRuleExceptionType.NotFound);
+
+            repository.Update(friend);
+
+            return friend;
+        }
+
         public void CreateFriends(int userId, int cartId)
         {
             List<Friend> friends = GetAllFriends();
@@ -65,7 +75,17 @@ namespace Swazer.ShoppingList.Domain
             return queryRepository.Find(constraints).Items.ToList();
         }
 
+        public Friend GetFriendsByUserIds(int byId, int toId)
+        {
+            if (byId == 0 || toId == 0)
+                throw new ArgumentNullException(nameof(byId));
 
+            IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
+                .AndAlso(x => x.RequestedById == byId)
+                .AndAlso(x => x.RequestedToId == toId);
+
+            return queryRepository.Find(constraints).Items.FirstOrDefault();
+        }
 
         public IQueryResult<User> Find(FriendMobileSearchCriteria criterias)
         {
@@ -73,7 +93,8 @@ namespace Swazer.ShoppingList.Domain
                 throw new ArgumentNullException(nameof(criterias));
 
             IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
-                .Where(x => x.RequestedById == criterias.UserId || x.RequestedToId == criterias.UserId);
+                .Where(x => x.RequestedById == criterias.UserId || x.RequestedToId == criterias.UserId)
+                .AndAlso(x => x.FriendRequestFlag == FriendRequestFlag.Approved);
 
             List<Friend> result = queryRepository.Find(constraints).Items.ToList();
 

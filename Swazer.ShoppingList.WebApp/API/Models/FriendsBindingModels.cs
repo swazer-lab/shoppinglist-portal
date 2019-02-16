@@ -21,4 +21,10 @@ namespace Swazer.ShoppingList.WebApp.API.Models
         [Required(ErrorMessage = "Friend to be added has not been sent")]
         public int FriendId { get; set; }
     }
+
+    public class BlockFriendBindingModel
+    {
+        [Required]
+        public int UserId { get; set; }
+    }
 }

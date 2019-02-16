@@ -141,6 +141,9 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             AccessLevel accessLevel = (AccessLevel)parameters[1];
 
             User user = GetCurrentUser();
+
+            FriendService.Obj.CreateFriends(user.Id, cartId);
+
             Cart cart = CartMobileService.Obj.GetById(cartId);
 
             CartOwner currentCartUser = CartOwnerMobileService.Obj.GetCartUser(cartId, user.Id);

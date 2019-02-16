@@ -69,6 +69,20 @@ namespace Swazer.ShoppingList.Domain
             return uptadedEntity ?? entity;
         }
 
+        public List<CartOwner> GetCartsByUser(int userId)
+        {
+            if (userId == 0)
+                throw new ArgumentNullException(nameof(userId));
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .Where(x => x.UserId == userId);
+
+            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
+
+            return items;
+        }
+
+
         public CartOwner GetCartUser(int cartId, int ownerId)
         {
             if (cartId == 0)
@@ -86,25 +100,13 @@ namespace Swazer.ShoppingList.Domain
             return founded;
         }
 
-        public List<CartOwner> GetCartsByUser(int userId)
-        {
-            if (userId == 0)
-                throw new ArgumentNullException(nameof(userId));
-
-            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .Where(x => x.UserId == userId);
-
-            List<CartOwner> items = queryRepository.Find(constraints).Items.ToList();
-
-            return items;
-        }
-
         public List<CartOwner> GetUsersByCart(int cartId, int userId)
         {
             if (cartId == 0)
                 throw new ArgumentNullException(nameof(cartId));
 
             IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .IncludePath(x => x.CartId)
                .Where(x => x.CartId == cartId)
                .AndAlso(x => x.UserId != userId);
 

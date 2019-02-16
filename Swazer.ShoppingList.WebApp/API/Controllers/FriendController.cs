@@ -40,6 +40,21 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             return Ok(result);
         }
 
+        [Route("block")]
+        [HttpPost]
+        public IHttpActionResult BlockUser([FromBody]BlockFriendBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            Friend friend = FriendService.Obj.GetFriendsByUserIds(model.UserId, user.Id);
+
+            friend.Blocked();
+
+            FriendService.Obj.Update(friend);
+
+            return Ok();
+        }
+
         [Route("add")]
         [HttpPost]
         public IHttpActionResult AddFriend([FromBody]CreateFriendBindingModel model)
