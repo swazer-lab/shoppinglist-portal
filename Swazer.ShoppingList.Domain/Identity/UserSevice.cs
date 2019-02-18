@@ -121,7 +121,7 @@ namespace Swazer.ShoppingList.Domain
             Obj = newUserService;
             return Obj;
 
-        } 
+        }
         #endregion
 
         public async Task<User> GetByUserNameOrPhone(string emailOrPhone, string password)
@@ -173,6 +173,14 @@ namespace Swazer.ShoppingList.Domain
         {
             IQueryConstraints<User> constraints = new QueryConstraints<User>()
                 .IncludePath(x => x.Roles);
+
+            return queryRepository.Find(constraints).Items.ToList();
+        }
+
+        public List<User> GetUsersByEmails(List<string> emails)
+        {
+            IQueryConstraints<User> constraints = new QueryConstraints<User>()
+                .AndAlsoIf(x => emails.Contains(x.Email), emails != null && emails.Count != 0);
 
             return queryRepository.Find(constraints).Items.ToList();
         }

@@ -106,7 +106,6 @@ namespace Swazer.ShoppingList.Domain
                 throw new ArgumentNullException(nameof(cartId));
 
             IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
-               .IncludePath(x => x.CartId)
                .Where(x => x.CartId == cartId)
                .AndAlso(x => x.UserId != userId);
 

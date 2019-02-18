@@ -116,7 +116,9 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             }
 
-            return Ok();
+            var users = CartOwnerMobileService.Obj.GetUsersByCart(model.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+
+            return Ok(users);
         }
 
         [Route("generateShareUrl")]
