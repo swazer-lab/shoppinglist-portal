@@ -81,8 +81,8 @@ namespace Swazer.ShoppingList.Domain
                 throw new ArgumentNullException(nameof(byId));
 
             IQueryConstraints<Friend> constraints = new QueryConstraints<Friend>()
-                .AndAlso(x => x.RequestedById == byId)
-                .AndAlso(x => x.RequestedToId == toId);
+                .AndAlso(x => x.RequestedById == byId || x.RequestedById == toId)
+                .AndAlso(x => x.RequestedToId == byId || x.RequestedToId == toId);
 
             return queryRepository.Find(constraints).Items.FirstOrDefault();
         }

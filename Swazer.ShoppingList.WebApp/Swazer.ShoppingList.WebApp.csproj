@@ -443,6 +443,7 @@
     <Content Include="Content\ShoppingStyle\responsive.css" />
     <Content Include="Content\ShoppingStyle\survey.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\Uploader-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -776,6 +777,7 @@
     <Compile Include="Controllers\DashboardUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -852,6 +854,8 @@
     <Content Include="Views\Cart\_Sharing.cshtml" />
     <Content Include="Views\Cart\UserProfile.cshtml" />
     <Content Include="Views\Cart\UserProfileEdit.cshtml" />
+    <Content Include="Views\Shared\_NewLayoutForUsers.cshtml" />
+    <Content Include="Views\NewCart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
