@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+/Swazer.TSS.WebApi/log.txt
+/Swazer.TSS.WebApi/cs.config
+/Swazer.TSS.WebApi/index.html
+/Swazer.TSS.WebApi/publish.bat
+Swazer.TSS.WebApi/cs.config
