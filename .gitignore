@@ -265,3 +265,4 @@ __pycache__/
 /Swazer.TSS.WebApi/index.html
 /Swazer.TSS.WebApi/publish.bat
 Swazer.TSS.WebApi/cs.config
+Swazer.ShoppingList.WebApp/cs.config
