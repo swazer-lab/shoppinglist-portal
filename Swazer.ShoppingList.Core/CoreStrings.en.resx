@@ -138,6 +138,15 @@
   <data name="ComplainStatus_Processing" xml:space="preserve">
     <value>Processing</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Your Email and Start Learning</value>
+  </data>
+  <data name="ConfirmEmailIncorrect" xml:space="preserve">
+    <value>email confirming is unsuccess</value>
+  </data>
+  <data name="ConfirmEmailRegister" xml:space="preserve">
+    <value>Hi, You've received this email because your email address was used to register to Ustad app. Please follow the link bellow to complete your registration</value>
+  </data>
   <data name="ContactTypeEnum_Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -192,6 +201,24 @@
   <data name="Gender_Male" xml:space="preserve">
     <value>Male</value>
   </data>
+  <data name="IfYouDidntRequestForRegister" xml:space="preserve">
+    <value>Please don't open the link and ignore this message if you didn't register to Ustad yourself.</value>
+  </data>
+  <data name="IfYouDidntRequestForReset" xml:space="preserve">
+    <value>Please don't open the link and ignore this message if you didn't make reset password request to Ustad yourself.</value>
+  </data>
+  <data name="IfYouHaveLostYourPassword" xml:space="preserve">
+    <value>Hi, You've received this email because your email address was used to reset your password in Ustad app. Please use the code bellow to complete your reset password operation</value>
+  </data>
+  <data name="NewSubjectAccepted" xml:space="preserve">
+    <value>The topic called {0}  you requested for new subject has been accepted by admin</value>
+  </data>
+  <data name="NewSubjectAcceptedTitle" xml:space="preserve">
+    <value>Acceptence Message</value>
+  </data>
+  <data name="NewSubjectAddedTitle" xml:space="preserve">
+    <value>New Subject Request</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -229,13 +256,31 @@
     <value>Please click &lt;a href='{0}'&gt;here&lt;/a&gt; to reset your password</value>
   </data>
   <data name="ResetPasswordFrom" xml:space="preserve">
-    <value>Health Deal</value>
+    <value>Ustad</value>
+  </data>
+  <data name="ResetPasswordHeader" xml:space="preserve">
+    <value>Ustad Reset Password</value>
   </data>
   <data name="ResetPasswordTitle" xml:space="preserve">
-    <value>Reset Password Title</value>
+    <value>Reset Your Password</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="SubjectAddedInfo" xml:space="preserve">
+    <value>{0} has been added by the user who has email called {1}</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Teacher</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="UstadAccount" xml:space="preserve">
+    <value>Ustad Account</value>
+  </data>
+  <data name="UstadRegistration" xml:space="preserve">
+    <value>Complete Registration</value>
   </data>
   <data name="WorkPeriodKind_Evening" xml:space="preserve">
     <value>Evening</value>

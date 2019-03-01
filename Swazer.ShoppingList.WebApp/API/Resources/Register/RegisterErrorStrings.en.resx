@@ -117,34 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CodeRequiredError" xml:space="preserve">
-    <value>الكود مطلوب</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email is required</value>
   </data>
-  <data name="ComparePassword" xml:space="preserve">
-    <value>تأكيد كلمة المرور يجب أن يطابق كلمة المرور</value>
+  <data name="EmailIsNotCorrectFormat" xml:space="preserve">
+    <value>Email is not correct format</value>
   </data>
-  <data name="EmailLengthError" xml:space="preserve">
-    <value>حقل {0} يجب أن يكون بطول {2} على الأقل</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name is required</value>
   </data>
-  <data name="EmailNotCorrect" xml:space="preserve">
-    <value>البريد الالكتروني غير صحيح</value>
-  </data>
-  <data name="FullNameLengthError" xml:space="preserve">
-    <value>حقل {0} يجب أن يكون بطول {2} على الأقل</value>
-  </data>
-  <data name="GenderRequiredError" xml:space="preserve">
-    <value>حقل الجنس مطلوب</value>
-  </data>
-  <data name="MobileRequiredError" xml:space="preserve">
-    <value>حقل الجوال مطلوب</value>
-  </data>
-  <data name="PasswordLengthError" xml:space="preserve">
-    <value>حقل {0} يجب أن يكون بطول {2} على الأقل</value>
-  </data>
-  <data name="Provider" xml:space="preserve">
-    <value>مزود  مطلوب</value>
-  </data>
-  <data name="Token" xml:space="preserve">
-    <value>رمز  مطلوب</value>
+  <data name="Password" xml:space="preserve">
+    <value>Password is required</value>
   </data>
 </root>

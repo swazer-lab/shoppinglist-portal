@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
+namespace Swazer.ShoppingList.WebApp.API.Resources.ChangePassword {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RegisterApiStrings {
+    public class ChangePasswordErrorStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RegisterApiStrings() {
+        internal ChangePasswordErrorStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,8 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Swazer.ShoppingList.WebApp.API.Resources.Register.RegisterApiStrings", typeof(RegisterApiStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Swazer.ShoppingList.WebApp.API.Resources.ChangePassword.ChangePasswordErrorString" +
+                            "s", typeof(ChangePasswordErrorStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +62,47 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الكود مطلوب.
+        ///   Looks up a localized string similar to Doğrulama şifresi yeni şifre ile eşleşmiyor.
         /// </summary>
-        public static string CodeRequiredError {
+        public static string ComparePasswordMatching {
             get {
-                return ResourceManager.GetString("CodeRequiredError", resourceCulture);
+                return ResourceManager.GetString("ComparePasswordMatching", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تأكيد كلمة المرور يجب أن يطابق كلمة المرور.
+        ///   Looks up a localized string similar to Pasword doğrulama girilmelidir.
         /// </summary>
-        public static string ComparePassword {
+        public static string ConfirmPasswordRequired {
             get {
-                return ResourceManager.GetString("ComparePassword", resourceCulture);
+                return ResourceManager.GetString("ConfirmPasswordRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to حقل {0} يجب أن يكون بطول {2} على الأقل.
+        ///   Looks up a localized string similar to Yeni password girilmelidir.
         /// </summary>
-        public static string EmailLengthError {
+        public static string NewPasswordRequired {
             get {
-                return ResourceManager.GetString("EmailLengthError", resourceCulture);
+                return ResourceManager.GetString("NewPasswordRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to البريد الالكتروني غير صحيح.
+        ///   Looks up a localized string similar to Eski password girilmelidir.
         /// </summary>
-        public static string EmailNotCorrect {
+        public static string OldPasswordRequired {
             get {
-                return ResourceManager.GetString("EmailNotCorrect", resourceCulture);
+                return ResourceManager.GetString("OldPasswordRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to حقل {0} يجب أن يكون بطول {2} على الأقل.
-        /// </summary>
-        public static string FullNameLengthError {
-            get {
-                return ResourceManager.GetString("FullNameLengthError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to حقل الجنس مطلوب.
-        /// </summary>
-        public static string GenderRequiredError {
-            get {
-                return ResourceManager.GetString("GenderRequiredError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to حقل الجوال مطلوب.
-        /// </summary>
-        public static string MobileRequiredError {
-            get {
-                return ResourceManager.GetString("MobileRequiredError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to حقل {0} يجب أن يكون بطول {2} على الأقل.
+        ///   Looks up a localized string similar to Password en az 6 haneli olmalıdır.
         /// </summary>
         public static string PasswordLengthError {
             get {
                 return ResourceManager.GetString("PasswordLengthError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to مزود  مطلوب.
-        /// </summary>
-        public static string Provider {
-            get {
-                return ResourceManager.GetString("Provider", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to رمز  مطلوب.
-        /// </summary>
-        public static string Token {
-            get {
-                return ResourceManager.GetString("Token", resourceCulture);
             }
         }
     }

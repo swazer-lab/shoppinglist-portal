@@ -100,5 +100,13 @@ namespace Swazer.ShoppingList.Domain
 
             Tracer.Log.EntityDeleted(nameof(Item), entity.ItemId);
         }
+
+        public List<Item> GetItems(string title)
+        {
+            IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
+                .AndAlso(x=>x.Title.StartsWith(title));
+
+            return queryRepository.Find(constraints).Items.Take(3).ToList() ;
+        }
     }
 }

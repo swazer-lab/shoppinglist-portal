@@ -27,6 +27,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<ResetPasswordConfirmationInfo> ResetConfigInfo { get; set; }
         #endregion
 
         public ShoppingListContext() : base("CnnStr1")
@@ -108,6 +109,9 @@ namespace Swazer.ShoppingList.SqlServerRepository
 
             modelBuilder.Entity<UserVerificationReason>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<UserVerificationReason>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
+
+            modelBuilder.Entity<ResetPasswordConfirmationInfo>().Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
+            modelBuilder.Entity<ResetPasswordConfirmationInfo>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
             modelBuilder.Entity<UserVerificationStatus>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<UserVerificationStatus>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);

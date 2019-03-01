@@ -35,5 +35,16 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             return Ok(bindingModel);
         }
+
+        [HttpGet]
+        [Route("fetch")]
+        public IHttpActionResult FetchItems(string title)
+        {
+            List<Item> items = ItemService.Obj.GetItems(title);
+
+            List<ItemBindingModel> bindingModel = items.Select(x => x.ToBindingModel()).ToList();
+
+            return Ok(bindingModel);
+        }
     }
 }

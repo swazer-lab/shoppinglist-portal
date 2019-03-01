@@ -58,6 +58,15 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             };
         }
 
+        public static ItemBindingModel ToBindingModel(this Item model)
+        {
+            return new ItemBindingModel()
+            {
+                ItemId = model.ItemId,
+                Title = model.Title
+            };
+        }
+
         public static ItemBindingModel ToCartItemBindingModel(this CartItem model, Item item)
         {
             return new ItemBindingModel()

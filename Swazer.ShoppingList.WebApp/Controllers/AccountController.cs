@@ -255,29 +255,6 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             return View();
         }
 
-        // POST: /Account/ForgotPassword
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return View(model);
-
-                Func<string, string, string> action = (id, code) => Url.Action("ResetPassword", "Account", new { userId = id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.ForgotPasswordAsync(model.Email, action);
-
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View();
-            }
-        }
-
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()

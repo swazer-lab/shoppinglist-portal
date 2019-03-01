@@ -75,6 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessageString.resx</DependentUpon>
     </Compile>
+    <Compile Include="BusinessRuleResource\ErrorMessageString.tr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessageString.tr.resx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessRules.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
@@ -96,6 +101,7 @@
     <Compile Include="Service\User\FriendService.cs" />
     <Compile Include="Service\User\ItemCartService.cs" />
     <Compile Include="Service\User\ItemService.cs" />
+    <Compile Include="Service\User\ResetPasswordInformationService.cs" />
     <Compile Include="SMSEmailNotificationService.cs" />
     <Compile Include="UserSMSVerificaiton.cs" />
   </ItemGroup>
@@ -110,7 +116,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.tr.resx" />
+    <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessageString.tr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.en.resx" />
     <EmbeddedResource Include="BusinessRuleResource\ErrorMessageString.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

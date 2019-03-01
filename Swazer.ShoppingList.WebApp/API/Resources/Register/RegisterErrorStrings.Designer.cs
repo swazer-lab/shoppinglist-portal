@@ -22,14 +22,14 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ApiStrings {
+    public class RegisterErrorStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ApiStrings() {
+        internal RegisterErrorStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Swazer.ShoppingList.WebApp.API.Resources.Register.ApiStrings", typeof(ApiStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Swazer.ShoppingList.WebApp.API.Resources.Register.RegisterErrorStrings", typeof(RegisterErrorStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,38 @@ namespace Swazer.ShoppingList.WebApp.API.Resources.Register {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الحقل {0} مطلوب.
+        ///   Looks up a localized string similar to Email alanı zorunludur.
         /// </summary>
-        public static string ApiPropertyRequired {
+        public static string Email {
             get {
-                return ResourceManager.GetString("ApiPropertyRequired", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long arabic..
+        ///   Looks up a localized string similar to Email formatı yanlış.
         /// </summary>
-        public static string EmailError {
+        public static string EmailIsNotCorrectFormat {
             get {
-                return ResourceManager.GetString("EmailError", resourceCulture);
+                return ResourceManager.GetString("EmailIsNotCorrectFormat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long arabic..
+        ///   Looks up a localized string similar to İsim alanı zorunludur.
         /// </summary>
-        public static string FullNameError {
+        public static string Name {
             get {
-                return ResourceManager.GetString("FullNameError", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This area must be entered arabic..
+        ///   Looks up a localized string similar to Password alanı zorunludur.
         /// </summary>
-        public static string FullNameRequiredError {
+        public static string Password {
             get {
-                return ResourceManager.GetString("FullNameRequiredError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long arabic...
-        /// </summary>
-        public static string MobileError {
-            get {
-                return ResourceManager.GetString("MobileError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long arabic...
-        /// </summary>
-        public static string PasswordError {
-            get {
-                return ResourceManager.GetString("PasswordError", resourceCulture);
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
     }

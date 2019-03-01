@@ -70,11 +70,47 @@ namespace Swazer.ShoppingList.Domain.BusinessRuleResource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The reset code is expired. Please, take a new password.
+        /// </summary>
+        public static string ExpiredDateForResetPassword {
+            get {
+                return ResourceManager.GetString("ExpiredDateForResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password is incorrect.
         /// </summary>
         public static string InCorrectPassword {
             get {
                 return ResourceManager.GetString("InCorrectPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation code is incorrect.
+        /// </summary>
+        public static string IncorrectValidationCode {
+            get {
+                return ResourceManager.GetString("IncorrectValidationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Password operation is not success.
+        /// </summary>
+        public static string ResetPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("ResetPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User can not be found.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
     }

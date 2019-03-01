@@ -117,22 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiPropertyRequired" xml:space="preserve">
-    <value>The {0} is Required</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email alanı zorunludur</value>
   </data>
-  <data name="EmailError" xml:space="preserve">
-    <value>The {0} must be at least {2} characters long.</value>
+  <data name="EmailIsNotCorrectFormat" xml:space="preserve">
+    <value>Email formatı yanlış</value>
   </data>
-  <data name="FullNameError" xml:space="preserve">
-    <value>The {0} must be at least {2} characters long.</value>
+  <data name="Name" xml:space="preserve">
+    <value>İsim alanı zorunludur</value>
   </data>
-  <data name="FullNameRequiredError" xml:space="preserve">
-    <value>This area must be entered.</value>
-  </data>
-  <data name="MobileError" xml:space="preserve">
-    <value>The {0} must be at least {2} characters long.</value>
-  </data>
-  <data name="PasswordError" xml:space="preserve">
-    <value>The {0} must be at least {2} characters long.</value>
+  <data name="Password" xml:space="preserve">
+    <value>Password alanı zorunludur</value>
   </data>
 </root>

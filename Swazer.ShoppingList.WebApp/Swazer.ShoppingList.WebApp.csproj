@@ -754,13 +754,21 @@
     <Compile Include="API\Models\PhotoBindingModel.cs" />
     <Compile Include="API\Models\SearchCriteriaBindingModel.cs" />
     <Compile Include="API\Models\ShareBindingModel.cs" />
+    <Compile Include="API\Resources\ChangePassword\ChangePasswordErrorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChangePasswordErrorStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="API\Resources\ErrorMessages\ErrorMessageStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessageStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="API\Resources\Register\ApiStrings.Designer.cs" />
-    <Compile Include="API\Resources\Register\RegisterApiStrings.Designer.cs" />
+    <Compile Include="API\Resources\Register\RegisterErrorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisterErrorStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RoleConfig.cs" />
@@ -868,16 +876,22 @@
     <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="API\Resources\ChangePassword\ChangePasswordErrorStrings.en.resx" />
+    <EmbeddedResource Include="API\Resources\ChangePassword\ChangePasswordErrorStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChangePasswordErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.en.resx" />
     <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessageStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="API\Resources\ErrorMessages\ErrorMessageStrings.tr.resx" />
-    <EmbeddedResource Include="API\Resources\Register\ApiStrings.en.resx" />
-    <EmbeddedResource Include="API\Resources\Register\ApiStrings.resx" />
-    <EmbeddedResource Include="API\Resources\Register\RegisterApiStrings.en.resx" />
-    <EmbeddedResource Include="API\Resources\Register\RegisterApiStrings.resx" />
+    <EmbeddedResource Include="API\Resources\Register\RegisterErrorStrings.en.resx" />
+    <EmbeddedResource Include="API\Resources\Register\RegisterErrorStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Account\AccountStrings.en.resx" />
     <EmbeddedResource Include="Resources\Account\AccountStrings.resx" />
     <EmbeddedResource Include="Resources\Shared\SharedStrings.en.resx" />

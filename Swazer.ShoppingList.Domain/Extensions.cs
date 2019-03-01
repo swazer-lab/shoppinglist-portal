@@ -49,5 +49,14 @@ namespace Swazer.ShoppingList.Domain
 
             return queryRepository.SingleOrDefault(constraints) == null;
         }
+
+        public static bool IsExpiredDateForResetPasssword(this ResetPasswordConfirmationInfo info)
+        {
+            int expirationMinutes = 30;
+
+            TimeSpan timeSpan = DateTime.Now.Subtract(info.CreatedAt);
+
+            return timeSpan.TotalMinutes > expirationMinutes;
+        }
     }
 }

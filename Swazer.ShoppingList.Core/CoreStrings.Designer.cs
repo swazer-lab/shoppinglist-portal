@@ -61,241 +61,88 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الأدمين.
+        ///   Looks up a localized string similar to Emailini doğrula ve öğrenmeye başla.
         /// </summary>
-        public static string Admin {
+        public static string ConfirmEmail {
             get {
-                return ResourceManager.GetString("Admin", resourceCulture);
+                return ResourceManager.GetString("ConfirmEmail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مشرف مركز.
+        ///   Looks up a localized string similar to Email doğrulama işlemi başarısız.
         /// </summary>
-        public static string CenterSupervisor {
+        public static string ConfirmEmailIncorrect {
             get {
-                return ResourceManager.GetString("CenterSupervisor", resourceCulture);
+                return ResourceManager.GetString("ConfirmEmailIncorrect", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to موظف عيادة.
+        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız.
         /// </summary>
-        public static string ClinicEmployee {
+        public static string ConfirmEmailRegister {
             get {
-                return ResourceManager.GetString("ClinicEmployee", resourceCulture);
+                return ResourceManager.GetString("ConfirmEmailRegister", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مركز الإتصال.
+        ///   Looks up a localized string similar to Eğer Ustad Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız.
         /// </summary>
-        public static string CommunicationCenter {
+        public static string IfYouDidntRequestForRegister {
             get {
-                return ResourceManager.GetString("CommunicationCenter", resourceCulture);
+                return ResourceManager.GetString("IfYouDidntRequestForRegister", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تمت الأفادة.
+        ///   Looks up a localized string similar to Eğer Ustad Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız.
         /// </summary>
-        public static string ComplainStatus_Done {
+        public static string IfYouDidntRequestForReset {
             get {
-                return ResourceManager.GetString("ComplainStatus_Done", resourceCulture);
+                return ResourceManager.GetString("IfYouDidntRequestForReset", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شكوى جديدة.
+        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız.
         /// </summary>
-        public static string ComplainStatus_New {
+        public static string IfYouHaveLostYourPassword {
             get {
-                return ResourceManager.GetString("ComplainStatus_New", resourceCulture);
+                return ResourceManager.GetString("IfYouHaveLostYourPassword", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing Arabic.
+        ///   Looks up a localized string similar to Ekleme talebinde bulunduğunuz {0} isimli konu site yöneticisi tarafından kabul edildi..
         /// </summary>
-        public static string ComplainStatus_Processing {
+        public static string NewSubjectAccepted {
             get {
-                return ResourceManager.GetString("ComplainStatus_Processing", resourceCulture);
+                return ResourceManager.GetString("NewSubjectAccepted", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الايميل.
+        ///   Looks up a localized string similar to Konu Ekleme Onayı.
         /// </summary>
-        public static string ContactTypeEnum_Email {
+        public static string NewSubjectAcceptedTitle {
             get {
-                return ResourceManager.GetString("ContactTypeEnum_Email", resourceCulture);
+                return ResourceManager.GetString("NewSubjectAcceptedTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fax.
+        ///   Looks up a localized string similar to Yeni Konu Talebi.
         /// </summary>
-        public static string ContactTypeEnum_FaxAddress {
+        public static string NewSubjectAddedTitle {
             get {
-                return ResourceManager.GetString("ContactTypeEnum_FaxAddress", resourceCulture);
+                return ResourceManager.GetString("NewSubjectAddedTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الهاتف.
-        /// </summary>
-        public static string ContactTypeEnum_Phone {
-            get {
-                return ResourceManager.GetString("ContactTypeEnum_Phone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عنوان البريد الالكتروني.
-        /// </summary>
-        public static string ContactTypeEnum_WebAddress {
-            get {
-                return ResourceManager.GetString("ContactTypeEnum_WebAddress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to حول.
-        /// </summary>
-        public static string ContentListType_AboutUs {
-            get {
-                return ResourceManager.GetString("ContentListType_AboutUs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to شركات التأمين.
-        /// </summary>
-        public static string ContentListType_AssuranceCompany {
-            get {
-                return ResourceManager.GetString("ContentListType_AssuranceCompany", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to اتصل بنا.
-        /// </summary>
-        public static string ContentListType_ContactUs {
-            get {
-                return ResourceManager.GetString("ContentListType_ContactUs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to الأسئلة المتكرة.
-        /// </summary>
-        public static string ContentListType_FAQ {
-            get {
-                return ResourceManager.GetString("ContentListType_FAQ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to المكز الإعلامي.
-        /// </summary>
-        public static string ContentListType_MediaCenter {
-            get {
-                return ResourceManager.GetString("ContentListType_MediaCenter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to خدمة المرضى.
-        /// </summary>
-        public static string ContentListType_PatientService {
-            get {
-                return ResourceManager.GetString("ContentListType_PatientService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to الخدمات الشخصية.
-        /// </summary>
-        public static string ContentListType_PersonalService {
-            get {
-                return ResourceManager.GetString("ContentListType_PersonalService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ساسية الخصوصية.
-        /// </summary>
-        public static string ContentListType_PrivacyPolicy {
-            get {
-                return ResourceManager.GetString("ContentListType_PrivacyPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عطلة.
-        /// </summary>
-        public static string DayType_Vacation {
-            get {
-                return ResourceManager.GetString("DayType_Vacation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عمل.
-        /// </summary>
-        public static string DayType_Work {
-            get {
-                return ResourceManager.GetString("DayType_Work", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ابن - ابنة.
-        /// </summary>
-        public static string FamilyRelation_Son {
-            get {
-                return ResourceManager.GetString("FamilyRelation_Son", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to زوجة.
-        /// </summary>
-        public static string FamilyRelation_Wife {
-            get {
-                return ResourceManager.GetString("FamilyRelation_Wife", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to أنثى.
-        /// </summary>
-        public static string Gender_Female {
-            get {
-                return ResourceManager.GetString("Gender_Female", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ذكر.
-        /// </summary>
-        public static string Gender_Male {
-            get {
-                return ResourceManager.GetString("Gender_Male", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to لا.
-        /// </summary>
-        public static string No {
-            get {
-                return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to لاتملك الصلاحيات الكافية.
+        ///   Looks up a localized string similar to Bu işlem için izniniz yok.
         /// </summary>
         public static string NoPermission {
             get {
@@ -304,7 +151,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to العنصر المطلوب غير موجود.
+        ///   Looks up a localized string similar to Bulunamadı.
         /// </summary>
         public static string NotFound {
             get {
@@ -313,88 +160,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ليس للنشر.
-        /// </summary>
-        public static string PublishingStatus_NotPublish {
-            get {
-                return ResourceManager.GetString("PublishingStatus_NotPublish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to نشر.
-        /// </summary>
-        public static string PublishingStatus_Publish {
-            get {
-                return ResourceManager.GetString("PublishingStatus_Publish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ملغى.
-        /// </summary>
-        public static string ReservationStatus_Canceled {
-            get {
-                return ResourceManager.GetString("ReservationStatus_Canceled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to شاغر.
-        /// </summary>
-        public static string ReservationStatus_Empty {
-            get {
-                return ResourceManager.GetString("ReservationStatus_Empty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Moved.
-        /// </summary>
-        public static string ReservationStatus_Moved {
-            get {
-                return ResourceManager.GetString("ReservationStatus_Moved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to مؤكد.
-        /// </summary>
-        public static string ReservationStatus_Sure {
-            get {
-                return ResourceManager.GetString("ReservationStatus_Sure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to غير مكتمل.
-        /// </summary>
-        public static string ReservationStatus_UnCompleted {
-            get {
-                return ResourceManager.GetString("ReservationStatus_UnCompleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to مستخدم.
-        /// </summary>
-        public static string ReservationStatus_Used {
-            get {
-                return ResourceManager.GetString("ReservationStatus_Used", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to الرجاء الضغط &lt;a href=&apos;{0}&apos;&gt;هنا&lt;/a&gt; لإعادة ضبط كلمة المرور الخاصة بك.
-        /// </summary>
-        public static string ResetPasswordEmail {
-            get {
-                return ResourceManager.GetString("ResetPasswordEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to صفقة صحة.
+        ///   Looks up a localized string similar to Üstad.
         /// </summary>
         public static string ResetPasswordFrom {
             get {
@@ -403,7 +169,16 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to إعادة ضبط كلمة المرور.
+        ///   Looks up a localized string similar to Üstad Şifre Sıfırlama.
+        /// </summary>
+        public static string ResetPasswordHeader {
+            get {
+                return ResourceManager.GetString("ResetPasswordHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifreni Sıfırla.
         /// </summary>
         public static string ResetPasswordTitle {
             get {
@@ -412,65 +187,29 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مستخدم.
+        ///   Looks up a localized string similar to {0} mail adresine sahip kullanıcı tarafından {1} isimli ders için ekleme talebinde bulunuldu..
         /// </summary>
-        public static string User {
+        public static string SubjectAddedInfo {
             get {
-                return ResourceManager.GetString("User", resourceCulture);
+                return ResourceManager.GetString("SubjectAddedInfo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الفترة المسائية.
+        ///   Looks up a localized string similar to Üstad Hesabınız.
         /// </summary>
-        public static string WorkPeriodKind_Evening {
+        public static string UstadAccount {
             get {
-                return ResourceManager.GetString("WorkPeriodKind_Evening", resourceCulture);
+                return ResourceManager.GetString("UstadAccount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الفترة الصباحية.
+        ///   Looks up a localized string similar to Kaydolmayı Tamamlayın.
         /// </summary>
-        public static string WorkPeriodKind_Morning {
+        public static string UstadRegistration {
             get {
-                return ResourceManager.GetString("WorkPeriodKind_Morning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to الفترة المسائية.
-        /// </summary>
-        public static string WorkPeriodKind_Night {
-            get {
-                return ResourceManager.GetString("WorkPeriodKind_Night", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to فترة استراحة.
-        /// </summary>
-        public static string WorkPeriodType_RestTime {
-            get {
-                return ResourceManager.GetString("WorkPeriodType_RestTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to فترة عمل.
-        /// </summary>
-        public static string WorkPeriodType_WorkTime {
-            get {
-                return ResourceManager.GetString("WorkPeriodType_WorkTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to نعم.
-        /// </summary>
-        public static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
+                return ResourceManager.GetString("UstadRegistration", resourceCulture);
             }
         }
     }

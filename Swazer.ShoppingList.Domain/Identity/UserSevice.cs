@@ -19,6 +19,8 @@ namespace Swazer.ShoppingList.Domain
     public class UserService : UserManager<User, int>
     {
         private readonly string BODY_SHARECART_EMAIL = $@"<!doctype html><html> <head> <meta name=""viewport"" content=""width=device-width""> <meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8""> <title>Share Cart</title> <style> @media only screen and (max-width: 620px) {{ table[class=body] h1 {{ font-size: 28px !important; margin-bottom: 10px !important; }} table[class=body] p, table[class=body] ul, table[class=body] ol, table[class=body] td, table[class=body] span, table[class=body] a {{ font-size: 16px !important; }} table[class=body] .wrapper, table[class=body] .article {{ padding: 10px !important; }} table[class=body] .content {{ padding: 0 !important; }} table[class=body] .container {{ padding: 0 !important; width: 100% !important; }} table[class=body] .main {{ border-left-width: 0 !important; border-radius: 0 !important; border-right-width: 0 !important; }} table[class=body] .btn table {{ width: 100% !important; }} table[class=body] .btn a {{ width: 100% !important; }} table[class=body] .img-responsive {{ height: auto !important; max-width: 100% !important; width: auto !important; }} }} @media all {{ .ExternalClass {{ width: 100%; }} .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {{ line-height: 100%; }} .apple-link a {{ color: inherit !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; text-decoration: none !important; }} .btn-primary table td:hover {{ background-color: #34495e !important; }} .btn-primary a:hover {{ background-color: #34495e !important; border-color: #34495e !important; }} }} </style> </head> <body class="""" style=""background-color: #dcdcdc; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""body"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> <td class=""container"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;""> <div class=""content"" style=""box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;""> <span class=""preheader"" style=""color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;""></span> <table class=""main"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;""> <tr> <td class=""wrapper"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center""> <h1 style=""font-family:'Open Sans', sans-serif; font-size: 25px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">Confirm Sharing Cart</h1> <p style=""font-family: 'Open Sans',sans-serif; color: #74787E;font-size: 15px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">Hi You have this email bacause your email address was used to share cart with you. Pleae follow link below to complete your sharing cart process</p> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""btn btn-primary"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;""> <tbody> <tr> <td align=""center"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;""> <tbody> <tr> <td style=""font-family: 'Open Sans', sans-serif; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;""> <a href=""PLACEHOLDER_URL"" target=""_blank"" style=""display: inline-block; color: #ffffff; background: #4C84D9; border-color: #4C84D9; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 15px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;"">Complete Sharing</a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <p style=""font-family:'Open Sans', sans-serif;color: #74787E;font-size: 15px;font-weight: normal; margin: 0; Margin-bottom: 15px;"">Please dont open link and ignore this if you dont want to share this cart</p> </td> </tr> </table> </td> </tr> </table> </div> </td> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> </tr> </table> </body></html>";
+        private readonly string BODY_CONFIRM_EMAIL = $@"<!doctype html><html> <head> <meta name=""viewport"" content=""width=device-width""> <meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8""> <title>{CoreStrings.ConfirmEmail}</title> <style> @media only screen and (max-width: 620px) {{ table[class=body] h1 {{ font-size: 28px !important; margin-bottom: 10px !important; }} table[class=body] p, table[class=body] ul, table[class=body] ol, table[class=body] td, table[class=body] span, table[class=body] a {{ font-size: 16px !important; }} table[class=body] .wrapper, table[class=body] .article {{ padding: 10px !important; }} table[class=body] .content {{ padding: 0 !important; }} table[class=body] .container {{ padding: 0 !important; width: 100% !important; }} table[class=body] .main {{ border-left-width: 0 !important; border-radius: 0 !important; border-right-width: 0 !important; }} table[class=body] .btn table {{ width: 100% !important; }} table[class=body] .btn a {{ width: 100% !important; }} table[class=body] .img-responsive {{ height: auto !important; max-width: 100% !important; width: auto !important; }} }} @media all {{ .ExternalClass {{ width: 100%; }} .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {{ line-height: 100%; }} .apple-link a {{ color: inherit !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; text-decoration: none !important; }} .btn-primary table td:hover {{ background-color: #34495e !important; }} .btn-primary a:hover {{ background-color: #34495e !important; border-color: #34495e !important; }} }} </style> </head> <body class="""" style=""background-color: #dcdcdc; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""body"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> <td class=""container"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;""> <div class=""content"" style=""box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;""> <span class=""preheader"" style=""color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;""></span> <table class=""main"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;""> <tr> <td class=""wrapper"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center""> <h1 style=""font-family:'Open Sans', sans-serif; font-size: 25px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.ConfirmEmail}</h1> <p style=""font-family: 'Open Sans',sans-serif; color: #74787E;font-size: 15px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.ConfirmEmailRegister}</p> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""btn btn-primary"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;""> <tbody> <tr> <td align=""center"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;""> <tbody> <tr> <td style=""font-family: 'Open Sans', sans-serif; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;""> <a href=""PLACEHOLDER_URL"" target=""_blank"" style=""display: inline-block; color: #ffffff; background: #4C84D9; border-color: #4C84D9; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 15px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;"">{CoreStrings.UstadRegistration}</a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <p style=""font-family:'Open Sans', sans-serif;color: #74787E;font-size: 15px;font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.IfYouDidntRequestForRegister}</p> </td> </tr> </table> </td> </tr> </table> </div> </td> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> </tr> </table> </body></html>";
+        private readonly string BODY_VERIFICATION_CODE = $@"<!doctype html><html> <head> <meta name=""viewport"" content=""width=device-width""> <meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8""> <title>{CoreStrings.ResetPasswordTitle}</title> <style> @media only screen and (max-width: 620px) {{ table[class=body] h1 {{ font-size: 28px !important; margin-bottom: 10px !important; }} table[class=body] p, table[class=body] ul, table[class=body] ol, table[class=body] td, table[class=body] span, table[class=body] a {{ font-size: 16px !important; }} table[class=body] .wrapper, table[class=body] .article {{ padding: 10px !important; }} table[class=body] .content {{ padding: 0 !important; }} table[class=body] .container {{ padding: 0 !important; width: 100% !important; }} table[class=body] .main {{ border-left-width: 0 !important; border-radius: 0 !important; border-right-width: 0 !important; }} table[class=body] .btn table {{ width: 100% !important; }} table[class=body] .btn a {{ width: 100% !important; }} table[class=body] .img-responsive {{ height: auto !important; max-width: 100% !important; width: auto !important; }} }} @media all {{ .ExternalClass {{ width: 100%; }} .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {{ line-height: 100%; }} .apple-link a {{ color: inherit !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; text-decoration: none !important; }} .btn-primary table td:hover {{ background-color: #34495e !important; }} .btn-primary a:hover {{ background-color: #34495e !important; border-color: #34495e !important; }} }} </style> </head> <body class="" style=""background-color: #dcdcdc; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""body"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> <td class=""container"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;""> <div class=""content"" style=""box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;""> <span class=""preheader"" style=""color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;""></span> <table class=""main"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;""> <tr> <td class=""wrapper"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;""> <tr> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center""> <h1 style=""font-family:'Open Sans', sans-serif; font-size: 25px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.ResetPasswordTitle}</h1> <p style=""font-family: 'Open Sans',sans-serif; color: #74787E;font-size: 15px; font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.IfYouHaveLostYourPassword}</p> <table border=""0"" cellpadding=""0"" cellspacing=""0"" class=""btn btn-primary"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;""> <tbody> <tr> <td align=""center"" style=""font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;""> <table border=""0"" cellpadding=""0"" cellspacing=""0"" style=""border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;""> <tbody> <tr> <td style=""font-family: 'Open Sans', sans-serif; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;""> <span class=""button button--green"" target=""_blank"" style=""-webkit-text-size-adjust: none; background: #4C84D9; border-color: #4C84D9; border-radius: 3px; border-style: solid; border-width: 10px 18px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); box-sizing: border-box; color: #FFF; display: inline-block; font-family: 'Open Sans', sans-serif; text-decoration: none;font-size: 15px;padding: 0 35px"">PLACEHOLDER_CODE</span> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <p style=""font-family:'Open Sans', sans-serif;color: #74787E;font-size: 15px;font-weight: normal; margin: 0; Margin-bottom: 15px;"">{CoreStrings.IfYouDidntRequestForReset}</p> </td> </tr> </table> </td> </tr> </table> </div> </td> <td style=""font-family: sans-serif; font-size: 14px; vertical-align: top;"">&nbsp;</td> </tr> </table> </body></html>";
 
         private async Task SendEmail(string to, string subject, string body)
         {
@@ -47,11 +49,45 @@ namespace Swazer.ShoppingList.Domain
             }
         }
 
+        public async Task SendConfirmEmailLinkToUser(string to, string token, int userId)
+        {
+            string url = $"http://localhost:3000/Account/ConfirmEmail/?userId={userId}&token={token}";
+            string body = BODY_CONFIRM_EMAIL.Replace("PLACEHOLDER_URL", url);
+            await SendEmail(to, "Shopping Account", body);
+        }
+
+        public async Task SendResetValidationCode(string to, string code)
+        {
+            string body = BODY_VERIFICATION_CODE.Replace("PLACEHOLDER_CODE", code);
+            await SendEmail(to, CoreStrings.UstadAccount, body);
+        }
+
         public async Task SendEmailToShareCard(string to, string code)
         {
             string url = $"http://shopping.swazerlab.com/Cart/GetAccess/{code}";
             string body = BODY_SHARECART_EMAIL.Replace("PLACEHOLDER_URL", url);
             await SendEmail(to, "Shopping Account", body);
+        }
+
+        public void ResetPassword(string email, string password, string code)
+        {
+            User user = Obj.FindByEmail(email);
+
+            if (user == null)
+                throw new BusinessRuleException(nameof(User), BusinessRules.UserNotFound);
+
+            var info = ResetPasswordInformationService.Obj.GetConfirmationInfo(email);
+
+            if (info.IsExpiredDateForResetPasssword())
+                throw new BusinessRuleException(nameof(ResetPasswordConfirmationInfo), BusinessRules.ExpiredDateForResetPassword);
+
+            if (code != info.Code)
+                throw new BusinessRuleException(nameof(User), BusinessRules.ValidationCodeIncorrect);
+
+            var result = Obj.ResetPassword(user.Id, info.Token, password);
+
+            if (!result.Succeeded)
+                throw new BusinessRuleException(nameof(User), BusinessRules.ResetPasswordIncorrect);
         }
 
         #region Initialization
@@ -432,56 +468,6 @@ namespace Swazer.ShoppingList.Domain
 
             if (!result.Succeeded)
                 throw new BusinessRuleException(string.Join(",", result.Errors));
-        }
-
-        public async Task ForgotPasswordAsync(string email, Func<string, string, string> createLinkFunction)
-        {
-            User user = await FindByEmailAsync(email);
-
-            if (user == null)
-                throw new BusinessRuleException(nameof(User), "");
-
-            string code = await GeneratePasswordResetTokenAsync(user.Id);
-            string link = createLinkFunction(user.Id.ToString(), code);
-
-            try
-            {
-                string linkHtml = string.Format(CoreStrings.ResetPasswordEmail, link);
-                string server = "smtpout.asia.secureserver.net";
-                string userName = "noreply@swazerlab.com";
-                string password = "Swazer@32145";
-
-                using (SmtpClient client = new SmtpClient())
-                {
-                    client.Port = 80;
-                    client.Host = server;
-                    client.EnableSsl = false;
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential(userName, password);
-
-                    using (MailMessage message = new MailMessage())
-                    {
-                        message.BodyEncoding = Encoding.GetEncoding("UTF-8");
-                        message.SubjectEncoding = Encoding.Default;
-                        message.IsBodyHtml = true;
-
-                        // set the message body of the email
-                        message.Subject = CoreStrings.ResetPasswordTitle;
-                        message.Body = linkHtml;
-
-                        // set the email where to go and where to went.
-                        message.To.Add(new MailAddress(email));
-                        message.From = new MailAddress(userName, CoreStrings.ResetPasswordFrom);
-
-                        client.Send(message);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                TracingSystem.TraceException("Email failed to send", ex);
-                throw;
-            }
         }
 
         public IList<string> GetRoles(User user)

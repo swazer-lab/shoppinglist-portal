@@ -5,6 +5,7 @@ using Swazer.ShoppingList.WebApp.Controllers;
 using Swazer.ShoppingList.WebApp.Infrastructure;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading;
 using System.Web;
@@ -107,6 +108,30 @@ namespace Swazer.ShoppingList.WebApp
             // Call target Controller and pass the routeData.
             IController errorController = new HomeController();
             errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            var origin = HttpContext.Current.Request.Headers["origin"];
+            if (origin != null)
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", origin);
+
+            if (HttpContext.Current.Request.HttpMethod == HttpMethod.Options.Method)
+            {
+                HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache");
+
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "DELETE,GET,HEAD,POST,PUT,TRACE");
+
+                // Accept whatever headers they've asked to send us
+                var requestedHeaders = HttpContext.Current.Request.Headers["Access-Control-Request-Headers"];
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", requestedHeaders);
+
+                HttpContext.Current.Response.AddHeader("Access-Control-Max-Age", "1728000");
+
+                // This aborts the response, ending any future processing. Which is always a bad idea, except when it isn't.
+                // (It seems to be the usual process in dealing with HttpOPTIONS)
+                HttpContext.Current.Response.End();
+            }
         }
     }
 }

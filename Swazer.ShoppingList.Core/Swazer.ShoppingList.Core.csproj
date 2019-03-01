@@ -59,6 +59,7 @@
     <Compile Include="Basis\IQueryResult.cs" />
     <Compile Include="Basis\ISettingsProvider.cs" />
     <Compile Include="Basis\QueryResult.cs" />
+    <Compile Include="Basis\ResetCodeOperation.cs" />
     <Compile Include="Basis\RoleNames.cs" />
     <Compile Include="Basis\Settings.cs" />
     <Compile Include="Basis\SettingsProvider.cs" />
@@ -67,7 +68,11 @@
     <Compile Include="Basis\Tracer.cs" />
     <Compile Include="Basis\UserCode.cs" />
     <Compile Include="Basis\ValidatableEntity.cs" />
-    <Compile Include="CoreStrings.Designer.cs" />
+    <Compile Include="CoreStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Exceptions\BusinessRuleException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\PermissionException.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ResetPasswordConfirmationInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchCriterias\CartSearchCriterias.cs" />
     <Compile Include="SearchCriterias\ItemSearchCriteria.cs" />
@@ -107,9 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreStrings.en.resx" />
-    <EmbeddedResource Include="CoreStrings.resx" />
+    <EmbeddedResource Include="CoreStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

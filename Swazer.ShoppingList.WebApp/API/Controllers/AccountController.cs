@@ -46,21 +46,6 @@ namespace Swazer.ShoppingList.WebApp.API
             return Ok();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IHttpActionResult> ForgotPassword(string email)
-        {
-            if (string.IsNullOrEmpty(email))
-                return BadRequest("Email must not be empty");
-
-            string lang = Thread.CurrentThread.IsArabic() ? "ar" : "en";
-            Func<string, string, string> action = (id, code) => Request.RequestUri.GetLeftPart(UriPartial.Authority) + $"/{lang}/Account/ResetPassword?Code={HttpUtility.UrlEncode(code)}&userId={id}";
-            // do not use the UserService.Obj here because it will not work
-            await HttpContext.Current.GetOwinContext().GetUserManager<UserService>().ForgotPasswordAsync(email, action);
-
-            return Ok();
-        }
-
         //// GET api/Account/UserInfo
         ////[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         //[Authorize]
@@ -135,7 +120,7 @@ namespace Swazer.ShoppingList.WebApp.API
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
-        public IHttpActionResult Register(RegisterBindingModel model)
+        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetFirstError());
@@ -165,6 +150,10 @@ namespace Swazer.ShoppingList.WebApp.API
             string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
             Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
+            var confirmToken = UserService.Obj.GenerateEmailConfirmationToken(result.Id);
+            var encodedToken = HttpUtility.UrlEncode(confirmToken);
+            await UserService.Obj.SendConfirmEmailLinkToUser(model.Email, encodedToken, result.Id);
+
             var token = new
             {
                 userName = user.UserName,
@@ -177,6 +166,53 @@ namespace Swazer.ShoppingList.WebApp.API
             };
 
             return Ok(token);
+        }
+
+        [HttpPost]
+        [Route("ConfirmEmail")]
+        [AllowAnonymous]
+        public IHttpActionResult ConfirmEmail([FromBody]ConfirmEmailBindingModel confirmEmailBindingModel)
+        {
+            IdentityResult result = UserService.Obj.ConfirmEmail(confirmEmailBindingModel.UserId, confirmEmailBindingModel.Token);
+
+            if (!result.Succeeded)
+                throw new BusinessRuleException(nameof(User), BusinessRules.ConfirmEmailIncorrect);
+
+            var data = new { userId = confirmEmailBindingModel.UserId };
+
+            return Ok();
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            User user = UserService.Obj.FindByEmail(model.Email);
+
+            if (user == null)
+                throw new BusinessRuleException(nameof(User), BusinessRules.UserNotFound);
+
+            string token = UserService.Obj.GeneratePasswordResetToken(user.Id);
+
+            string resetCode = ResetCodeOperation.ProduceUserResetCode();
+            ResetPasswordConfirmationInfo info = ResetPasswordConfirmationInfo.Create(token, model.Email, resetCode);
+
+            ResetPasswordInformationService.Obj.Create(info);
+
+            await UserService.Obj.SendResetValidationCode(model.Email, resetCode);
+
+            return Ok();
+        }
+
+        [Route("ResetPassword")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            UserService.Obj.ResetPassword(model.Email, model.Password, model.Code);
+
+            return Ok();
         }
 
         // POST api/Account/Logout
@@ -335,81 +371,5 @@ namespace Swazer.ShoppingList.WebApp.API
         }
 
         #endregion
-
-        //https://stackoverflow.com/a/28298790
-        //http://codetrixstudio.com/mvc-web-api-facebook-sdk/
-        //[OverrideAuthentication]
-        //[AllowAnonymous]
-        //[Route("RegisterExternal")]
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        //{
-        //    //if (!ModelState.IsValid)
-        //    //    return BadRequest(ModelState);
-
-        //    try
-        //    {
-        //        ExternalLoginData externalLogin = await ExternalLoginData.FromToken(model.Provider, model.Token);
-
-        //        if (externalLogin == null)
-        //            throw new Exception("externalLogin can not be found, externalLogin is null");
-
-        //        if (externalLogin.LoginProvider != model.Provider)
-        //        {
-        //            Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-        //            throw new Exception("Provider Conflicts, the Provider which send by user is not the same of the externalLogin's provider");
-        //        }
-
-        //        User user = await UserService.Obj.FindByEmailAsync(model.Email);
-
-        //        bool hasRegistered = user != null;
-        //        if (!hasRegistered)
-        //        {
-        //            user = new User(model.ArabicName, model.Mobile, model.Email);
-        //            user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
-        //            user = await UserService.Obj.CreateExternalUserAsync(user, new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
-        //        }
-
-        //        //authenticate
-        //        ClaimsIdentity identity = await UserService.Obj.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
-        //        IEnumerable<Claim> claims = externalLogin.GetClaims();
-        //        identity.AddClaims(claims);
-        //        Authentication.SignIn(identity);
-
-        //        ClaimsIdentity oAuthIdentity = new ClaimsIdentity(Startup.OAuthOptions.AuthenticationType);
-
-        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-        //        oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, RoleNames.UserRole));
-
-        //        AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, new AuthenticationProperties());
-
-        //        DateTime currentUtc = DateTime.UtcNow;
-        //        ticket.Properties.IssuedUtc = currentUtc;
-        //        ticket.Properties.ExpiresUtc = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan);
-
-        //        string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
-        //        Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-
-        //        var token = new
-        //        {
-        //            userName = user.UserName,
-        //            userId = user.Id,
-        //            access_token = accessToken,
-        //            token_type = "bearer",
-        //            expires_in = Startup.OAuthOptions.AccessTokenExpireTimeSpan.TotalSeconds.ToString(),
-        //            issued = currentUtc.ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"),
-        //            expires = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan).ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'")
-        //        };
-
-        //        return Ok(token);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TracingSystem.TraceException(ex);
-        //        return InternalServerError();
-        //    }
-        //}
-
     }
 }

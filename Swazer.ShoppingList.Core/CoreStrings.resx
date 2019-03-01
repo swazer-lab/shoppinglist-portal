@@ -117,142 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Admin" xml:space="preserve">
-    <value>الأدمين</value>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Emailini doğrula ve öğrenmeye başla</value>
   </data>
-  <data name="CenterSupervisor" xml:space="preserve">
-    <value>مشرف مركز</value>
+  <data name="ConfirmEmailIncorrect" xml:space="preserve">
+    <value>Email doğrulama işlemi başarısız</value>
   </data>
-  <data name="ClinicEmployee" xml:space="preserve">
-    <value>موظف عيادة</value>
+  <data name="ConfirmEmailRegister" xml:space="preserve">
+    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız</value>
   </data>
-  <data name="CommunicationCenter" xml:space="preserve">
-    <value>مركز الإتصال</value>
+  <data name="IfYouDidntRequestForRegister" xml:space="preserve">
+    <value>Eğer Ustad Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız</value>
   </data>
-  <data name="ComplainStatus_Done" xml:space="preserve">
-    <value>تمت الأفادة</value>
+  <data name="IfYouDidntRequestForReset" xml:space="preserve">
+    <value>Eğer Ustad Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız</value>
   </data>
-  <data name="ComplainStatus_New" xml:space="preserve">
-    <value>شكوى جديدة</value>
+  <data name="IfYouHaveLostYourPassword" xml:space="preserve">
+    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız</value>
   </data>
-  <data name="ComplainStatus_Processing" xml:space="preserve">
-    <value>Processing Arabic</value>
+  <data name="NewSubjectAccepted" xml:space="preserve">
+    <value>Ekleme talebinde bulunduğunuz {0} isimli konu site yöneticisi tarafından kabul edildi.</value>
   </data>
-  <data name="ContactTypeEnum_Email" xml:space="preserve">
-    <value>الايميل</value>
+  <data name="NewSubjectAcceptedTitle" xml:space="preserve">
+    <value>Konu Ekleme Onayı</value>
   </data>
-  <data name="ContactTypeEnum_FaxAddress" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="ContactTypeEnum_Phone" xml:space="preserve">
-    <value>الهاتف</value>
-  </data>
-  <data name="ContactTypeEnum_WebAddress" xml:space="preserve">
-    <value>عنوان البريد الالكتروني</value>
-  </data>
-  <data name="ContentListType_AboutUs" xml:space="preserve">
-    <value>حول</value>
-  </data>
-  <data name="ContentListType_AssuranceCompany" xml:space="preserve">
-    <value>شركات التأمين</value>
-  </data>
-  <data name="ContentListType_ContactUs" xml:space="preserve">
-    <value>اتصل بنا</value>
-  </data>
-  <data name="ContentListType_FAQ" xml:space="preserve">
-    <value>الأسئلة المتكرة</value>
-  </data>
-  <data name="ContentListType_MediaCenter" xml:space="preserve">
-    <value>المكز الإعلامي</value>
-  </data>
-  <data name="ContentListType_PatientService" xml:space="preserve">
-    <value>خدمة المرضى</value>
-  </data>
-  <data name="ContentListType_PersonalService" xml:space="preserve">
-    <value>الخدمات الشخصية</value>
-  </data>
-  <data name="ContentListType_PrivacyPolicy" xml:space="preserve">
-    <value>ساسية الخصوصية</value>
-  </data>
-  <data name="DayType_Vacation" xml:space="preserve">
-    <value>عطلة</value>
-  </data>
-  <data name="DayType_Work" xml:space="preserve">
-    <value>عمل</value>
-  </data>
-  <data name="FamilyRelation_Son" xml:space="preserve">
-    <value>ابن - ابنة</value>
-  </data>
-  <data name="FamilyRelation_Wife" xml:space="preserve">
-    <value>زوجة</value>
-  </data>
-  <data name="Gender_Female" xml:space="preserve">
-    <value>أنثى</value>
-  </data>
-  <data name="Gender_Male" xml:space="preserve">
-    <value>ذكر</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>لا</value>
+  <data name="NewSubjectAddedTitle" xml:space="preserve">
+    <value>Yeni Konu Talebi</value>
   </data>
   <data name="NoPermission" xml:space="preserve">
-    <value>لاتملك الصلاحيات الكافية</value>
+    <value>Bu işlem için izniniz yok</value>
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value>العنصر المطلوب غير موجود</value>
-  </data>
-  <data name="PublishingStatus_NotPublish" xml:space="preserve">
-    <value>ليس للنشر</value>
-  </data>
-  <data name="PublishingStatus_Publish" xml:space="preserve">
-    <value>نشر</value>
-  </data>
-  <data name="ReservationStatus_Canceled" xml:space="preserve">
-    <value>ملغى</value>
-  </data>
-  <data name="ReservationStatus_Empty" xml:space="preserve">
-    <value>شاغر</value>
-  </data>
-  <data name="ReservationStatus_Moved" xml:space="preserve">
-    <value>Moved</value>
-  </data>
-  <data name="ReservationStatus_Sure" xml:space="preserve">
-    <value>مؤكد</value>
-  </data>
-  <data name="ReservationStatus_UnCompleted" xml:space="preserve">
-    <value>غير مكتمل</value>
-  </data>
-  <data name="ReservationStatus_Used" xml:space="preserve">
-    <value>مستخدم</value>
-  </data>
-  <data name="ResetPasswordEmail" xml:space="preserve">
-    <value>الرجاء الضغط &lt;a href='{0}'&gt;هنا&lt;/a&gt; لإعادة ضبط كلمة المرور الخاصة بك</value>
+    <value>Bulunamadı</value>
   </data>
   <data name="ResetPasswordFrom" xml:space="preserve">
-    <value>صفقة صحة</value>
+    <value>Üstad</value>
+  </data>
+  <data name="ResetPasswordHeader" xml:space="preserve">
+    <value>Üstad Şifre Sıfırlama</value>
   </data>
   <data name="ResetPasswordTitle" xml:space="preserve">
-    <value>إعادة ضبط كلمة المرور</value>
+    <value>Şifreni Sıfırla</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>مستخدم</value>
+  <data name="SubjectAddedInfo" xml:space="preserve">
+    <value>{0} mail adresine sahip kullanıcı tarafından {1} isimli ders için ekleme talebinde bulunuldu.</value>
   </data>
-  <data name="WorkPeriodKind_Evening" xml:space="preserve">
-    <value>الفترة المسائية</value>
+  <data name="UstadAccount" xml:space="preserve">
+    <value>Üstad Hesabınız</value>
   </data>
-  <data name="WorkPeriodKind_Morning" xml:space="preserve">
-    <value>الفترة الصباحية</value>
-  </data>
-  <data name="WorkPeriodKind_Night" xml:space="preserve">
-    <value>الفترة المسائية</value>
-  </data>
-  <data name="WorkPeriodType_RestTime" xml:space="preserve">
-    <value>فترة استراحة</value>
-  </data>
-  <data name="WorkPeriodType_WorkTime" xml:space="preserve">
-    <value>فترة عمل</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>نعم</value>
+  <data name="UstadRegistration" xml:space="preserve">
+    <value>Kaydolmayı Tamamlayın</value>
   </data>
 </root>

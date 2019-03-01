@@ -120,7 +120,19 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>The email is already exist</value>
   </data>
+  <data name="ExpiredDateForResetPassword" xml:space="preserve">
+    <value>Sıfırlama kodunun süresi doldu. Lütfen yeni bir kod alınız</value>
+  </data>
   <data name="InCorrectPassword" xml:space="preserve">
     <value>The password is incorrect</value>
+  </data>
+  <data name="IncorrectValidationCode" xml:space="preserve">
+    <value>Doğrulama kodu hatalı</value>
+  </data>
+  <data name="ResetPasswordIncorrect" xml:space="preserve">
+    <value>Şifre sıfırlama işlemi başarısız oldu</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Kullanıcı bulunamadı</value>
   </data>
 </root>

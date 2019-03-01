@@ -120,7 +120,19 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>The email is already exist</value>
   </data>
+  <data name="ExpiredDateForResetPassword" xml:space="preserve">
+    <value>The reset code is expired. Please, take a new password</value>
+  </data>
   <data name="InCorrectPassword" xml:space="preserve">
     <value>The password is incorrect</value>
+  </data>
+  <data name="IncorrectValidationCode" xml:space="preserve">
+    <value>Validation code is incorrect</value>
+  </data>
+  <data name="ResetPasswordIncorrect" xml:space="preserve">
+    <value>Reset Password operation is not success</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User can not be found</value>
   </data>
 </root>
