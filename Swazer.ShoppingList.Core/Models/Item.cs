@@ -16,11 +16,13 @@ namespace Swazer.ShoppingList.Core
 
         public List<CartItem> CartItems { get; set; }
 
-        public static Item Create(string title)
+        public static Item Create(string title, User createdBy)
         {
             return new Item
             {
                 Title = title,
+                CreatedByID = createdBy.Id,
+                CreatedBy = createdBy,
                 IsActive = true
             };
         }
@@ -51,7 +53,7 @@ namespace Swazer.ShoppingList.Core
     public enum ItemStatus
     {
         Active,
-        Completed, 
+        Completed,
         Canceled
     }
 }

@@ -101,12 +101,12 @@ namespace Swazer.ShoppingList.Domain
             Tracer.Log.EntityDeleted(nameof(Item), entity.ItemId);
         }
 
-        public List<Item> GetItems(string title)
+        public List<string> GetItems(int currentUserId, int adminId)
         {
             IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
-                .AndAlso(x=>x.Title.StartsWith(title));
+                .Where(x => x.CreatedByID == currentUserId || x.CreatedByID == adminId);
 
-            return queryRepository.Find(constraints).Items.Take(3).ToList() ;
+            return queryRepository.Find(constraints).Items.Select(x => x.Title).ToList();
         }
     }
 }

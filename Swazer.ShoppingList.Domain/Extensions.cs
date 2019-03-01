@@ -28,7 +28,8 @@ namespace Swazer.ShoppingList.Domain
             IGenericQueryRepository queryRepository = RepositoryFactory.CreateQueryRepository();
 
             IQueryConstraints<Item> constraints = new QueryConstraints<Item>()
-                .Where(x => x.Title == item.Title);
+                .AndAlso(x => x.Title == item.Title)
+                .AndAlso(x => x.CreatedByID == item.CreatedByID);
 
             return queryRepository.SingleOrDefault(constraints) == null;
         }
@@ -36,7 +37,7 @@ namespace Swazer.ShoppingList.Domain
 
         public static bool AreTheyAlreadyFriend(this Friend model, List<Friend> friends)
         {
-            return friends.Where(x => ( x.RequestedById == model.RequestedById || x.RequestedById == model.RequestedToId) && ( x.RequestedToId == model.RequestedToId || x.RequestedToId == model.RequestedById)).Count() != 0;
+            return friends.Where(x => (x.RequestedById == model.RequestedById || x.RequestedById == model.RequestedToId) && (x.RequestedToId == model.RequestedToId || x.RequestedToId == model.RequestedById)).Count() != 0;
         }
 
         public static bool IsCartOwnerUnique(this CartOwner model)

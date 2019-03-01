@@ -131,7 +131,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
             modelBuilder.Entity<Image>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
             modelBuilder.Entity<Image>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
-            modelBuilder.Entity<Item>().Ignore(x => x.CreatedAt).Ignore(x => x.CreatedBy).Ignore(x => x.CreatedByID);
+            modelBuilder.Entity<Item>().Ignore(x => x.CreatedAt);
             modelBuilder.Entity<Item>().Ignore(x => x.UpdatedAt).Ignore(x => x.UpdatedBy).Ignore(x => x.UpdatedByID);
 
             modelBuilder.Entity<User>().HasOptional(x => x.CreatedBy).WithMany().HasForeignKey(x => x.CreatedByID).WillCascadeOnDelete(false);

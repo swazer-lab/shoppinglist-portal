@@ -55,40 +55,40 @@ namespace Swazer.ShoppingList.WebApp.Controllers
             return result;
         }
 
-        [HttpPost]
-        [HandleAjaxException]
-        public ActionResult Create(CartViewModel viewModel, CartIndexSearchCriteria criteria)
-        {
-            User user = GetCurrentUser();
+        //[HttpPost]
+        //[HandleAjaxException]
+        //public ActionResult Create(CartViewModel viewModel, CartIndexSearchCriteria criteria)
+        //{
+        //    User user = GetCurrentUser();
 
-            Cart cart = null;
+        //    Cart cart = null;
 
-            if (!viewModel.CartId.HasValue || viewModel.CartId == 0)
-            {
-                cart = Cart.Create(viewModel.Title, viewModel.Notes, viewModel.Date);
+        //    if (!viewModel.CartId.HasValue || viewModel.CartId == 0)
+        //    {
+        //        cart = Cart.Create(viewModel.Title, viewModel.Notes, viewModel.Date);
 
-                List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
+        //        List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                cart = CartService.Obj.Create(cart, user, items);
-            }
+        //        cart = CartService.Obj.Create(cart, user, items);
+        //    }
 
-            else
-            {
-                cart = CartService.Obj.GetById(viewModel.CartId.Value);
-                cart.Update(viewModel.Title, viewModel.Notes, viewModel.Date);
+        //    else
+        //    {
+        //        cart = CartService.Obj.GetById(viewModel.CartId.Value);
+        //        cart.Update(viewModel.Title, viewModel.Notes, viewModel.Date);
 
-                List<CartOwner> users = new List<CartOwner>();
+        //        List<CartOwner> users = new List<CartOwner>();
 
-                if (viewModel.Users != null)
-                    users = viewModel.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
+        //        if (viewModel.Users != null)
+        //            users = viewModel.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
 
-                List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
+        //        List<CartItem> items = viewModel.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
 
-                CartService.Obj.Update(cart, items, users);
-            }
+        //        CartService.Obj.Update(cart, items, users);
+        //    }
 
-            return Json(GetCartIndexModel(criteria, "Success"));
-        }
+        //    return Json(GetCartIndexModel(criteria, "Success"));
+        //}
 
         [HttpPost]
         [HandleAjaxException]

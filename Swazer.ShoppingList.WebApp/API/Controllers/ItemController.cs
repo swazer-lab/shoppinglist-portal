@@ -14,7 +14,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 {
     [RoutePrefix("api/item")]
     [AllowApiUser]
-    public class ItemController : ApiController
+    public class ItemController : BaseApiController
     {
         [HttpPost]
         [Route("changeStatus")]
@@ -38,13 +38,15 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpGet]
         [Route("fetch")]
-        public IHttpActionResult FetchItems(string title)
+        public IHttpActionResult FetchItems()
         {
-            List<Item> items = ItemService.Obj.GetItems(title);
+            User currentUser = GetCurrentUser();
 
-            List<ItemBindingModel> bindingModel = items.Select(x => x.ToBindingModel()).ToList();
+            var admin = UserService.Obj.FindByEmail("admin@admin.com");
 
-            return Ok(bindingModel);
+            List<string> items = ItemService.Obj.GetItems(currentUser.Id, admin.Id);
+
+            return Ok(items);
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             {
                 cart = Cart.Create(model.Title, model.Notes, model.Date);
 
-                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status)).ToList();
 
                 cart = CartMobileService.Obj.Create(cart, user, items);
             }
@@ -67,7 +67,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 if (model.Users != null)
                     users = model.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
 
-                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title), x.Status)).ToList();
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status)).ToList();
 
                 users.Add(CartOwner.Create(cart, user, AccessLevel.Owner));
 

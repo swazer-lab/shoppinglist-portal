@@ -46,10 +46,12 @@ namespace Swazer.ShoppingList.WebApp.Areas.Admin.Controllers
         [HandleAjaxException]
         public ActionResult Create(ItemViewModel viewModel, ItemIndexSearchCriteria criteria)
         {
+            User user = GetCurrentUser();
+
             if (!ModelState.IsValid)
                 throw new BusinessRuleException(ModelState.GetFirstError());
 
-            Item entity = Item.Create(viewModel.Title);
+            Item entity = Item.Create(viewModel.Title, user);
             entity = ItemService.Obj.Create(entity);
 
             ItemIndexViewModel result = getItemIndexModel(criteria, "Success");
