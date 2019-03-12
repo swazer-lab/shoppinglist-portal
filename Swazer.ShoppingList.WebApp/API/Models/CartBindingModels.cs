@@ -58,6 +58,6 @@ namespace Swazer.ShoppingList.WebApp.API.Models
 
     public class CartSearchCriteriaBindingModel : SearchCriteriaBindingModel
     {
-
+        public string Title { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             CartMobileSearchCriteria criteria = CreateSearchCriteria<CartMobileSearchCriteria>(model);
 
             criteria.UserId = userId;
+            criteria.Title = model.Title;
 
             return criteria;
         }

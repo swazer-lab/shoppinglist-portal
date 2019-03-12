@@ -9,5 +9,7 @@ namespace Swazer.ShoppingList.Core
     public class CartMobileSearchCriteria : SearchCriteria
     {
         public int UserId { get; set; }
+
+        public string Title { get; set; }
     }
 }

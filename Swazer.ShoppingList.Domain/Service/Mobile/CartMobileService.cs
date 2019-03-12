@@ -103,7 +103,8 @@ namespace Swazer.ShoppingList.Domain
 
             IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
                 .PageAndSort(criterias, x => x.CartId)
-                .AndAlso(x => cartIds.Contains(x.CartId));
+                .AndAlso(x => cartIds.Contains(x.CartId))
+                .AndAlsoIf(x => x.Title.Contains(criterias.Title), !string.IsNullOrEmpty(criterias.Title));
 
             IQueryResult<Cart> result = queryRepository.Find(constraints);
 
