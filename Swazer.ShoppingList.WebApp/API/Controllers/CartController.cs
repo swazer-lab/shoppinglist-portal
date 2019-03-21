@@ -96,14 +96,14 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             foreach (var email in model.Emails)
             {
-                User user = UserService.Obj.FindByEmail(email);
+                User user = UserService.Obj.FindByEmail(email);             
 
                 if (user != null)
                 {
                     Cart cart = CartMobileService.Obj.GetById(model.CartId);
 
                     CartOwner cartOwner = CartOwner.Create(cart, user, model.AccessLevel);
-
+                        
                     CartOwnerMobileService.Obj.Create(cartOwner);
 
                     await UserService.Obj.SendEmailToShareCard(user.Email, userCode);
@@ -136,6 +136,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpPost]
         [Route("getAccess")]
+        [AllowAnonymous]
         public IHttpActionResult GetAccess([FromBody]GetAccessBindingModel model)
         {
             int[] parameters = UserCodeOperation.DecodeCode(model.Id);

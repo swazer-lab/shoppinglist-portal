@@ -13,7 +13,7 @@ namespace Swazer.ShoppingList.Core
 
         static UserCodeOperation()
         {
-            hashIds = new Hashids(minHashLength: 30, alphabet: "ABCDEFCHIJKLMNOPQRSTUVWXYZ23456789");
+            hashIds = new Hashids(salt: "shoppinglist", minHashLength: 30);
         }
 
         public static string ProduceCode(params int[] values)

@@ -51,7 +51,7 @@ namespace Swazer.ShoppingList.Domain
 
         public async Task SendConfirmEmailLinkToUser(string to, string token, int userId)
         {
-            string url = $"http://localhost:3000/Account/ConfirmEmail/?userId={userId}&token={token}";
+            string url = $"http://shoppingweb.swazerlab.com/Account/ConfirmEmail/?userId={userId}&token={token}";
             string body = BODY_CONFIRM_EMAIL.Replace("PLACEHOLDER_URL", url);
             await SendEmail(to, "Shopping Account", body);
         }
@@ -64,7 +64,7 @@ namespace Swazer.ShoppingList.Domain
 
         public async Task SendEmailToShareCard(string to, string code)
         {
-            string url = $"http://shopping.swazerlab.com/Cart/GetAccess/{code}";
+            string url = $"http://shoppingweb.swazerlab.com/Cart/GetAccess/{code}";
             string body = BODY_SHARECART_EMAIL.Replace("PLACEHOLDER_URL", url);
             await SendEmail(to, "Shopping Account", body);
         }
