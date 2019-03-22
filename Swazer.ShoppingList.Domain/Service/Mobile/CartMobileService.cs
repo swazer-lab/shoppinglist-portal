@@ -113,6 +113,19 @@ namespace Swazer.ShoppingList.Domain
             return result;
         }
 
+        public List<Cart> Find(string title, int userId)
+        {
+            List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(userId);
+
+            var cartIds = carts.Select(x => x.CartId).ToList();
+
+            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
+                .AndAlso(x => cartIds.Contains(x.CartId))
+                .AndAlsoIf(x => x.Title.Contains(title), !string.IsNullOrEmpty(title));
+
+            return queryRepository.Find(constraints).Items.Take(3).ToList();
+        }
+
         public void Delete(int id)
         {
             IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()

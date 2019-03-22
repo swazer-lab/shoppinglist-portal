@@ -79,7 +79,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız.
+        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Shopping Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız.
         /// </summary>
         public static string ConfirmEmailRegister {
             get {
@@ -88,7 +88,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eğer Ustad Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız.
+        ///   Looks up a localized string similar to Eğer Shopping Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız.
         /// </summary>
         public static string IfYouDidntRequestForRegister {
             get {
@@ -97,7 +97,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eğer Ustad Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız.
+        ///   Looks up a localized string similar to Eğer Shopping Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız.
         /// </summary>
         public static string IfYouDidntRequestForReset {
             get {
@@ -106,7 +106,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız.
+        ///   Looks up a localized string similar to Merhaba, size bu emaili gönderdik, çünkü email adresiniz Shopping Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız.
         /// </summary>
         public static string IfYouHaveLostYourPassword {
             get {
@@ -160,7 +160,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üstad.
+        ///   Looks up a localized string similar to Shopping.
         /// </summary>
         public static string ResetPasswordFrom {
             get {
@@ -169,7 +169,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üstad Şifre Sıfırlama.
+        ///   Looks up a localized string similar to Shopping Şifre Sıfırlama.
         /// </summary>
         public static string ResetPasswordHeader {
             get {
@@ -196,7 +196,7 @@ namespace Swazer.ShoppingList.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üstad Hesabınız.
+        ///   Looks up a localized string similar to Shopping Hesabınız.
         /// </summary>
         public static string UstadAccount {
             get {

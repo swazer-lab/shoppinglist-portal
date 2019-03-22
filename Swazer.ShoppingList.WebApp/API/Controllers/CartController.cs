@@ -40,6 +40,29 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             return Ok(result);
         }
 
+        [Route("getCarts")]
+        [HttpGet]
+        public IHttpActionResult GetCarts(string title = "")
+        {
+            User user = GetCurrentUser();
+
+            List<Cart> carts = CartMobileService.Obj.Find(title, user.Id);
+
+            var result = new PagingBindingModel<CartIndexBindingModel>()
+            {
+                Items = carts.Select(x => x.ToCartIndexBindingModel()).ToList(),
+                TotalCount = 3
+            };
+
+            foreach (var cart in result.Items.ToList())
+            {
+                cart.Items = ItemMobileService.Obj.GetItemsByCard(cart.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemMobileService.Obj.GetById(x.ItemId))).ToList();
+                cart.Users = CartOwnerMobileService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+            }
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("create")]
         public IHttpActionResult CreateCard(CreateCartBindingModel model)
@@ -96,14 +119,14 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             foreach (var email in model.Emails)
             {
-                User user = UserService.Obj.FindByEmail(email);             
+                User user = UserService.Obj.FindByEmail(email);
 
                 if (user != null)
                 {
                     Cart cart = CartMobileService.Obj.GetById(model.CartId);
 
                     CartOwner cartOwner = CartOwner.Create(cart, user, model.AccessLevel);
-                        
+
                     CartOwnerMobileService.Obj.Create(cartOwner);
 
                     await UserService.Obj.SendEmailToShareCard(user.Email, userCode);
@@ -136,7 +159,6 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpPost]
         [Route("getAccess")]
-        [AllowAnonymous]
         public IHttpActionResult GetAccess([FromBody]GetAccessBindingModel model)
         {
             int[] parameters = UserCodeOperation.DecodeCode(model.Id);

@@ -2,11 +2,7 @@
 using Swazer.ShoppingList.WebApp.API.Models;
 using Swazer.ShoppingList.WebApp.Infrastructure;
 using Swazer.ShoppingList.WebApp.API.Infrastructure;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Swazer.ShoppingList.Domain;
 

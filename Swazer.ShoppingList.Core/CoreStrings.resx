@@ -124,16 +124,16 @@
     <value>Email doğrulama işlemi başarısız</value>
   </data>
   <data name="ConfirmEmailRegister" xml:space="preserve">
-    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız</value>
+    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Shopping Uygulamasına kaydolmak için kullanıldı. Lütfen kaydolma işlemini tamamlamak için aşağıdaki linke tıklayınız</value>
   </data>
   <data name="IfYouDidntRequestForRegister" xml:space="preserve">
-    <value>Eğer Ustad Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız</value>
+    <value>Eğer Shopping Uygulamasına kaydolmadıysanız, linke tıklamayınız ve bu mesajı dikkate almayınız</value>
   </data>
   <data name="IfYouDidntRequestForReset" xml:space="preserve">
-    <value>Eğer Ustad Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız</value>
+    <value>Eğer Shopping Uygulamasına üye değilseniz linke tıklamayınız ve bu mesajı dikkate almayınız</value>
   </data>
   <data name="IfYouHaveLostYourPassword" xml:space="preserve">
-    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Üstad Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız</value>
+    <value>Merhaba, size bu emaili gönderdik, çünkü email adresiniz Shopping Uygulaması şifrenizi sıfırlamak için kullanıldı. Lütfen şifrenizi sıfırlamak için aşağıdaki kodu kullanınız</value>
   </data>
   <data name="NewSubjectAccepted" xml:space="preserve">
     <value>Ekleme talebinde bulunduğunuz {0} isimli konu site yöneticisi tarafından kabul edildi.</value>
@@ -151,10 +151,10 @@
     <value>Bulunamadı</value>
   </data>
   <data name="ResetPasswordFrom" xml:space="preserve">
-    <value>Üstad</value>
+    <value>Shopping</value>
   </data>
   <data name="ResetPasswordHeader" xml:space="preserve">
-    <value>Üstad Şifre Sıfırlama</value>
+    <value>Shopping Şifre Sıfırlama</value>
   </data>
   <data name="ResetPasswordTitle" xml:space="preserve">
     <value>Şifreni Sıfırla</value>
@@ -163,7 +163,7 @@
     <value>{0} mail adresine sahip kullanıcı tarafından {1} isimli ders için ekleme talebinde bulunuldu.</value>
   </data>
   <data name="UstadAccount" xml:space="preserve">
-    <value>Üstad Hesabınız</value>
+    <value>Shopping Hesabınız</value>
   </data>
   <data name="UstadRegistration" xml:space="preserve">
     <value>Kaydolmayı Tamamlayın</value>
