@@ -36,7 +36,7 @@ namespace Swazer.ShoppingList.Core
 
         [StringLength(250)]
         public string Name { get; protected set; }
-   
+
         [Display(Name = "الجوال")]
         [StringLength(15)]
         //[RegularExpression(@"^05\d{8}$")]
@@ -91,6 +91,16 @@ namespace Swazer.ShoppingList.Core
             this.CreatedAt = DateTime.Now;
         }
 
+        public User(string name, string email)
+        {
+            this.Name = name;
+            this.Email = email;
+
+            this.UserName = email;
+
+            this.CreatedAt = DateTime.Now;
+        }
+
         public User Update(string name, string mobile)
         {
             this.Name = name;
@@ -111,6 +121,13 @@ namespace Swazer.ShoppingList.Core
         public User UpdateRoles(List<IdentityRole> newRoles)
         {
             this.Roles = newRoles;
+            return this;
+        }
+
+        public User MakeConfirmEmail()
+        {
+            this.EmailConfirmed = true;
+
             return this;
         }
 

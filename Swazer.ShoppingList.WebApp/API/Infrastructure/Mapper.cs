@@ -86,6 +86,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Name = user.Name,
+                IsConfirmed = user.EmailConfirmed
             };
         }
 

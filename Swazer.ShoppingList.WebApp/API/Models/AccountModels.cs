@@ -33,6 +33,8 @@ namespace Swazer.ShoppingList.WebApp.API
         public string Mobile { get; set; }
 
         public AccessLevel AccessLevel { get; set; }
+
+        public bool IsConfirmed { get; set; }
     }
 
     public class UpdateUserBindingModel
@@ -67,5 +69,16 @@ namespace Swazer.ShoppingList.WebApp.API
         [EmailAddress(ErrorMessageResourceName = "EmailIsNotCorrectFormat", ErrorMessageResourceType = typeof(RegisterErrorStrings))]
         [Required(ErrorMessageResourceName = "Email", ErrorMessageResourceType = typeof(RegisterErrorStrings))]
         public string Email { get; set; }
+    }
+
+    public class RegisterExternalBindingModel
+    {
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+        
+        public string Token { get; set; }
+
+        public string Provider { get; set; }
     }
 }

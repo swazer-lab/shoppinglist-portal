@@ -69,6 +69,16 @@ namespace Swazer.ShoppingList.Domain
             await SendEmail(to, "Shopping Account", body);
         }
 
+        public string GenerateConfirmEmailToken(User user)
+        {
+            return UserTokenProvider.GenerateAsync("EmailConfirmation", this, user).Result;
+        }
+
+        public bool ValidateConfirmEmailToken(User user, string token)
+        {
+            return UserTokenProvider.ValidateAsync("EmailConfirmation", token, this, user).Result;
+        }
+
         public void ResetPassword(string email, string password, string code)
         {
             User user = Obj.FindByEmail(email);

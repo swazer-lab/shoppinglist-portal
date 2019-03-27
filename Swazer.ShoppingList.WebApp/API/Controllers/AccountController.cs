@@ -150,7 +150,7 @@ namespace Swazer.ShoppingList.WebApp.API
             string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
             Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-            var confirmToken = UserService.Obj.GenerateEmailConfirmationToken(result.Id);
+            var confirmToken = UserService.Obj.GenerateConfirmEmailToken(result);
             var encodedToken = HttpUtility.UrlEncode(confirmToken);
             await UserService.Obj.SendConfirmEmailLinkToUser(model.Email, encodedToken, result.Id);
 
@@ -169,14 +169,37 @@ namespace Swazer.ShoppingList.WebApp.API
         }
 
         [HttpPost]
+        [Route("ResendConfirmEmail")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ResendConfirmEmail([FromUri]int userId)
+        {
+            User user = UserService.Obj.FindById(userId);
+
+            if (user == null)
+                throw new BusinessRuleException(nameof(User), BusinessRules.UserNotFound);
+
+            var confirmToken = UserService.Obj.GenerateConfirmEmailToken(user);
+            var encodedToken = HttpUtility.UrlEncode(confirmToken);
+            await UserService.Obj.SendConfirmEmailLinkToUser(user.Email, encodedToken, user.Id);
+
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("ConfirmEmail")]
         [AllowAnonymous]
         public IHttpActionResult ConfirmEmail([FromBody]ConfirmEmailBindingModel confirmEmailBindingModel)
         {
-            IdentityResult result = UserService.Obj.ConfirmEmail(confirmEmailBindingModel.UserId, confirmEmailBindingModel.Token);
+            User user = UserService.Obj.FindById(confirmEmailBindingModel.UserId);
 
-            if (!result.Succeeded)
+            bool isConfirmedSuccess = UserService.Obj.ValidateConfirmEmailToken(user, confirmEmailBindingModel.Token);
+
+            if (!isConfirmedSuccess)
                 throw new BusinessRuleException(nameof(User), BusinessRules.ConfirmEmailIncorrect);
+
+            user = user.MakeConfirmEmail();
+
+            UserService.Obj.Update(user);
 
             var data = new { userId = confirmEmailBindingModel.UserId };
 
@@ -277,6 +300,11 @@ namespace Swazer.ShoppingList.WebApp.API
                     string content = await response.Content.ReadAsStringAsync();
                     dynamic iObj = (JObject)JsonConvert.DeserializeObject(content);
 
+                    if (iObj["issued_to"] != Settings.Provider.Goggle_ClientId)
+                    {
+                        return null;
+                    }
+
                     identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, iObj["user_id"].ToString(), ClaimValueTypes.String, "Google", "Google"));
                     return identity;
@@ -368,8 +396,82 @@ namespace Swazer.ShoppingList.WebApp.API
                     UserName = identity.FindFirstValue(ClaimTypes.Name)
                 };
             }
+            #endregion
         }
 
-        #endregion
+        [OverrideAuthentication]
+        [AllowAnonymous]
+        [Route("RegisterExternal")]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        {
+            try
+            {
+                ExternalLoginData externalLogin = await ExternalLoginData.FromToken(model.Provider, model.Token);
+
+                if (externalLogin == null)
+                    throw new Exception("externalLogin can not be found, externalLogin is null");
+
+                if (externalLogin.LoginProvider != model.Provider)
+                {
+                    Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    throw new Exception("Provider Conflicts, the Provider which send by user is not the same of the externalLogin's provider");
+                }
+
+                User user = await UserService.Obj.FindByEmailAsync(model.Email);
+
+                bool registered = user != null;
+                if (!registered)
+                {
+                    user = new User(model.Name, model.Email);
+                    user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
+
+                    user = await UserService.Obj.CreateExternalUserAsync(user, new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+                }
+
+                // Authenticate
+                ClaimsIdentity identity = await UserService.Obj.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+                IEnumerable<Claim> claims = externalLogin.GetClaims();
+                identity.AddClaims(claims);
+                Authentication.SignIn(identity);
+
+                ClaimsIdentity oAuthIdentity = new ClaimsIdentity(Startup.OAuthOptions.AuthenticationType);
+
+                oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                oAuthIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+
+                oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, RoleNames.UserRole));
+
+                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, new AuthenticationProperties());
+
+                DateTime currentUtc = DateTime.UtcNow;
+                ticket.Properties.IssuedUtc = currentUtc;
+                ticket.Properties.ExpiresUtc = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan);
+
+                string accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
+                string refreshToken = Startup.OAuthOptions.RefreshTokenFormat.Protect(ticket);
+                Request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+                var token = new
+                {
+                    userName = user.UserName,
+                    userId = user.Id,
+                    access_token = accessToken,
+                    refresh_token = refreshToken,
+                    token_type = "bearer",
+                    expires_in = Startup.OAuthOptions.AccessTokenExpireTimeSpan.TotalSeconds.ToString(),
+                    issued = currentUtc.ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"),
+                    expires = currentUtc.Add(Startup.OAuthOptions.AccessTokenExpireTimeSpan).ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'")
+                };
+
+                return Ok(token);
+            }
+            catch (Exception ex)
+            {
+                TracingSystem.TraceException(ex);
+                return InternalServerError();
+            }
+        }
+
     }
 }
