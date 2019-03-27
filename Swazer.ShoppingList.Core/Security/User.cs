@@ -124,7 +124,7 @@ namespace Swazer.ShoppingList.Core
             return this;
         }
 
-        public User MakeConfirmEmail()
+        public User PerformConfirmEmail()
         {
             this.EmailConfirmed = true;
 

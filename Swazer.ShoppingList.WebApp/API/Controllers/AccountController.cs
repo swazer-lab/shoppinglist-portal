@@ -197,7 +197,7 @@ namespace Swazer.ShoppingList.WebApp.API
             if (!isConfirmedSuccess)
                 throw new BusinessRuleException(nameof(User), BusinessRules.ConfirmEmailIncorrect);
 
-            user = user.MakeConfirmEmail();
+            user = user.PerformConfirmEmail();
 
             UserService.Obj.Update(user);
 
@@ -425,6 +425,7 @@ namespace Swazer.ShoppingList.WebApp.API
                 {
                     user = new User(model.Name, model.Email);
                     user.UpdateRoles(RoleService.Obj.GetByNames(RoleNames.UserRole));
+                    user.PerformConfirmEmail();
 
                     user = await UserService.Obj.CreateExternalUserAsync(user, new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
                 }
