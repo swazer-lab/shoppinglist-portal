@@ -83,9 +83,11 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpPost]
         [Route("deletePhoto")]
-        public IHttpActionResult DeletePhoto([FromBody]int photoId)
+        public IHttpActionResult DeletePhoto()
         {
-            Image image = ImageService.Obj.FindById(photoId);
+            User currentUser = GetCurrentUser();
+
+            Image image = ImageService.Obj.FindByUserId(currentUser.Id);
 
             ImageService.Obj.Delete(image);
 
