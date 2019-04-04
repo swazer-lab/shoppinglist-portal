@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="ExpressionExtensions.cs" />
     <Compile Include="Factory\RepositoryFactory.cs" />
+    <Compile Include="GenericRepository\ICartRepository.cs" />
     <Compile Include="GenericRepository\IGenericQueryRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
     <Compile Include="ICachingProvider.cs" />

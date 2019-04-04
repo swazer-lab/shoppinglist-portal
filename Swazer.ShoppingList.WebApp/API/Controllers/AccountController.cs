@@ -191,6 +191,10 @@ namespace Swazer.ShoppingList.WebApp.API
         public IHttpActionResult ConfirmEmail([FromBody]ConfirmEmailBindingModel confirmEmailBindingModel)
         {
             User user = UserService.Obj.FindById(confirmEmailBindingModel.UserId);
+            if (user.EmailConfirmed)
+            {
+                return Ok();
+            }
 
             bool isConfirmedSuccess = UserService.Obj.ValidateConfirmEmailToken(user, confirmEmailBindingModel.Token);
 

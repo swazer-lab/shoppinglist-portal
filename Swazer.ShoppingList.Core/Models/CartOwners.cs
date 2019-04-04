@@ -24,6 +24,8 @@ namespace Swazer.ShoppingList.Core
 
         public AccessLevel AccessLevel { get; set; }
 
+        public double CartIndex { get; set; }
+
         public static CartOwner Create(Cart cart, User owner, AccessLevel accessLevel = 0)
         {
             return new CartOwner
@@ -39,6 +41,13 @@ namespace Swazer.ShoppingList.Core
         public CartOwner UpdateAccessLevel(AccessLevel accessLevel)
         {
             this.AccessLevel = accessLevel;
+
+            return this;
+        }
+
+        public CartOwner SetCartIndex(double index)
+        {
+            this.CartIndex = index;
 
             return this;
         }

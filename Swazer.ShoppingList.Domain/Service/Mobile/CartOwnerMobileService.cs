@@ -138,7 +138,21 @@ namespace Swazer.ShoppingList.Domain
                 if (cartUser == null)
                     repository.Create(user);
             }
+        }
 
+        public double GetLastIndex(int userId)
+        {
+            if (userId == 0)
+                throw new ArgumentNullException(nameof(userId));
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+               .Where(x => x.UserId == userId)
+               .SortByDescending(x => x.CartIndex)
+               .Page(1, 1);
+
+            var items = queryRepository.Find(constraints).Items;
+
+            return (items.Count() == 0) ? 0 : items.First().CartIndex + 1;
         }
     }
 }

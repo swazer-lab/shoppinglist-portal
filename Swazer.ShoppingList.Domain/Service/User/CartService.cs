@@ -36,7 +36,7 @@ namespace Swazer.ShoppingList.Domain
             {
                 createdEntity = repository.Create(entity);
 
-                CartOwner cartOwner = CartOwner.Create(createdEntity, user);
+                CartOwner cartOwner = CartOwner.Create(createdEntity, user, 0);
                 CartOwnerService.Obj.Create(cartOwner);
 
                 Service.User.ItemService.Obj.MultipleCreate(items, createdEntity.CartId);

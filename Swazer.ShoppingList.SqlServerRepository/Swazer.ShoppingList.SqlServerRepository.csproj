@@ -76,10 +76,15 @@
     <Compile Include="Migrations\201903010900340_x3.Designer.cs">
       <DependentUpon>201903010900340_x3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904031036058_x4.cs" />
+    <Compile Include="Migrations\201904031036058_x4.Designer.cs">
+      <DependentUpon>201904031036058_x4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\QueryConstraintsExtensions.cs" />
     <Compile Include="RepositoryResource.Designer.cs" />
+    <Compile Include="SqlServerImplementation\CartRepository.cs" />
     <Compile Include="SqlServerImplementation\SqlServerQueryRepository.cs" />
     <Compile Include="SqlServerImplementation\SqlServerRepository.cs" />
     <Compile Include="SqlServerImplementation\UnitOfWork.cs" />
@@ -94,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903010900340_x3.resx">
       <DependentUpon>201903010900340_x3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031036058_x4.resx">
+      <DependentUpon>201904031036058_x4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RepositoryResource.en.resx" />
     <EmbeddedResource Include="RepositoryResource.resx" />

@@ -70,5 +70,13 @@ namespace Swazer.ShoppingList.RepositoryInterface
 
             return Factory.CreateDbRepository<IUnitOfWork>("UnitOfWork");
         }
+
+        public static ICartRepository CreateCartRepository()
+        {
+            if (Settings.Provider == null)
+                throw new InvalidOperationException("Settings.Provider is not initialized, you have to invoke Initialize() method first.");
+
+            return Factory.CreateDbRepository<ICartRepository>("CartRepository");
+        }
     }
 }

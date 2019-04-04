@@ -15,6 +15,31 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
     [AllowApiUser]
     public class CartController : BaseApiController
     {
+        [Route("newFetch")]
+        [HttpGet]
+        public IHttpActionResult FetchCard([FromUri]CartSearchCriteriaBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            CartMobileSearchCriteria cartMobileSearchCriteria = model.ToSearchCriteria(user.Id);
+
+            List<CartObject> carts = CartMobileService.Obj.FindNew(cartMobileSearchCriteria);
+            int totalCount = CartMobileService.Obj.GetTotalCount(cartMobileSearchCriteria);
+
+            var result = new PagingBindingModel<CartIndexBindingModel>()
+            {
+                Items = carts.Select(x => x.ToCartObjectIndexBindingModel()).ToList(),
+                TotalCount = totalCount
+            };
+
+            foreach (var cart in result.Items)
+            {
+                cart.Users = CartOwnerMobileService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+            }
+
+            return Ok(result);
+        }
+
         [Route("fetch")]
         [HttpGet]
         public IHttpActionResult FetchCards([FromUri]CartSearchCriteriaBindingModel model)
@@ -107,6 +132,17 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         public IHttpActionResult RemoveCard(int cartId)
         {
             CartMobileService.Obj.Delete(cartId);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("updateOrder")]
+        public IHttpActionResult UpdateOrder(UpdateOrderBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            CartMobileService.Obj.UpdateOrder(user.Id, model.CartId, model.Destination);
 
             return Ok();
         }

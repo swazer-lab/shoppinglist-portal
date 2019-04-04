@@ -87,6 +87,7 @@
     <Compile Include="Identity\IdentityUserLogin.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartObject.cs" />
     <Compile Include="Models\CartOwners.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Image.cs" />

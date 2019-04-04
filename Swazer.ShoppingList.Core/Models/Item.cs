@@ -52,8 +52,8 @@ namespace Swazer.ShoppingList.Core
 
     public enum ItemStatus
     {
-        Active,
-        Completed,
-        Canceled
+        Active = 0,
+        Completed = 1,
+        Canceled = 2
     }
 }

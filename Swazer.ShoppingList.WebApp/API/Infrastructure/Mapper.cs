@@ -28,7 +28,7 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
 
             return criteria;
         }
-        
+
         public static UserMobileSearchCriteria ToSearchCriteria(this UserSearchCriteriaBindingModel model, int id)
         {
             UserMobileSearchCriteria criteria = CreateSearchCriteria<UserMobileSearchCriteria>(model);
@@ -108,6 +108,37 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             return new CartIndexBindingModel()
             {
                 Cart = model.ToCartBindingModel()
+            };
+        }
+
+        public static CartIndexBindingModel ToCartObjectIndexBindingModel(this CartObject model)
+        {
+            return new CartIndexBindingModel()
+            {
+                Cart = model.ToCartBindingModel(),
+                Items = model.Items?.Select(x => x.ToCartItemBindingModel()).ToList()
+            };
+        }
+
+        public static CartBindingModel ToCartBindingModel(this CartObject model)
+        {
+            return new CartBindingModel()
+            {
+                CartId = model.CartId,
+                Title = model.Title,
+                Notes = model.Notes,
+                Date = model.Date,
+                Index = model.CartIndex
+            };
+        }
+
+        public static ItemBindingModel ToCartItemBindingModel(this CartItemObject model)
+        {
+            return new ItemBindingModel()
+            {
+                ItemId = model.ItemId,
+                Title = model.Title,
+                Status = model.Status
             };
         }
     }
