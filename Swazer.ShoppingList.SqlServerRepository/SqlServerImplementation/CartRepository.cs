@@ -146,7 +146,7 @@ BEGIN
 
 	UPDATE CartOwners 
 		SET CartIndex = @NewIndex
-	WHERE CartId = @CartId
+	WHERE CartId = @CartId AND UserId = @UserId 
 END";
 
                         command.Connection = connect;

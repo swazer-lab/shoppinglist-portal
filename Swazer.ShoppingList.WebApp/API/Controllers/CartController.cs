@@ -218,6 +218,9 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 }
 
             CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
+            
+            double cartIndex = CartOwnerMobileService.Obj.GetLastIndex(user.Id);
+            cartOwner.SetCartIndex(cartIndex);
 
             CartOwnerMobileService.Obj.Create(cartOwner);
 
