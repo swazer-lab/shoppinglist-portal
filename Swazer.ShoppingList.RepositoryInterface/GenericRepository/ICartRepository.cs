@@ -5,7 +5,7 @@ namespace Swazer.ShoppingList.RepositoryInterface
 {
     public interface ICartRepository
     {
-        List<CartObject> FetchCards(CartMobileSearchCriteria criteria);
+        QueryResult<CartObject> FetchCards(CartMobileSearchCriteria criteria);
 
         void UpdateOrder(int userId, int cartId, int destination);
     }

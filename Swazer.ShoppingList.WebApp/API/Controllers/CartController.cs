@@ -23,13 +23,12 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             CartMobileSearchCriteria cartMobileSearchCriteria = model.ToSearchCriteria(user.Id);
 
-            List<CartObject> carts = CartMobileService.Obj.FindNew(cartMobileSearchCriteria);
-            int totalCount = CartMobileService.Obj.GetTotalCount(cartMobileSearchCriteria);
+            QueryResult<CartObject> carts = CartMobileService.Obj.FindNew(cartMobileSearchCriteria);
 
             var result = new PagingBindingModel<CartIndexBindingModel>()
             {
-                Items = carts.Select(x => x.ToCartObjectIndexBindingModel()).ToList(),
-                TotalCount = totalCount
+                Items = carts.Items.Select(x => x.ToCartObjectIndexBindingModel()).ToList(),
+                TotalCount = carts.TotalCount
             };
 
             foreach (var cart in result.Items)
@@ -179,20 +178,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
             return Ok(users);
         }
-
-        [Route("generateShareUrl")]
-        [HttpPost]
-        public IHttpActionResult GenerateShareUrl(CartGenerateShareBindingModel model)
-        {
-            string codedUrl = UserCodeOperation.ProduceCode(new int[] { model.CartId, (int)model.AccessLevel });
-
-            string baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
-
-            string fullUrl = $"{baseUrl}/Cart/GetAccess/{codedUrl}";
-
-            return Ok(fullUrl);
-        }
-
+       
         [HttpPost]
         [Route("getAccess")]
         public IHttpActionResult GetAccess([FromBody]GetAccessBindingModel model)

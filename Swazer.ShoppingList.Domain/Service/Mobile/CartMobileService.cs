@@ -142,7 +142,7 @@ namespace Swazer.ShoppingList.Domain
             repository.Delete(Cart);
         }
 
-        public List<CartObject> FindNew(CartMobileSearchCriteria criterias)
+        public QueryResult<CartObject> FindNew(CartMobileSearchCriteria criterias)
         {
             return cartRepository.FetchCards(criterias);
         }
@@ -150,22 +150,6 @@ namespace Swazer.ShoppingList.Domain
         public void UpdateOrder(int userId, int cartId, int destination)
         {
             cartRepository.UpdateOrder(userId, cartId, destination);
-        }
-
-        public int GetTotalCount(CartMobileSearchCriteria criterias)
-        {
-            if (criterias == null)
-                throw new ArgumentNullException(nameof(criterias));
-
-            List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(criterias.UserId);
-
-            var cartIds = carts.Select(x => x.CartId).ToList();
-
-            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
-                .AndAlso(x => cartIds.Contains(x.CartId))
-                .AndAlsoIf(x => x.Title.Contains(criterias.Title), !string.IsNullOrEmpty(criterias.Title));
-
-            return queryRepository.Find(constraints).TotalCount;
         }
     }
 }

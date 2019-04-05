@@ -13,7 +13,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
 {
     public class CartRepository : ICartRepository
     {
-        public List<CartObject> FetchCards(CartMobileSearchCriteria criteria)
+        public QueryResult<CartObject> FetchCards(CartMobileSearchCriteria criteria)
         {
             List<CartObjectDB> carts = new List<CartObjectDB>();
 
@@ -31,7 +31,7 @@ Where c.CartId IN (
 	SELECT cc.CartId FROM Carts AS cc
 	INNER JOIN CartOwners AS co ON cc.CartId = co.CartId
 	WHERE co.UserId = @UserId AND (@Title is null or cc.Title LIKE '%'+@Title+'%')
-	ORDER BY co.CartIndex
+	ORDER BY co.CartIndex DESC
 	OFFSET @PageSize * (@PageNumber - 1) ROWS
 	FETCH NEXT @PageSize ROWS ONLY
 )
@@ -86,11 +86,41 @@ ORDER BY co.CartIndex DESC";
                     }).ToList()
                 }).ToList();
 
-                return returnedCarts;
+                int totalCount = CalculateTotalCount(criteria.UserId);
+                
+                return new QueryResult<CartObject>(returnedCarts, totalCount);
+
             }
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        private int CalculateTotalCount(int userId)
+        {
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(ConfigurationManager.ConnectionStrings["CnnStr1"].ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.CommandText = @"SELECT COUNT(*) as CartCount FROM dbo.CartOwners co
+                            WHERE co.UserId = @UserId";
+
+                        command.Connection = connect;
+                        command.Parameters.Add("UserId", SqlDbType.Int).Value = userId;
+
+                        int totalCount = (int)command.ExecuteScalar();
+
+                        return totalCount;
+                    }
+                }
+            }
+
+            catch 
+            {
+                return 0;
             }
         }
 
