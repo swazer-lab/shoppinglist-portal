@@ -10,13 +10,13 @@ namespace Swazer.ShoppingList.WebApp.API.Models
 {
     public class ItemBindingModel
     {
-        public int ItemId { get; set; }
+        public int? ItemId { get; set; }
 
         [Required(ErrorMessageResourceName = "ItemTitleRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
         public string Title { get; set; }
 
         [Required(ErrorMessageResourceName = "ItemStatusRequired", ErrorMessageResourceType = typeof(ErrorMessageStrings))]
-        public ItemStatus Status { get; set; }
+        public ItemStatus? Status { get; set; }
     }
 
     public class ItemChangeStatusBindingModel

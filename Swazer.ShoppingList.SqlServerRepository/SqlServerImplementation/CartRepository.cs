@@ -23,10 +23,13 @@ namespace Swazer.ShoppingList.SqlServerRepository
                 {
                     using (SqlCommand command = new SqlCommand())
                     {
-                        command.CommandText = @"SELECT c.CartId, c.Title, c.Notes, c.Date, co.CartIndex, i.ItemId, i.Title as itemTitle, ci.Status as itemStatus FROM Carts as c
+                        command.CommandText = @"SELECT c.CartId, c.Title, c.Notes, c.Date, co.CartIndex, i.ItemId, i.Title as itemTitle, ci.Status as itemStatus,u.Id as userId, u.Name, u.Email,u.Mobile,u.EmailConfirmed, co.AccessLevel, img.ImageId
+FROM Carts as c
+INNER JOIN CartOwners AS co ON c.CartId = co.CartId 
 LEFT JOIN CartItems AS ci ON ci.CartId = c.CartId
 LEFT JOIN Items AS i ON i.ItemId = ci.ItemId
-INNER JOIN CartOwners AS co ON c.CartId = co.CartId AND co.UserId = @UserId
+LEFT JOIN Users AS u ON u.Id = co.UserId
+LEFT JOIN Images AS img ON img.UserId = u.Id
 Where c.CartId IN (
 	SELECT cc.CartId FROM Carts AS cc
 	INNER JOIN CartOwners AS co ON cc.CartId = co.CartId
@@ -55,11 +58,19 @@ ORDER BY co.CartIndex DESC";
                                 cart.Title = dr["Title"].ToString();
                                 cart.Notes = dr["Notes"].ToString();
                                 cart.Date = dr["Date"] == DBNull.Value ? null : (DateTime?)dr["Date"];
-
                                 cart.CartIndex = (double)dr["CartIndex"];
+
                                 cart.ItemId = dr["ItemId"] == DBNull.Value ? null : (int?)dr["ItemId"];
                                 cart.ItemTitle = dr["itemTitle"] == DBNull.Value ? null : dr["itemTitle"].ToString();
                                 cart.ItemStatus = dr["itemStatus"] == DBNull.Value ? null : (int?)dr["itemStatus"];
+
+                                cart.UserId = (int)dr["userId"];
+                                cart.Name = dr["Name"] == DBNull.Value ? null : dr["Name"].ToString();
+                                cart.Email = dr["Email"].ToString();
+                                cart.Mobile = dr["Mobile"] == DBNull.Value ? null : dr["Mobile"].ToString();
+                                cart.IsConfirmed = (bool)dr["EmailConfirmed"];
+                                cart.AccessLevel = (int)dr["AccessLevel"];
+                                cart.PhotoId = dr["ImageId"] == DBNull.Value ? null : (int?)dr["ImageId"];
 
                                 carts.Add(cart);
                             }
@@ -67,30 +78,37 @@ ORDER BY co.CartIndex DESC";
                     }
                 }
 
-                var groupingCart = carts.GroupBy(x => x.CartId);
-                List<CartObject> returnedCarts = groupingCart.Select(cart => new CartObject
+                var returnedCarts = carts.GroupBy(x => x.Title).Select(cart => new CartObject
                 {
-                    CartId = cart.Key,
+                    CartId = cart.FirstOrDefault().CartId,
                     Title = cart.FirstOrDefault().Title,
-                    Notes = cart.FirstOrDefault()?.Notes,
                     CartIndex = cart.FirstOrDefault().CartIndex,
-                    Date = cart.FirstOrDefault()?.Date,
+                    Date = cart.FirstOrDefault().Date,
+                    Notes = cart.FirstOrDefault().Notes,
 
-                    Items = (cart.Count() == 1 && cart.First().ItemId == null)
-                    ? new List<CartItemObject>()
-                    : cart.Select(item => new CartItemObject()
+                    Users = cart.GroupBy(y => y.UserId).Select(user => new UserObject
                     {
-                        ItemId = item.ItemId ?? 0,
-                        Status = (ItemStatus?)item.ItemStatus ?? ItemStatus.Active,
-                        Title = item.Title
-                    }).ToList()
+                        UserId = user.FirstOrDefault().UserId,
+                        Name = user.FirstOrDefault().Name,
+                        Email = user.FirstOrDefault().Email,
+                        IsConfirmed = user.FirstOrDefault().IsConfirmed,
+                        Mobile = user.FirstOrDefault().Mobile,
+                        PhotoId = user.FirstOrDefault().PhotoId
+                    }).ToList(),
+
+                    Items = cart.GroupBy(y => y.UserId).Select(user => user.Select(item => new CartItemObject
+                    {
+                        ItemId = item?.ItemId,
+                        Title = item?.ItemTitle,
+                        Status = (ItemStatus?)item.ItemStatus
+                    })).FirstOrDefault().ToList()
                 }).ToList();
 
                 int totalCount = CalculateTotalCount(criteria.UserId);
-                
-                return new QueryResult<CartObject>(returnedCarts, totalCount);
 
+                return new QueryResult<CartObject>(returnedCarts, totalCount);
             }
+
             catch (Exception ex)
             {
                 return null;
@@ -111,6 +129,8 @@ ORDER BY co.CartIndex DESC";
                         command.Connection = connect;
                         command.Parameters.Add("UserId", SqlDbType.Int).Value = userId;
 
+                        connect.Open();
+
                         int totalCount = (int)command.ExecuteScalar();
 
                         return totalCount;
@@ -118,7 +138,7 @@ ORDER BY co.CartIndex DESC";
                 }
             }
 
-            catch 
+            catch (Exception ex)
             {
                 return 0;
             }

@@ -116,7 +116,21 @@ namespace Swazer.ShoppingList.WebApp.API.Infrastructure
             return new CartIndexBindingModel()
             {
                 Cart = model.ToCartBindingModel(),
-                Items = model.Items?.Select(x => x.ToCartItemBindingModel()).ToList()
+                Items =  model.Items.Count == 1 && model.Items.FirstOrDefault().ItemId == null ? new List<ItemBindingModel>() : model.Items?.Select(x => x.ToCartItemBindingModel()).ToList(),
+                Users = model.Users?.Select(x => x.ToUserProfileBindingModel()).ToList()
+            };
+        }
+
+        public static UserProfileBindingModel ToUserProfileBindingModel(this UserObject user)
+        {
+            return new UserProfileBindingModel()
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                Mobile = user.Mobile,
+                Name = user.Name,
+                AccessLevel = user.AccessLevel,
+                PhotoId = user.PhotoId
             };
         }
 

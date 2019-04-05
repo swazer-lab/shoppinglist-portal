@@ -22,7 +22,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         public IHttpActionResult FetchUsers(string name = "")
         {
             User user = GetCurrentUser();
-            
+
             List<User> carts = UserService.Obj.Find(name).Take(5).ToList();
 
             var result = new PagingBindingModel<UserProfileBindingModel>()
@@ -88,6 +88,9 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             User currentUser = GetCurrentUser();
 
             Image image = ImageService.Obj.FindByUserId(currentUser.Id);
+
+            if (image == null)
+                return Ok();
 
             ImageService.Obj.Delete(image);
 

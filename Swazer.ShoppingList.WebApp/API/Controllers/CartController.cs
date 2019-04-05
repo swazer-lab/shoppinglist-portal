@@ -31,11 +31,6 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 TotalCount = carts.TotalCount
             };
 
-            foreach (var cart in result.Items)
-            {
-                cart.Users = CartOwnerMobileService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
-            }
-
             return Ok(result);
         }
 
@@ -99,7 +94,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             {
                 cart = Cart.Create(model.Title, model.Notes, model.Date);
 
-                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status)).ToList();
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status.Value)).ToList();
 
                 cart = CartMobileService.Obj.Create(cart, user, items);
             }
@@ -114,7 +109,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 if (model.Users != null)
                     users = model.Users.Select(x => CartOwner.Create(cart, UserService.Obj.FindById(x.UserId), x.AccessLevel)).ToList();
 
-                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status)).ToList();
+                List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status.Value)).ToList();
 
                 users.Add(CartOwner.Create(cart, user, AccessLevel.Owner));
 

@@ -490,7 +490,9 @@ namespace Swazer.ShoppingList.Domain
 
         public int UpdateOrCreatePhoto(User user, string photo)
         {
-            byte[] photoBytes = Convert.FromBase64String(photo);
+            string newPhoto = photo.Replace(@",", "");
+
+            byte[] photoBytes = Convert.FromBase64String(newPhoto);
 
             using (IUnitOfWork uow = RepositoryFactory.CreateUnitOfWork())
             {
