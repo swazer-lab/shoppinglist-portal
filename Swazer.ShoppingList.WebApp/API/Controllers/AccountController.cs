@@ -72,27 +72,23 @@ namespace Swazer.ShoppingList.WebApp.API
         //    return Ok();
         //}
 
-        //// POST api/Account/ChangePassword
-        //[Route("ChangePassword")]
-        //[Authorize]
-        //public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        [Route("ChangePassword")]
+        [AllowApiUser]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    IdentityResult result = await UserService.Obj.ChangePasswordAsync(GetCurrentUser().Id, model.OldPassword, model.NewPassword);
+            IdentityResult result = await UserService.Obj.ChangePasswordAsync(GetCurrentUser().Id, model.OldPassword, model.NewPassword);
 
-        //    if (!result.Succeeded)
-        //    {
-        //        string message = result.Errors.FirstOrDefault();
-        //        if (message == "Incorrect password.")
-        //            return BadRequest("");
+            if (!result.Succeeded)
+            {
+                string message = result.Errors.FirstOrDefault();
+                return BadRequest(message);
+            }
 
-        //        return BadRequest(message);
-        //    }
-
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         [HttpPost]
         [Route("verifyMobile")]

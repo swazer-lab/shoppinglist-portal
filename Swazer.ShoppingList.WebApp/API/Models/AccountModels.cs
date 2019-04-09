@@ -20,6 +20,18 @@ namespace Swazer.ShoppingList.WebApp.API
         public string Mobile { get; set; }
     }
 
+    public class ChangePasswordBindingModel
+    {
+        [Required(ErrorMessageResourceName = "OldPasswordRequired", ErrorMessageResourceType = typeof(ChangePasswordErrorStrings))]
+        [StringLength(100, ErrorMessageResourceName = "PasswordLengthError", ErrorMessageResourceType = typeof(ChangePasswordErrorStrings), MinimumLength = 6)]
+        public string OldPassword { get; set; }
+
+        [Required(ErrorMessageResourceName = "NewPasswordRequired", ErrorMessageResourceType = typeof(ChangePasswordErrorStrings))]
+        [StringLength(100, ErrorMessageResourceName = "PasswordLengthError", ErrorMessageResourceType = typeof(ChangePasswordErrorStrings), MinimumLength = 6)]
+        public string NewPassword { get; set; }
+    }
+
+
     public class UserProfileBindingModel
     {
         public int UserId { get; set; }
