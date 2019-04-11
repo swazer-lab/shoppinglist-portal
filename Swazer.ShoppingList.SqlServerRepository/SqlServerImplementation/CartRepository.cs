@@ -92,6 +92,7 @@ ORDER BY co.CartIndex DESC";
                         Name = user.FirstOrDefault().Name,
                         Email = user.FirstOrDefault().Email,
                         IsConfirmed = user.FirstOrDefault().IsConfirmed,
+                        AccessLevel = (AccessLevel)user.FirstOrDefault().AccessLevel,
                         Mobile = user.FirstOrDefault().Mobile,
                         PhotoId = user.FirstOrDefault().PhotoId
                     }).ToList(),
