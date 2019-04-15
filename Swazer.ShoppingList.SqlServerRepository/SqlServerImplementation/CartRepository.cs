@@ -73,12 +73,12 @@ ORDER BY co.CartIndex DESC";
                                 cart.PhotoId = dr["ImageId"] == DBNull.Value ? null : (int?)dr["ImageId"];
 
                                 carts.Add(cart);
-                            }
+                        }
                         }
                     }
                 }
 
-                var returnedCarts = carts.GroupBy(x => x.Title).Select(cart => new CartObject
+                var returnedCarts = carts.GroupBy(x => x.CartId).Select(cart => new CartObject
                 {
                     CartId = cart.FirstOrDefault().CartId,
                     Title = cart.FirstOrDefault().Title,
