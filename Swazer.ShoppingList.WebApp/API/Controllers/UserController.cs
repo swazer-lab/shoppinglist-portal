@@ -55,11 +55,14 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         {
             User user = GetCurrentUser();
 
-            user.Update(model.Name, model.Mobile);
+            user = user.Update(model.Name, model.Mobile);
 
             UserService.Obj.Update(user);
+            
+            var userProfile = user.ToUserProfileBindingModel();
+            userProfile.PhotoId = ImageService.Obj.FindByUserId(user.Id)?.ImageId;
 
-            return Ok();
+            return Ok(userProfile);
         }
 
         [HttpGet]

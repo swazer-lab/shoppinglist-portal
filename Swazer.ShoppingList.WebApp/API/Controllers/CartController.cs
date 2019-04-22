@@ -84,7 +84,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IHttpActionResult CreateCard(CreateCartBindingModel model)
+        public async Task<IHttpActionResult> CreateCard(CreateCartBindingModel model)
         {
             User user = GetCurrentUser();
 
@@ -97,6 +97,41 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 List<CartItem> items = model.Items?.Select(x => CartItem.Create(cart, Item.Create(x.Title, user), x.Status.Value)).ToList();
 
                 cart = CartMobileService.Obj.Create(cart, user, items);
+
+                // Make Sharing
+
+                if (model.Users?.Count != 0 && model.Users != null)
+                {
+                    string userCode = UserCodeOperation.ProduceCode(cart.CartId, (int)AccessLevel.ReadWrite);
+
+                    List<string> emails = model.Users.Select(x => x.Email).ToList();
+
+                    User userToFind = null;
+
+                    foreach (var email in emails)
+                    {
+                        if (email != user.Email)
+                        {
+                            userToFind = UserService.Obj.FindByEmail(email);
+
+                            if (userToFind != null)
+                            {
+                                Cart cartToFind = CartMobileService.Obj.GetById(cart.CartId);
+
+                                CartOwner cartOwner = CartOwner.Create(cartToFind, userToFind, AccessLevel.ReadWrite);
+
+                                CartOwnerMobileService.Obj.Create(cartOwner);
+
+                                await UserService.Obj.SendEmailToShareCard(userToFind.Email, userCode);
+                            }
+
+                            else
+                            {
+                                await UserService.Obj.SendEmailToShareCard(email, userCode);
+                            }
+                        }
+                    }
+                }
             }
 
             else
@@ -155,7 +190,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 {
                     Cart cart = CartMobileService.Obj.GetById(model.CartId);
 
-                    CartOwner cartOwner = CartOwner.Create(cart, user, model.AccessLevel);
+                    CartOwner cartOwner = CartOwner.Create(cart, user, AccessLevel.ReadWrite);
 
                     CartOwnerMobileService.Obj.Create(cartOwner);
 
@@ -166,14 +201,13 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 {
                     await UserService.Obj.SendEmailToShareCard(email, userCode);
                 }
-
             }
 
             var users = CartOwnerMobileService.Obj.GetUsersByCart(model.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
 
             return Ok(users);
         }
-       
+
         [HttpPost]
         [Route("getAccess")]
         public IHttpActionResult GetAccess([FromBody]GetAccessBindingModel model)
@@ -199,7 +233,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 }
 
             CartOwner cartOwner = CartOwner.Create(cart, user, accessLevel);
-            
+
             double cartIndex = CartOwnerMobileService.Obj.GetLastIndex(user.Id);
             cartOwner.SetCartIndex(cartIndex);
 

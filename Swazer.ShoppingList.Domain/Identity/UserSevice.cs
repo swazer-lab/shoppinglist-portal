@@ -33,7 +33,7 @@ namespace Swazer.ShoppingList.Domain
                         string userName = Settings.Provider.EmailAddress;
                         message.From = new MailAddress(userName, "Shopping App");
                         message.To.Add(new MailAddress(to));
-
+                
                         message.IsBodyHtml = true;
                         message.Subject = subject;
                         message.Body = body;
@@ -42,10 +42,10 @@ namespace Swazer.ShoppingList.Domain
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 TracingSystem.TraceException("Email failed to send", ex);
-                throw;
             }
         }
 
