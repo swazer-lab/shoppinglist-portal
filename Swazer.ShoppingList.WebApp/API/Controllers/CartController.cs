@@ -160,7 +160,15 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         [Route("remove")]
         public IHttpActionResult RemoveCard(int cartId)
         {
-            CartMobileService.Obj.Delete(cartId);
+            User user = GetCurrentUser();
+
+            CartOwner cartOwner = CartOwnerMobileService.Obj.GetCartUser(cartId, user.Id);
+
+            if (cartOwner.AccessLevel == AccessLevel.Owner)
+                CartMobileService.Obj.Delete(cartId);
+
+            else
+                CartOwnerMobileService.Obj.LeaveFromCurrentCart(cartOwner.CartId);
 
             return Ok();
         }
@@ -172,6 +180,18 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             User user = GetCurrentUser();
 
             CartMobileService.Obj.UpdateOrder(user.Id, model.CartId, model.Destination);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("makeArchived")]
+        public IHttpActionResult MakeArchived(int cartId)
+        {
+            Cart cart = CartMobileService.Obj.GetById(cartId);
+
+            cart.MakeArchived();
+            CartMobileService.Obj.Update(cart);
 
             return Ok();
         }

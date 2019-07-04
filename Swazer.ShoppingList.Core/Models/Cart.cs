@@ -18,6 +18,8 @@ namespace Swazer.ShoppingList.Core
 
         public bool IsActive { get; set; }
 
+        public CartStatus Status { get; set; }
+
         public List<CartOwner> Owners { get; set; }
 
         public static Cart Create(string title, string notes, DateTime? date)
@@ -27,7 +29,8 @@ namespace Swazer.ShoppingList.Core
                 Title = title,
                 Notes = notes,
                 Date = date,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                Status = CartStatus.NotArchived
             };
         }
 
@@ -40,5 +43,18 @@ namespace Swazer.ShoppingList.Core
 
             return this;
         }
+
+        public Cart MakeArchived()
+        {
+            Status = CartStatus.Archived;
+
+            return this;
+        }
+    }
+
+    public enum CartStatus
+    {
+        NotArchived,
+        Archived,
     }
 }

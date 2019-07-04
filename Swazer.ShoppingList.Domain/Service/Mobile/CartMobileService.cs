@@ -58,6 +58,17 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
+        public void Update(Cart entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (!entity.Validate())
+                throw new ValidationException(entity.ValidationResults);
+
+            repository.Update(entity);
+        }
+
         public Cart Update(Cart entity, List<CartItem> items, List<CartOwner> users)
         {
             if (entity == null)
