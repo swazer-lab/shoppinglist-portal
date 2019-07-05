@@ -160,7 +160,15 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         [Route("remove")]
         public IHttpActionResult RemoveCard(int cartId)
         {
-            CartMobileService.Obj.Delete(cartId);
+            User user = GetCurrentUser();
+
+            CartOwner cartOwner = CartOwnerMobileService.Obj.GetCartUser(cartId, user.Id);
+
+            if (cartOwner.AccessLevel == AccessLevel.Owner)
+                CartMobileService.Obj.Delete(cartId);
+
+            else
+                CartOwnerMobileService.Obj.LeaveFromCurrentCart(cartOwner.CartId);
 
             return Ok();
         }
@@ -174,6 +182,37 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             CartMobileService.Obj.UpdateOrder(user.Id, model.CartId, model.Destination);
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("makeArchived")]
+        public IHttpActionResult MakeArchived(MakeArchivedBindingModel model)
+        {
+            Cart cart = CartMobileService.Obj.GetById(model.CartId);
+
+            cart.MakeArchived();
+            CartMobileService.Obj.Update(cart);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("getArchivedCarts")]
+        public IHttpActionResult GetArchivedCarts([FromUri]CartSearchCriteriaBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            CartMobileSearchCriteria cartMobileSearchCriteria = model.ToSearchCriteria(user.Id);
+
+            IQueryResult<Cart> carts = CartMobileService.Obj.FindArchivedCarts(cartMobileSearchCriteria);
+
+            var result = new PagingBindingModel<CartIndexBindingModel>()
+            {
+                Items = carts.Items.Select(x => x.ToCartIndexBindingModel()).ToList(),
+                TotalCount = carts.TotalCount
+            };
+            
+            return Ok(result);
         }
 
         [HttpPost]

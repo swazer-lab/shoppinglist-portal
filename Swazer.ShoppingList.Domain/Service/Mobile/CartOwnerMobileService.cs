@@ -127,6 +127,22 @@ namespace Swazer.ShoppingList.Domain
             }
         }
 
+        public void LeaveFromCurrentCart(int cartId)
+        {
+            User currentUser = UserService.Obj.FindByName(Thread.CurrentPrincipal.Identity.Name);
+
+            IQueryConstraints<CartOwner> constraints = new QueryConstraints<CartOwner>()
+              .AndAlso(x => x.CartId == cartId)
+              .AndAlso(x => x.UserId == currentUser.Id);
+
+            List<CartOwner> users = queryRepository.Find(constraints).Items.ToList();
+
+            foreach (var user in users)
+            {
+                repository.Delete(user);
+            }
+        }
+
         public void UpdateCartUsers(List<CartOwner> users, int cartId)
         {
             DeleteCartUser(cartId);

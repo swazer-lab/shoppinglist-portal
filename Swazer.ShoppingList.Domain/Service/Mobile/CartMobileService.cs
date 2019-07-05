@@ -58,6 +58,17 @@ namespace Swazer.ShoppingList.Domain
             return createdEntity;
         }
 
+        public void Update(Cart entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (!entity.Validate())
+                throw new ValidationException(entity.ValidationResults);
+
+            repository.Update(entity);
+        }
+
         public Cart Update(Cart entity, List<CartItem> items, List<CartOwner> users)
         {
             if (entity == null)
@@ -99,6 +110,27 @@ namespace Swazer.ShoppingList.Domain
         }
 
         public IQueryResult<Cart> Find(CartMobileSearchCriteria criterias)
+        {
+            if (criterias == null)
+                throw new ArgumentNullException(nameof(criterias));
+
+            List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(criterias.UserId);
+
+            var cartIds = carts.Select(x => x.CartId).ToList();
+
+            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
+                .PageAndSort(criterias, x => x.CartId)
+                .AndAlso(x => cartIds.Contains(x.CartId))
+                .AndAlsoIf(x => x.Title.Contains(criterias.Title), !string.IsNullOrEmpty(criterias.Title));
+
+            IQueryResult<Cart> result = queryRepository.Find(constraints);
+
+            Tracer.Log.EntitiesRetrieved(nameof(Cart), result.Items.Count(), result.TotalCount);
+
+            return result;
+        }
+
+        public IQueryResult<Cart> FindArchivedCarts(CartMobileSearchCriteria criterias)
         {
             if (criterias == null)
                 throw new ArgumentNullException(nameof(criterias));
