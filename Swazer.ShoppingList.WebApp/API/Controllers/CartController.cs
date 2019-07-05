@@ -186,14 +186,33 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
 
         [HttpPost]
         [Route("makeArchived")]
-        public IHttpActionResult MakeArchived(int cartId)
+        public IHttpActionResult MakeArchived(MakeArchivedBindingModel model)
         {
-            Cart cart = CartMobileService.Obj.GetById(cartId);
+            Cart cart = CartMobileService.Obj.GetById(model.CartId);
 
             cart.MakeArchived();
             CartMobileService.Obj.Update(cart);
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("getArchivedCarts")]
+        public IHttpActionResult GetArchivedCarts([FromUri]CartSearchCriteriaBindingModel model)
+        {
+            User user = GetCurrentUser();
+
+            CartMobileSearchCriteria cartMobileSearchCriteria = model.ToSearchCriteria(user.Id);
+
+            IQueryResult<Cart> carts = CartMobileService.Obj.FindArchivedCarts(cartMobileSearchCriteria);
+
+            var result = new PagingBindingModel<CartIndexBindingModel>()
+            {
+                Items = carts.Items.Select(x => x.ToCartIndexBindingModel()).ToList(),
+                TotalCount = carts.TotalCount
+            };
+            
+            return Ok(result);
         }
 
         [HttpPost]

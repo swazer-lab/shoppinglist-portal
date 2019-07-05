@@ -750,6 +750,7 @@
     <Compile Include="API\Models\CartBindingModels.cs" />
     <Compile Include="API\Models\FriendsBindingModels.cs" />
     <Compile Include="API\Models\ItemBindingModels.cs" />
+    <Compile Include="API\Models\MakeSharingBindingModel.cs" />
     <Compile Include="API\Models\PagingBindingModel.cs" />
     <Compile Include="API\Models\PhotoBindingModel.cs" />
     <Compile Include="API\Models\SearchCriteriaBindingModel.cs" />

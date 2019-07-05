@@ -130,6 +130,27 @@ namespace Swazer.ShoppingList.Domain
             return result;
         }
 
+        public IQueryResult<Cart> FindArchivedCarts(CartMobileSearchCriteria criterias)
+        {
+            if (criterias == null)
+                throw new ArgumentNullException(nameof(criterias));
+
+            List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(criterias.UserId);
+
+            var cartIds = carts.Select(x => x.CartId).ToList();
+
+            IQueryConstraints<Cart> constraints = new QueryConstraints<Cart>()
+                .PageAndSort(criterias, x => x.CartId)
+                .AndAlso(x => cartIds.Contains(x.CartId))
+                .AndAlsoIf(x => x.Title.Contains(criterias.Title), !string.IsNullOrEmpty(criterias.Title));
+
+            IQueryResult<Cart> result = queryRepository.Find(constraints);
+
+            Tracer.Log.EntitiesRetrieved(nameof(Cart), result.Items.Count(), result.TotalCount);
+
+            return result;
+        }
+
         public List<Cart> Find(string title, int userId)
         {
             List<CartOwner> carts = CartOwnerMobileService.Obj.GetCartsByUser(userId);
