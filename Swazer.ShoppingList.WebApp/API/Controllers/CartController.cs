@@ -196,7 +196,7 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("getArchivedCarts")]
         public IHttpActionResult GetArchivedCarts([FromUri]CartSearchCriteriaBindingModel model)
         {
@@ -211,7 +211,13 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
                 Items = carts.Items.Select(x => x.ToCartIndexBindingModel()).ToList(),
                 TotalCount = carts.TotalCount
             };
-            
+
+            foreach (var cart in result.Items.ToList())
+            {
+                cart.Items = ItemMobileService.Obj.GetItemsByCard(cart.Cart.CartId).Select(x => x.ToCartItemBindingModel(ItemMobileService.Obj.GetById(x.ItemId))).ToList();
+                cart.Users = CartOwnerMobileService.Obj.GetUsersByCart(cart.Cart.CartId).Select(x => x.ToUserProfileBindingModel(UserService.Obj.FindById(x.UserId), ImageService.Obj.FindByUserId(x.UserId))).ToList();
+            }
+
             return Ok(result);
         }
 
