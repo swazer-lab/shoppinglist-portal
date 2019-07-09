@@ -28,6 +28,8 @@ namespace Swazer.ShoppingList.Core
 
         public double CartIndex { get; set; }
 
+        public int CartStatus { get; set; }
+
         // User
 
         public int UserId { get; set; }
