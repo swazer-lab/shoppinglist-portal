@@ -23,7 +23,7 @@ namespace Swazer.ShoppingList.SqlServerRepository
                 {
                     using (SqlCommand command = new SqlCommand())
                     {
-                        command.CommandText = @"SELECT c.CartId, c.Title, c.Notes, c.Date, co.CartIndex, i.ItemId, i.Title as itemTitle, ci.Status as itemStatus,u.Id as userId, u.Name, u.Email,u.Mobile,u.EmailConfirmed, co.AccessLevel, img.ImageId
+                        command.CommandText = @"SELECT c.CartId, c.Title, c.Notes, c.Date, c.Status, co.CartIndex, i.ItemId, i.Title as itemTitle, ci.Status as itemStatus,u.Id as userId, u.Name, u.Email,u.Mobile,u.EmailConfirmed, co.AccessLevel, img.ImageId
 FROM Carts as c
 INNER JOIN CartOwners AS co ON c.CartId = co.CartId 
 LEFT JOIN CartItems AS ci ON ci.CartId = c.CartId
@@ -57,6 +57,7 @@ ORDER BY co.CartIndex DESC";
                                 cart.CartId = (int)dr["CartId"];
                                 cart.Title = dr["Title"].ToString();
                                 cart.Notes = dr["Notes"].ToString();
+                                cart.cAR = (int)dr["Status"];
                                 cart.Date = dr["Date"] == DBNull.Value ? null : (DateTime?)dr["Date"];
                                 cart.CartIndex = (double)dr["CartIndex"];
 
@@ -78,7 +79,7 @@ ORDER BY co.CartIndex DESC";
                     }
                 }
 
-                var returnedCarts = carts.GroupBy(x => x.CartId).Select(cart => new CartObject
+                var returnedCarts = carts.Where(x=>x.CartStatus == (int)CartStatus.NotArchived).GroupBy(x => x.CartId).Select(cart => new CartObject
                 {
                     CartId = cart.FirstOrDefault().CartId,
                     Title = cart.FirstOrDefault().Title,
