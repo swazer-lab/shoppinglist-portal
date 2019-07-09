@@ -57,7 +57,7 @@ ORDER BY co.CartIndex DESC";
                                 cart.CartId = (int)dr["CartId"];
                                 cart.Title = dr["Title"].ToString();
                                 cart.Notes = dr["Notes"].ToString();
-                                cart.cAR = (int)dr["Status"];
+                                cart.CartStatus = (int)dr["Status"];
                                 cart.Date = dr["Date"] == DBNull.Value ? null : (DateTime?)dr["Date"];
                                 cart.CartIndex = (double)dr["CartIndex"];
 
