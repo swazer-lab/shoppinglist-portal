@@ -50,6 +50,13 @@ namespace Swazer.ShoppingList.Core
 
             return this;
         }
+
+        public Cart RevokeArchived()
+        {
+            Status = CartStatus.NotArchived;
+
+            return this;
+        }
     }
 
     public enum CartStatus

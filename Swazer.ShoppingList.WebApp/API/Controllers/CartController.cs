@@ -197,6 +197,18 @@ namespace Swazer.ShoppingList.WebApp.API.Controllers
         }
 
         [HttpPost]
+        [Route("revokeArchived")]
+        public IHttpActionResult RevokeArchived(MakeArchivedBindingModel model)
+        {
+            Cart cart = CartMobileService.Obj.GetById(model.CartId);
+
+            cart.RevokeArchived();
+            CartMobileService.Obj.Update(cart);
+
+            return Ok();
+        }
+
+        [HttpGet]
         [Route("getArchivedCarts")]
         public IHttpActionResult GetArchivedCarts([FromUri]CartSearchCriteriaBindingModel model)
         {
